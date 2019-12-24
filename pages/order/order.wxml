@@ -1,0 +1,125 @@
+<view class="box">
+
+    <view class="order-top" disable-scroll="{{true}}">
+        <view class="dingDan">订单</view>
+        <view class="chongzhijilu" bindTap="recharge">充值记录</view>
+        <view class="order-box">
+            <view class="box-left">
+                <view class="box-left-top">交易总金额(元)</view>
+                <view class="box-left-bottom">{{money}}</view>
+            </view>
+            <view class="box-mid">
+                <view class="box-mid-left"></view>
+                <view class="box-mid-item">
+                    <view class="box-mid-item-top">交易总笔数</view>
+                    <view class="box-mid-item-bottom">{{count}}</view>
+                </view>
+                <view class="box-mid-right"></view>
+            </view>
+            <view class="box-right">
+                <view class="box-right-top">退款总金额(元)</view>
+                <view class="box-right-bottom">{{refound}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="searchBox">
+        <view class="search-tianchong"></view>
+        <view class="search-left">
+            <image src="../img/search.png" class="search-icon" />
+            <input placeholder="订单编号" onInpu="inputOrder" onConfirm="goGetList" class="search-input" placeholder-style="color: rgba(205, 205, 205, 1);" />
+        </view>
+        <image src="../img/wShaiXuan.png" class="search-right " bindTap="search" />
+    </view>
+    <scroll-view scroll-y="{{true}}" class="listBox" onScrollToUpper="upper" onScrollToLower="lower" onScroll="scroll">
+        <view style="width:100%;text-align:center;line-height:40rpx;margin-top:20rpx" wx:if="{{list.length == 0}}">暂无订单</view>
+        <view class="list-box">
+            <view class="list-box-item" wx:for="{{list}}" bindTap="orderDetail" data-order="{{item.paymentOrder}}">
+                <image src="../img/ali-pay.png" wx:if="{{item.orderPayType == '支付宝支付'}}" class="list-box-item-img" />
+                <image src="../img/weixin-pay.png" wx:if="{{item.orderPayType == '微信支付'}}" class="list-box-item-img" />
+                <view class="list-box-item-left">
+                    <view class="list-box-item-left-top">{{item.paymentOrder}}</view>
+                    <view class="list-box-item-left-bottom">{{item.transactionTime}}</view>
+                </view>
+                <view class="list-box-item-right">
+                    <!--<view class="list-box-item-right-top">+￥ 200.00</view> -->
+                    <view class="list-box-item-right-top1" wx:if="{{item.orderState == '全额退款'}}">-￥{{item.totalMoney-item.refundBalance}}</view>
+                    <view class="list-box-item-right-top1" wx:if="{{item.orderState == '部分退款'}}">+￥{{item.refundBalance}}</view>
+                    <view class="list-box-item-right-top1" wx:else="{{item.orderState == '支付成功'}}">+￥{{item.totalMoney}}</view>
+                    <view class="list-box-item-right-bottom">
+                        <view class="{{item.orderState == '全额退款' ? 'item-point' : 'item-point1' }}"></view>
+                        <view class="item-text">{{item.orderState}}</view>
+                    </view>
+                </view>
+                <image class="list-box-item-detail" src="../img/right.png" />
+            </view>
+        </view>
+    </scroll-view>
+    <view wx:if="{{choose==true}}" class="bbbox">
+        <view class="chooseBox">
+            <view class="choose-title">筛选</view>
+            <view class="choose-head">
+                <view class="choose-head-left"></view>
+                <view class="choose-head-text">时间</view>
+            </view>
+            <view class="choose-item">
+                <view class="{{timeType == 0 ? 'choose-item-text1' : 'choose-item-text'}}" data-id="0" bindTap="timeType">今天</view>
+                <view class="{{timeType == 1 ? 'choose-item-text1' : 'choose-item-text'}}" data-id="1" bindTap="timeType">昨天</view>
+                <view class="{{timeType == 2 ? 'choose-item-text1' : 'choose-item-text'}}" data-id="2" bindTap="timeType">近7天</view>
+                <view class="{{timeType == 3 ? 'choose-item-text1' : 'choose-item-text'}}" data-id="3" bindTap="timeType">自定义</view>
+                <view class="" style="width:100%;display:block;margin-top:5rpx;" wx:if="{{timeType == 3}}">{{startT}} 至 {{endT}}</view>
+            </view>
+            <view class="choose-head">
+                <view class="choose-head-left"></view>
+                <view class="choose-head-text">支付方式</view>
+            </view>
+            <view class="choose-item">
+                <view class="{{orderPayType == -1 ? 'choose-item-text1' : 'choose-item-text'}}" data-id="-1" bindTap="orderPayType">全部</view>
+                <view class="{{orderPayType == 0 ? 'choose-item-text1' : 'choose-item-text'}}" data-id="0" bindTap="orderPayType">支付宝</view>
+                <view class="{{orderPayType == 1 ? 'choose-item-text1' : 'choose-item-text'}}" data-id="1" bindTap="orderPayType">微信</view>
+                <view class="{{orderPayType == 2 ? 'choose-item-text1' : 'choose-item-text'}}" data-id="2" bindTap="orderPayType">会员</view>
+            </view>
+            <view class="choose-head">
+                <view class="choose-head-left"></view>
+                <view class="choose-head-text">订单状态</view>
+            </view>
+            <view class="choose-item">
+                <view class="{{orderState == -1 ? 'choose-item-text1' : 'choose-item-text'}}" data-id="-1" bindTap="orderState">全部</view>
+                <view class="{{orderState == 1 ? 'choose-item-text1' : 'choose-item-text'}}" data-id="1" bindTap="orderState">支付成功</view>
+                <view class="{{orderState == 4 ? 'choose-item-text1' : 'choose-item-text'}}" data-id="4" bindTap="orderState">全部退款</view>
+                <view class="{{orderState == 5 ? 'choose-item-text1' : 'choose-item-text'}}" data-id="5" bindTap="orderState">部分退款</view>
+            </view>
+        </view>
+        <view class="choose-foot">
+            <view class="choose-reset" bindTap="reset">重置</view>
+            <view class="choose-success" bindTap="success">完成筛选</view>
+        </view>
+    </view>
+</view>
+<!-- wx:if="{{chooseData == true}}" -->
+<view class='chooseData' wx:if="{{chooseData == true}}" data-isL="1">
+    <view class='riqiBox' style='bottom:187px;'>
+        <view class='fl riqi year'>
+            <text class='yearL iconfont icon icon-triangle-left' decode='true' bindTap='yearjian'>《</text>
+            <text class='' decode='true' style='vertical-align:middle;color:#1D98EB;'>{{year}}年</text>
+            <text class='yearR iconfont icon icon-triangle-right' decode='true' bindTap='yearadd'>》</text>
+        </view>
+        <view class='fl riqi month'>
+            <text class='yearL iconfont icon icon-triangle-left' decode='true' bindTap='monthjian'>《</text>
+            <text class='' decode='true' style='vertical-align:middle;color:#1D98EB;'>{{month}}月</text>
+            <text class='yearR iconfont icon icon-triangle-right' decode='true' bindTap='monthadd'>》</text>
+        </view>
+        <!--<view class='fl riqi long' wx:if="{{isLong}}">永久</view> -->
+    </view>
+    <view wx:for="{{dateList}}" wx:key="{{index}}" wx:for-item="dateItem" style='height:100vh' bindTap="noClick" data-is="1">
+        <view class="layout-flex row" id='row1' style="flex-wrap: wrap;margin-top:30rpx;;background:#fff" data-is="0">
+            <view class="date-day {{item.class}} {{item.isA >= firstNum && item.isA<= twoNum ? 'active':''}} {{item.class}} {{item.isA<= firstNum && item.isA >= twoNum ? 'active':''}}" style="width:40px;height:40px;" data-year="{{dateItem.year}}" data-month="{{dateItem.month}}"
+                data-day="{{item.day}}" bindTap="onPressDate" wx:for="{{dateItem.days}}" wx:key="{{index}}" data-is="0" style="display:inline-block">
+                <view class='item-days {{item.isA}}' data-is="0">
+                    <text style='font-size:30rpx;' data-is="0">{{item.day>0?(item.daytext?item.daytext:item.day):''}}</text>
+                    <text style='font-size:30rpx;' wx:if="{{item.inday}}"></text>
+                    <text style='font-size:30rpx;' wx:if="{{item.outday}}"></text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,234 @@
+.box {
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+}
+
+.xiangqing {
+    height: 100rpx;
+    background: linear-gradient(138deg, rgba(76, 206, 78, 1) 0%, rgba(30, 173, 31, 1) 100%);
+    text-align: center;
+}
+
+.xqImg {
+    width: 27rpx;
+    height: 40rpx;
+    position: absolute;
+    left: 35rpx;
+    top: 30rpx;
+}
+
+.xqText {
+    font-size: 36rpx;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    line-height: 100rpx;
+}
+
+input {
+    margin: 0;
+    padding: 0;
+}
+
+.date-box {
+    width: 100%;
+    height: 198rpx;
+    border-bottom: 2rpx solid #e5e5e5;
+}
+
+.date-box-left {
+    display: inline-block;
+}
+
+.date-box-left-top {
+    width: 482rpx;
+    margin-left: 32rpx;
+    margin-top: 30rpx;
+    height: 60rpx;
+}
+
+.date-box-left-text {
+    width: 112rpx;
+    height: 60rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 60rpx;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.date-box-left-input {
+    width: 350rpx;
+    height: 60rpx;
+    background: rgba(245, 245, 245, 1);
+    border-radius: 8rpx;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20rpx;
+}
+
+.date-box-left-input-time {
+    width: 170rpx;
+    height: 60rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(102, 102, 102, 1);
+    line-height: 60rpx;
+    background: rgba(245, 245, 245, 1);
+    margin-left: 20rpx;
+}
+
+.date-box-left-input-icon {
+    width: 28rpx;
+    height: 16rpx;
+    vertical-align: top;
+    display: inline-block;
+    margin-left: 300rpx;
+    margin-top: -34rpx;
+}
+
+.date-box-right {
+    vertical-align: top;
+    display: inline-block;
+    width: 140rpx;
+    height: 68rpx;
+    background: #26B327;
+    border-radius: 12rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    line-height: 68rpx;
+    text-align: center;
+    margin-left: 44rpx;
+    margin-top: 68rpx;
+}
+
+.list-title {
+    width: 100%;
+    height: 80rpx;
+    border-bottom: 2rpx solid #e5e5e5;
+}
+
+.list-title-date {
+    display: inline-block;
+    width: 150rpx;
+    height: 80rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 80rpx;
+    margin-left: 40rpx;
+}
+
+.list-title-count {
+    display: inline-block;
+    width: 136rpx;
+    height: 80rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 80rpx;
+    margin-left: 40rpx;
+    text-align: center;
+    margin-left: 22rpx;
+}
+
+.list-title-tuikuan {
+    display: inline-block;
+    width: 150rpx;
+    height: 80rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 80rpx;
+    margin-left: 40rpx;
+    text-align: center;
+}
+
+.list-title-jiaoyi {
+    display: inline-block;
+    width: 150rpx;
+    height: 80rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 80rpx;
+    margin-left: 40rpx;
+    text-align: center;
+}
+
+.list {
+    width: 100%;
+    height: 795rpx;
+}
+
+.day-list {
+    width: 100%;
+    height: auto;
+}
+
+.day-list-item {
+    width: 100%;
+    height: 94rpx;
+    border-bottom: 2rpx solid #e5e5e5;
+}
+
+.list-item-date {
+    display: inline-block;
+    width: 150rpx;
+    height: 94rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 94rpx;
+    margin-left: 40rpx;
+}
+
+.list-item-count {
+    display: inline-block;
+    width: 136rpx;
+    height: 94rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 94rpx;
+    margin-left: 40rpx;
+    text-align: center;
+    margin-left: 22rpx;
+}
+
+.list-item-tuikuan {
+    display: inline-block;
+    width: 150rpx;
+    height: 94rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 94rpx;
+    margin-left: 40rpx;
+    text-align: center;
+}
+
+.list-item-jiaoyi {
+    display: inline-block;
+    width: 150rpx;
+    height: 94rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(252, 85, 72, 1);
+    line-height: 94rpx;
+    margin-left: 40rpx;
+    text-align: center;
+}

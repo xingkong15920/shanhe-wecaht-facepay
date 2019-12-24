@@ -1,0 +1,369 @@
+.box {
+    width: 100%;
+    background-color: #fff;
+}
+
+.xiangqing {
+    height: 100rpx;
+    background: linear-gradient(138deg, rgba(76, 206, 78, 1) 0%, rgba(30, 173, 31, 1) 100%);
+    text-align: center;
+}
+.xqImg {
+    width: 27rpx;
+    height: 40rpx;
+    position: absolute;
+    left: 35rpx;
+    top: 30rpx;
+}
+.xqText {
+    font-size: 36rpx;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    line-height: 100rpx;
+}
+
+input {
+    padding: 0;
+}
+
+.top {
+    width: 100%;
+    text-align: center;
+    margin-top: 32rpx;
+    display: block;
+    height: 44rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(102, 102, 102, 1);
+    line-height: 44rpx;
+}
+
+.money {
+    width: 100%;
+    text-align: center;
+    display: block;
+    margin-top: 12rpx;
+    height: 74rpx;
+    font-size: 52rpx;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: #2BB72D;
+    line-height: 74rpx;
+}
+
+.list {
+    width: 100%;
+    margin-top: 14rpx;
+}
+
+.list-item {
+    width: 100%;
+    height: 92rpx;
+    border-bottom: 1rpx solid #e5e5e5;
+}
+
+.list-item:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.list-item-left {
+    width: 120rpx;
+    float: left;
+    margin-left: 32rpx;
+    height: 92rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(102, 102, 102, 1);
+    line-height: 92rpx;
+}
+
+.list-item-right {
+    width: 500rpx;
+    float: right;
+    margin-right: 32rpx;
+    height: 92rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 92rpx;
+    text-align: right;
+}
+
+.list-item-right1 {
+    color: rgba(252, 85, 72, 1);
+}
+
+.order-foot {
+    width: 800rpx;
+    height: 120rpx;
+    background:linear-gradient(315deg,rgba(35,177,36,1) 0%,rgba(66,199,68,1) 100%);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.order-foot-left {
+    width: 246rpx;
+    position: relative;
+    left: 0;
+    top: 0;
+    display: inline-block;
+}
+
+.order-foot-left123 {
+    width: 246rpx;
+    margin: 0 auto;
+}
+
+.order-foot-left1 {
+    width: 266rpx;
+    position: relative;
+    left: 0;
+    top: 0;
+    display: inline-block;
+}
+
+.order-foot-left2 {
+    width: 246rpx;
+    position: relative;
+    left: 0;
+    top: 0;
+    display: inline-block;
+}
+
+.order-foot-left:after {
+    content: '';
+    /*CSS伪类用法*/
+    position: absolute;
+    /*定位背景横线的位置*/
+    top: 40rpx;
+    right: 0;
+    background: #fff;
+    /*宽和高做出来的背景横线*/
+    width: 2rpx;
+    height: 40rpx;
+}
+
+.order-foot-left1:after {
+    content: '';
+    /*CSS伪类用法*/
+    position: absolute;
+    /*定位背景横线的位置*/
+    top: 40rpx;
+    right: 0;
+    background: #fff;
+    /*宽和高做出来的背景横线*/
+    width: 2rpx;
+    height: 40rpx;
+}
+
+.order-foot-left-img {
+    width: 48rpx;
+    height: 48rpx;
+    display: inline-block;
+    margin-top: 36rpx;
+    margin-left: 70rpx;
+}
+
+.order-foot-left1 .order-foot-left-img, .order-foot-left2 .order-foot-left-img {
+    margin-left: 28rpx;
+}
+
+.order-foot-left-text {
+    width: 64rpx;
+    height: 44rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 1);
+    line-height: 44rpx;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 36rpx;
+    margin-left: 8rpx;
+}
+
+.order-foot-left1 .order-foot-left-text, .order-foot-left2 .order-foot-left-text {
+    width: 140rpx;
+}
+
+.mask-box {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.tuikuan-all {
+    width: 660rpx;
+    height: 520rpx;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 16rpx;
+    margin: 0 auto;
+    margin-top: 250rpx;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+.tuikuan-all1 {
+    width: 660rpx;
+    height: 580rpx;
+    background: rgba(255, 255, 255, 1);
+    border-radius: 16rpx;
+    margin: 0 auto;
+    margin-top: 250rpx;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+.tuikuan-all-tianchong {
+    width: 100%;
+    height: 32rpx;
+}
+
+.tuikuan-all-title {
+    width: 100%;
+    display: block;
+    text-align: center;
+    height: 50rpx;
+    font-size: 36rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 50rpx;
+}
+
+.tuikuan-all-title1 {
+    margin-left: 46rpx;
+    width: 96rpx;
+    height: 34rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 34rpx;
+    margin-top: 20rpx;
+}
+
+.tuikuan-all-money {
+    margin-left: 46rpx;
+    width: 570rpx;
+    height: 72rpx;
+    border-bottom: 2rpx solid #e5e5e5;
+    margin-bottom: 32rpx;
+}
+
+.tuikuan-all-money-left {
+    width: 310rpx;
+    height: 72rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: #27B328;
+    line-height: 72rpx;
+    float: left;
+}
+
+.tuikuan-all-money-left1 {
+    width: 310rpx;
+    height: 72rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    line-height: 72rpx;
+    float: left;
+    color: #27B328;
+}
+
+.tuikuan-all-money-right {
+    float: right;
+    width: 28rpx;
+    height: 72rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 72rpx;
+}
+
+.tuikuan-all-pw {
+    margin-left: 46rpx;
+    width: 570rpx;
+    height: 68rpx;
+    border-bottom: 2rpx solid #e5e5e5;
+    font-size: 28rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: #333333;
+    line-height: 68rpx;
+    text-align: left;
+}
+
+.tuikuan-all-tig {
+    width: 230rpx;
+    margin-left: 46rpx;
+    margin-top: 20rpx;
+    height: 34rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(252, 85, 72, 1);
+    line-height: 34rpx;
+}
+
+.tuikuan-all-foot {
+    width: 100%;
+    height: 100rpx;
+    border-top: 2rpx solid #c6c6c6;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.tuikuan-all-foot-left {
+    width: 49.5%;
+    text-align: center;
+    border-right: 2rpx solid #c6c6c6;
+    display: inline-block;
+    height: 100rpx;
+    font-size: 32rpx;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(252, 85, 72, 1);
+    line-height: 100rpx;
+}
+
+.tuikuan-all-foot-right {
+    width: 50%;
+    height: 100rpx;
+    text-align: center;
+    display: inline-block;
+    font-size: 32rpx;
+    font-family: PingFangSC;
+    font-weight: 600;
+    color: rgba(51, 51, 51, 1);
+    line-height: 100rpx;
+}
+
+.tuikuan-all-ketui {
+    width: 100%;
+    text-align: center;
+    display: block;
+    height: 34rpx;
+    font-size: 24rpx;
+    font-family: PingFangSC;
+    font-weight: 500;
+    color: rgba(51, 51, 51, 1);
+    line-height: 34rpx;
+    margin-top: 20rpx;
+}

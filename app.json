@@ -1,14 +1,28 @@
 {
-	"pages": [
-		"pages/index/index",
-		"pages/logs/logs"
-	],
-	"window": {
-		"backgroundTextStyle": "light",
-		"navigationBarBackgroundColor": "#fff",
-		"navigationBarTitleText": "WeChat",
-		"navigationBarTextStyle": "black"
-	},
-	"style": "v2",
-	"sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/login/login",
+        "pages/login-detail/login-detail",
+        "pages/info/info",
+        "pages/merInfo/merInfo",
+        "pages/dayin/dayin",
+        "pages/jiaoban-record/jiaoban-record",
+        "pages/jiaoban-finish/jiaoban-finish",
+        "pages/jiaoban-detail/jiaoban-detail",
+        "pages/dayMoney/dayMoney",
+        "pages/recharge/recharge",
+        "pages/order-detail/order-detail",
+        "pages/order/order",
+        "pages/main/main",
+        "pages/index/index",
+        "pages/logs/logs"
+        
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black"
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
 }

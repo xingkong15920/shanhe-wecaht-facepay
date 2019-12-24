@@ -1,0 +1,23 @@
+<view class="box">
+	<view class="top">关于我们</view>
+	<view class="count">
+		<view class="count-center">设备号：{{equipmentNumber}}</view>
+	</view>
+	<view class="count1">
+		<view class="count-center">系统版本：{{sdk}}</view>
+	</view>
+	<view class="count1">
+		<!-- <view class="count-center">小程序版本：V{{version}}</view> -->
+        <view class="count-center">SDK版本：V{{version}}</view>
+	</view>
+	<view class="count1">
+		<view class="count-center" onTap="set">系统设置</view>
+	</view>
+	<view class="count1">
+		<view class="count-left">联网自动更新</view>
+		<switch onChange="switch2Change" class="onOff"/>
+	</view>
+	<view class="count1">
+		<view class="count-center1">检查更新</view>
+	</view>
+</view>

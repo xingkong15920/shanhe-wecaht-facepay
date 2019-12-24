@@ -1,0 +1,37 @@
+<view class="box">
+    <view class="xiangqing">
+        <image src="../img/wZuo.png" class="xqImg" />
+        <view class="xqText">充值</view>
+    </view>
+    <view class="re-head">
+        <view class="re-search-box">
+            <image src="../img/search.png" class="re-search-img" />
+            <input placeholder="输入要搜索的手机号/卡号" class="re-searcha-input" />
+        </view>
+    </view>
+    <view class="re-title">
+        <view class="re-title-left">会员</view>
+        <view class="re-title-type">充值方式</view>
+        <view class="re-title-money">充值金额(元)</view>
+        <view class="re-title-set">操作</view>
+    </view>
+    <scroll-view scroll-y="{{true}}" class="listBox" onScrollToUpper="upper" onScrollToLower="lower" onScroll="scroll">
+        <view class="list-box">
+            <view class="list-item" wx:for="{{list}}">
+                <view class="list-item-left">
+                    <view class="list-item-left-name">{{item.name}}({{item.cell}})</view>
+                    <view class="list-item-left-time">{{item.rechargeTime}}</view>
+                </view>
+                <view class="list-item-type" wx:if="{{item.payType == 0}}">现金</view>
+                <view class="list-item-type" wx:if="{{item.payType == 1}}">微信</view>
+                <view class="list-item-type" wx:if="{{item.payType == 2}}">支付宝</view>
+                <view class="list-item-type" wx:if="{{item.payType == 3}}">银行卡</view>
+                <view class="list-item-money">
+                    <view class="list-item-money-top">+￥{{item.realAmount}}</view>
+                    <view class="list-item-money-bottom">赠送：￥{{item.giveAmount}}</view>
+                </view>
+                <view class="list-item-set">撤销</view>
+            </view>
+        </view>
+    </scroll-view>
+</view>

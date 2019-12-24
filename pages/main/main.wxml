@@ -1,0 +1,18 @@
+<view class="box" disable-scroll="{{true}}">
+<image  src="../img/set.png" class="set" bindtap="set"/>
+  <view class="itemBox">
+    <view class="item" wx:for="{{list}}" bindtap="{{item.tap}}" >
+		<image class="item-image" mode="scaleToFill" src="{{item.img}}"/>
+		<image class="item-icon" wx:if="{{!!item.icon}}"  src="{{item.icon}}"/>
+		<text class="item-text">{{item.text}}</text>
+	</view>
+  </view>
+  <!-- <view class="box-foot">
+	  
+  </view> -->
+  <view class="foot">
+	  <!-- <view class="foot-mid"> 设备号：{{equipmentNumber}}</view> -->
+	  <view class="foot-top">版本号V1.0.0</view>
+	<view class="foot-bottom">设备号:FJSJKDKJ1232132131232</view>
+  </view>
+</view>
