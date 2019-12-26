@@ -1,6 +1,6 @@
 <view class="box">
     <view class="xiangqing">
-        <image src="../img/wZuo.png" class="xqImg" />
+        <image src="../img/wZuo.png" class="xqImg" bindtap="leftArrow" />
         <view class="xqText">交班</view>
     </view>
     <view class="top">
@@ -25,7 +25,7 @@
             <view class="bottom-item-right">{{count}}</view>
         </view>
     </view>
-    <view class="jiaoban-foot" onTap="back">
+    <view class="jiaoban-foot" bindtap="back">
         完成
     </view>
 </view>

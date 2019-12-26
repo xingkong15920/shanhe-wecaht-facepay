@@ -2,6 +2,15 @@
     width: 100%;
     overflow: hidden;
 }
+.xqImg {
+    width: 27rpx;
+    height: 40rpx;
+    position: absolute;
+    left: 35rpx;
+    top: 30rpx;
+    z-index: 9999
+}
+
 .dingDan {
     font-size:35rpx;
     font-weight:500;
@@ -216,6 +225,7 @@
     vertical-align: top;
     margin-left: 24rpx;
     margin-top: 13rpx;
+    z-index: 9999
 }
 
 .listBox {
@@ -425,7 +435,7 @@
 .choose-item-text1 {
     width: 145rpx;
     height: 72rpx;
-    background: rgba(29, 152, 235, 1);
+    background: #27B328;
     border-radius: 8rpx;
     display: inline-block;
     font-size: 28rpx;
@@ -553,9 +563,12 @@
 }
 
 .date-day.active {
-    background: #1d98eb;
+    background: #27B328;
     color: #fff;
     border-radius: 50%;
+    width: 40rpx;
+    height: 40rpx;
+    margin-top: 5rpx;
 }
 
 .date-day.unavailable {

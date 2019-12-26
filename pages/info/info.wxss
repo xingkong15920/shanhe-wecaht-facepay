@@ -4,7 +4,17 @@
     background: linear-gradient(90deg, #1EAD1F 0%, rgb(117, 212, 119) 53%, #1EAD1F 100%);
     overflow: hidden;
 }
+.xiangqing {
+    margin-bottom: 200rpx;
+}
 
+.xqImg {
+    width: 35rpx;
+    height: 50rpx;
+    position: absolute;
+    left: 50rpx;
+    top: 50rpx;
+}
 .top {
     width: 304rpx;
     height: 60rpx;

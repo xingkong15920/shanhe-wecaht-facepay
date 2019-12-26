@@ -1,6 +1,6 @@
 <view class="box">
     <view class="xiangqing">
-         <image src="../img/wZuo.png" class="xqImg" />
+         <image src="../img/wZuo.png" class="xqImg" bindtap="leftArrow"/>
         <view class="xqText">订单详情</view>
     </view>
     <view class="top">订单金额(元)</view>
@@ -42,19 +42,19 @@
 
     </view>
     <view class="order-foot">
-        <view class="order-foot-left123" wx:if="{{orderState == '全额退款'}}" onTap="dayin1">
+        <view class="order-foot-left123" wx:if="{{orderState == '全额退款'}}" bindtap="dayin1">
             <image src="../img/console.png" class="order-foot-left-img" />
             <view class="order-foot-left-text">打印</view>
         </view>
-        <view class="order-foot-left" wx:if="{{orderState != '全额退款'}}" onTap="dayin">
+        <view class="order-foot-left" wx:if="{{orderState != '全额退款'}}" bindtap="dayin">
             <image src="../img/console.png" class="order-foot-left-img" />
             <view class="order-foot-left-text">打印</view>
         </view>
-        <view class="order-foot-left1" wx:if="{{orderState != '全额退款'}}" onTap="quantui">
+        <view class="order-foot-left1" wx:if="{{orderState != '全额退款'}}" bindtap="quantui">
             <image src="../img/tuikuan-all.png" class="order-foot-left-img" />
             <view class="order-foot-left-text">全部退款</view>
         </view>
-        <view class="order-foot-left2" wx:if="{{orderState != '全额退款'}}" onTap="bufentuikuan">
+        <view class="order-foot-left2" wx:if="{{orderState != '全额退款'}}" bindtap="bufentuikuan">
             <image src="../img/tuikuan-bufen.png" class="order-foot-left-img" />
             <view class="order-foot-left-text">部分退款</view>
         </view>
@@ -71,11 +71,11 @@
             <view class="tuikuan-all-money-right">元</view>
         </view>
         <view class="tuikuan-all-title1">退款密码</view>
-        <input placeholder="请输入退款密码" password="true" type="" class="tuikuan-all-pw" onInput="allInput" />
+        <input placeholder="请输入退款密码" password="true" type="" class="tuikuan-all-pw" bindinput="allInput" />
         <view class="tuikuan-all-tig">*确认退款后不可撤销</view>
         <view class="tuikuan-all-foot">
-            <view class="tuikuan-all-foot-left" onTap="closequan">取消</view>
-            <view class="tuikuan-all-foot-right" onTap="goAllTui">确认</view>
+            <view class="tuikuan-all-foot-left" bindtap="closequan">取消</view>
+            <view class="tuikuan-all-foot-right" bindtap="goAllTui">确认</view>
         </view>
     </view>
     <view class="tuikuan-all1" wx:if="{{bufentuikuan==true}}">
@@ -86,7 +86,7 @@
         </view>
         <view class="tuikuan-all-title1">退款金额</view>
         <view class="tuikuan-all-money">
-            <input placeholder="请输入退款金额" type="digit" onInput="bufenMoney" class="tuikuan-all-money-left1" />
+            <input placeholder="请输入退款金额" type="digit" bindinput="bufenMoney" class="tuikuan-all-money-left1" />
 
             <view class="tuikuan-all-money-right">元</view>
         </view>
@@ -94,8 +94,8 @@
         <input placeholder="请输入退款密码" class="tuikuan-all-pw" password="true" onInput="bufenInput" />
         <view class="tuikuan-all-tig">*确认退款后不可撤销</view>
         <view class="tuikuan-all-foot">
-            <view class="tuikuan-all-foot-left" onTap="closequan">取消</view>
-            <view class="tuikuan-all-foot-right" onTap="goBufenTui">确认</view>
+            <view class="tuikuan-all-foot-left" bindtap="closequan">取消</view>
+            <view class="tuikuan-all-foot-right" bindtap="goBufenTui">确认</view>
         </view>
     </view>
 </view>

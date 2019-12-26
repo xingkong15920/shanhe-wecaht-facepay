@@ -136,7 +136,7 @@
 }
 
 .list-item-left-name {
-	width: 100%;
+	width: 110%;
 	height: 34rpx;
 	font-size: 24rpx;
 	font-family: PingFangSC;
@@ -147,7 +147,7 @@
 }
 
 .list-item-left-time {
-	width: 100%;
+	width: 110%;
 	height: 34rpx;
 	font-size: 24rpx;
 	font-family: PingFangSC;
@@ -190,7 +190,7 @@
 }
 
 .list-item-money-bottom {
-	width: 100%;
+	width: 112%;
 	text-align: right;
 	height: 34rpx;
 	font-size: 24rpx;
@@ -205,12 +205,12 @@
 	width: 82rpx;
 	height: 44rpx;
 	text-align: center;
-	background: rgba(29, 152, 235, 1);
+	background: #27B328;
 	border-radius: 6rpx;
 	font-size: 28rpx;
 	font-family: PingFangSC;
 	font-weight: 500;
-	color: #27B328;
+	color: rgba(255,255,255,1);
 	line-height: 44rpx;
 	display: inline-block;
 	vertical-align: top;

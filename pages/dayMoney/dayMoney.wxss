@@ -3,7 +3,11 @@
     height: 100vh;
     background-color: #fff;
 }
-
+/* .riqiSelect {
+    position: absolute;
+    top: 400rpx;
+    background: pink;
+} */
 .xiangqing {
     height: 100rpx;
     background: linear-gradient(138deg, rgba(76, 206, 78, 1) 0%, rgba(30, 173, 31, 1) 100%);
@@ -183,7 +187,7 @@ input {
 
 .list-item-date {
     display: inline-block;
-    width: 150rpx;
+    width: 157rpx;
     height: 94rpx;
     font-size: 28rpx;
     font-family: PingFangSC;

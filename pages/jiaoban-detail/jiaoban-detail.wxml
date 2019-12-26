@@ -1,96 +1,100 @@
 <view class="box">
-	<view class="top">
-		<view class="top-title">实收总额(元)</view>
-		<view class="top-money">￥{{jbInfo.allMoney}}</view>	
-	</view>
-	<view class="time">
-		{{jbInfo.startTime}}至{{jbInfo.endTime}}
-	</view>
-	<view class="shoukuan">
-		<view class="shoukuan-title">
-			<view class="shoukuan-title-left">收款统计</view>
-			<view class="shoukuan-title-mid">笔数</view>
-			<view class="shoukuan-title-right">金额(元)</view>
-		</view>
-		<view class="we-shoukuan">
-			<view class="we-shoukuan-left">微信收款</view>
-			<view class="we-shoukuan-mid">{{jbInfo.wxCount}}</view>
-			<view class="we-shoukuan-right">￥{{jbInfo.wxMoney}}</view>
-		</view>
-		<view class="ali-shoukuan">
-			<view class="we-shoukuan-left">支付宝</view>
-			<view class="we-shoukuan-mid">{{jbInfo.aliCount}}</view>
-			<view class="we-shoukuan-right">￥{{jbInfo.aliMoney}}</view>
-		</view>
-		<view class="ali-shoukuan">
-			<view class="we-shoukuan-left">会员收款</view>
-			<view class="we-shoukuan-mid">{{jbInfo.memConsumCount}}</view>
-			<view class="we-shoukuan-right">￥{{jbInfo.memConsumMoney}}</view>
-		</view>
-		<view class="shoukuan-foot">
-			<view class="shoukuan-foot-left">收款合计</view>
-			<view class="shoukuan-foot-mid">{{jbInfo.allCount}}</view>
-			<view class="shoukuan-foot-right">￥{{jbInfo.allMoney}}</view>
-		</view>
-	</view>
-	<view class="shoukuan">
-		<view class="shoukuan-title">
-			<view class="shoukuan-title-left">退款统计</view>
-			<view class="shoukuan-title-mid">笔数</view>
-			<view class="shoukuan-title-right">金额(元)</view>
-		</view>
-		<view class="we-shoukuan">
-			<view class="we-shoukuan-left">微信退款</view>
-			<view class="we-shoukuan-mid">{{jbInfo.wxRefundCount}}</view>
-			<view class="we-shoukuan-right">￥{{jbInfo.wxRefundMoney}}</view>
-		</view>
-		<view class="ali-shoukuan">
-			<view class="we-shoukuan-left">支付宝退款</view>
-			<view class="we-shoukuan-mid">{{jbInfo.aliRefundCount}}</view>
-			<view class="we-shoukuan-right">￥{{jbInfo.aliRefundMoney}}</view>
-		</view>
-		<view class="ali-shoukuan">
-			<view class="we-shoukuan-left">会员退款</view>
-			<view class="we-shoukuan-mid">{{jbInfo.memRefundCount}}</view>
-			<view class="we-shoukuan-right">￥{{jbInfo.memRefundMoney}}</view>
-		</view>
-		<view class="shoukuan-foot">
-			<view class="shoukuan-foot-left">退款合计</view>
-			<view class="shoukuan-foot-mid">{{jbInfo.refundCount}}</view>
-			<view class="shoukuan-foot-right">￥{{jbInfo.refundMoney}}</view>
-		</view>
-	</view>
-	<view class="shoukuan" style="margin-bottom:100rpx;">
-		<view class="shoukuan-title">
-			<view class="shoukuan-title-left">充值统计</view>
-			<view class="shoukuan-title-mid">笔数</view>
-			<view class="shoukuan-title-right">金额(元)</view>
-		</view>
-		<view class="we-shoukuan">
-			<view class="we-shoukuan-left">微信充值</view>
-			<view class="we-shoukuan-mid">{{jbInfo.memWxRechargeCount}}</view>
-			<view class="we-shoukuan-right">￥{{jbInfo.memWxRechargeMoney}}</view>
-		</view>
-		<view class="ali-shoukuan">
-			<view class="we-shoukuan-left">支付宝充值</view>
-			<view class="we-shoukuan-mid">{{jbInfo.memAliRechargeCount}}</view>
-			<view class="we-shoukuan-right">￥{{jbInfo.memAliRechargeMoney}}</view>
-		</view>
-		<view class="ali-shoukuan">
-			<view class="we-shoukuan-left">现金充值</view>
-			<view class="we-shoukuan-mid">{{jbInfo.memCashRechargeCount}}</view>
-			<view class="we-shoukuan-right">￥{{jbInfo.memCashRechargeMoney}}</view>
-		</view>
-		<view class="shoukuan-foot">
-			<view class="shoukuan-foot-left">充值合计</view>
-			<view class="shoukuan-foot-mid">{{jbInfo.memWxRechargeCount + jbInfo.memAliRechargeCount + jbInfo.memCashRechargeCount}}</view>
-			<view class="shoukuan-foot-right">￥{{chongzhiheji}}</view>
-		</view>
-	</view>
-	
+    <view class="xiangqing">
+        <image src="../img/wZuo.png" class="xqImg" bindtap="leftArrow" />
+        <view class="xqText">交班</view>
+    </view>
+    <view class="top">
+        <view class="top-title">实收总额(元)</view>
+        <view class="top-money">￥{{jbInfo.allMoney}}</view>
+    </view>
+    <view class="time">
+        {{jbInfo.startTime}}至{{jbInfo.endTime}}
+    </view>
+    <view class="shoukuan">
+        <view class="shoukuan-title">
+            <view class="shoukuan-title-left">收款统计</view>
+            <view class="shoukuan-title-mid">笔数</view>
+            <view class="shoukuan-title-right">金额(元)</view>
+        </view>
+        <view class="we-shoukuan">
+            <view class="we-shoukuan-left">微信收款</view>
+            <view class="we-shoukuan-mid">{{jbInfo.wxCount}}</view>
+            <view class="we-shoukuan-right">￥{{jbInfo.wxMoney}}</view>
+        </view>
+        <view class="ali-shoukuan">
+            <view class="we-shoukuan-left">支付宝</view>
+            <view class="we-shoukuan-mid">{{jbInfo.aliCount}}</view>
+            <view class="we-shoukuan-right">￥{{jbInfo.aliMoney}}</view>
+        </view>
+        <view class="ali-shoukuan">
+            <view class="we-shoukuan-left">会员收款</view>
+            <view class="we-shoukuan-mid">{{jbInfo.memConsumCount}}</view>
+            <view class="we-shoukuan-right">￥{{jbInfo.memConsumMoney}}</view>
+        </view>
+        <view class="shoukuan-foot">
+            <view class="shoukuan-foot-left">收款合计</view>
+            <view class="shoukuan-foot-mid">{{jbInfo.allCount}}</view>
+            <view class="shoukuan-foot-right">￥{{jbInfo.allMoney}}</view>
+        </view>
+    </view>
+    <view class="shoukuan">
+        <view class="shoukuan-title">
+            <view class="shoukuan-title-left">退款统计</view>
+            <view class="shoukuan-title-mid">笔数</view>
+            <view class="shoukuan-title-right">金额(元)</view>
+        </view>
+        <view class="we-shoukuan">
+            <view class="we-shoukuan-left">微信退款</view>
+            <view class="we-shoukuan-mid">{{jbInfo.wxRefundCount}}</view>
+            <view class="we-shoukuan-right">￥{{jbInfo.wxRefundMoney}}</view>
+        </view>
+        <view class="ali-shoukuan">
+            <view class="we-shoukuan-left">支付宝退款</view>
+            <view class="we-shoukuan-mid">{{jbInfo.aliRefundCount}}</view>
+            <view class="we-shoukuan-right">￥{{jbInfo.aliRefundMoney}}</view>
+        </view>
+        <view class="ali-shoukuan">
+            <view class="we-shoukuan-left">会员退款</view>
+            <view class="we-shoukuan-mid">{{jbInfo.memRefundCount}}</view>
+            <view class="we-shoukuan-right">￥{{jbInfo.memRefundMoney}}</view>
+        </view>
+        <view class="shoukuan-foot">
+            <view class="shoukuan-foot-left">退款合计</view>
+            <view class="shoukuan-foot-mid">{{jbInfo.refundCount}}</view>
+            <view class="shoukuan-foot-right">￥{{jbInfo.refundMoney}}</view>
+        </view>
+    </view>
+    <view class="shoukuan" style="margin-bottom:100rpx;">
+        <view class="shoukuan-title">
+            <view class="shoukuan-title-left">充值统计</view>
+            <view class="shoukuan-title-mid">笔数</view>
+            <view class="shoukuan-title-right">金额(元)</view>
+        </view>
+        <view class="we-shoukuan">
+            <view class="we-shoukuan-left">微信充值</view>
+            <view class="we-shoukuan-mid">{{jbInfo.memWxRechargeCount}}</view>
+            <view class="we-shoukuan-right">￥{{jbInfo.memWxRechargeMoney}}</view>
+        </view>
+        <view class="ali-shoukuan">
+            <view class="we-shoukuan-left">支付宝充值</view>
+            <view class="we-shoukuan-mid">{{jbInfo.memAliRechargeCount}}</view>
+            <view class="we-shoukuan-right">￥{{jbInfo.memAliRechargeMoney}}</view>
+        </view>
+        <view class="ali-shoukuan">
+            <view class="we-shoukuan-left">现金充值</view>
+            <view class="we-shoukuan-mid">{{jbInfo.memCashRechargeCount}}</view>
+            <view class="we-shoukuan-right">￥{{jbInfo.memCashRechargeMoney}}</view>
+        </view>
+        <view class="shoukuan-foot">
+            <view class="shoukuan-foot-left">充值合计</view>
+            <view class="shoukuan-foot-mid">{{jbInfo.memWxRechargeCount + jbInfo.memAliRechargeCount + jbInfo.memCashRechargeCount}}</view>
+            <view class="shoukuan-foot-right">￥{{chongzhiheji}}</view>
+        </view>
+    </view>
+
 </view>
 <view class="box-foot">
-	<view class="foot-mid" wx:if="{{isDetail == true}}" onTap="dayin">打印</view>
-		<view class="foot-left" onTap="jiaoban" wx:if="{{isDetail == false}}">确认交班</view>
-		<view class="foot-right" onTap="record"  wx:if="{{isDetail == false}}">交班记录</view>
-	</view>
+    <view class="foot-mid" wx:if="{{isDetail == true}}" bindtap="dayin">打印</view>
+    <view class="foot-left" bindtap="jiaoban" wx:if="{{isDetail == false}}">确认交班</view>
+    <view class="foot-right" bindtap="record" wx:if="{{isDetail == false}}">交班记录</view>
+</view>

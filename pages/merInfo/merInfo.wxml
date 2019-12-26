@@ -1,16 +1,19 @@
 <view class="box">
-	<view class="top">商户信息</view>
-	<view class="count">
-		<view class="count-left">商户名称：</view>
-		<view class="count-right">{{merchantName}}</view>
-	</view>
-	<view class="count1">
-		<view class="count-left">门店名称：</view>
-		<view class="count-right">{{shopName}}</view>
-	</view>
-	<view class="count1">
-		<view class="count-left">收银员：</view>
-		<view class="count-right">{{userName}}</view>
-	</view>
-	
+    <view class="xiangqing">
+        <image src="../img/wZuo.png" class="xqImg" bindtap="leftArrow" />
+    </view>
+    <view class="top">商户信息</view>
+    <view class="count">
+        <view class="count-left">商户名称：</view>
+        <view class="count-right">{{merchantName}}</view>
+    </view>
+    <view class="count1">
+        <view class="count-left">门店名称：</view>
+        <view class="count-right">{{shopName}}</view>
+    </view>
+    <view class="count1">
+        <view class="count-left">收银员：</view>
+        <view class="count-right">{{userName}}</view>
+    </view>
+
 </view>

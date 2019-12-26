@@ -14,6 +14,7 @@
     position: absolute;
     left: 35rpx;
     top: 30rpx;
+    z-index: 9999
 }
 .xqText {
     font-size: 36rpx;

@@ -1,16 +1,19 @@
 <view class="box">
-	<view class="box-box">
-		<view class="box-item" style="display:inline-block;margin-right:130rpx;">
-			<image src="../img/tuichu.png" class="box-img"/>
-			<view class="box-text">退出登录</view>
-		</view>
-		<view class="box-item" style="display:inline-block">
-			<image src="../img/guanji.png" class="box-img"/>
-			<view class="box-text">关机</view>
-		</view>
-		<view class="box-item">
-			<image src="../img/nologin.png" class="box-img"/>
-			<view class="box-text">取消自动登录</view>
-		</view>
-	</view>
+    <view class="xiangqing">
+        <image src="../img/wZuo.png" class="xqImg" bindtap="leftArrow" />
+    </view>
+    <view class="box-box">
+        <view class="box-item" style="display:inline-block;margin-right:130rpx;" bindtap="logOut">
+            <image src="../img/tuichu.png" class="box-img" />
+            <view class="box-text">退出登录</view>
+        </view>
+        <view class="box-item" style="display:inline-block" bindtap="closeDown">
+            <image src="../img/guanji.png" class="box-img" />
+            <view class="box-text">关机</view>
+        </view>
+        <view class="box-item" bindtap="cancelLogin">
+            <image src="../img/nologin.png" class="box-img" />
+            <view class="box-text">取消自动登录</view>
+        </view>
+    </view>
 </view>

@@ -1,66 +1,39 @@
-// pages/jiaoban-finish/jiaoban-finish.js
 Page({
-
-    /**
-     * 页面的初始数据
-     */
     data: {
-
+        time: '',
+        name: '',
+        money: '',
+        count: '',
     },
-
-    /**
-     * 生命周期函数--监听页面加载
-     */
-    onLoad: function (options) {
-
+    // onLoad(data) {
+    //     console.log(data)
+    //     var that = this
+    //     this.setData({
+    //         time: data.time,
+    //         name: that.stringC(data.name),
+    //         money: data.money,
+    //         count: data.count
+    //     })
+    // },
+    leftArrow() {
+        wx.navigateTo({
+            url: '../main/main',
+        })
     },
-
-    /**
-     * 生命周期函数--监听页面初次渲染完成
-     */
-    onReady: function () {
-
+    back() {
+        console.log('6666666')
+        // wx.navigateBack({
+        //     delta: 2
+        // });
+        wx.navigateTo({
+            url: '../main/main',
+        })
     },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面隐藏
-     */
-    onHide: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
-
-    },
-
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
-    },
-
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
-
-    }
-})
+    // stringC(data) {
+    //     if (data.length > 10) {
+    //         return data.substring(0, 10) + '..'
+    //     } else {
+    //         return data
+    //     }
+    // },
+});

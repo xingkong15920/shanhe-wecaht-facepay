@@ -4,18 +4,18 @@
     <view class="userInfo">
         <view class="userInfo-title">账号</view>
         <view class="userInfo-box">
-            <input type="number" focus="{{focus}}" value="{{phone}}" placeholder="请输入账号" onInput="phone" class="userInfo-box-input" />
-            <image src="../img/clear.png" class="clear" ontap="clear" />
+            <input type="number" focus="{{focus}}" value="{{phone}}" placeholder="请输入账号" placeholder-style="color:#ffffff" bindinput="phone" class="userInfo-box-input" />
+            <image src="../img/wShanchu.png" class="clearZH" bindtap="clear" />
         </view>
     </view>
     <view class="userInfo" style="margin-bottom:0">
         <view class="userInfo-title">密码</view>
         <view class="userInfo-box">
-            <input type="text" password="{{true}}" value="{{password}}" placeholder="请输入密码" onInput="pass" class="userInfo-box-input" />
-            <view  class="clearBox">
-                <image src="../img/clear.png" class="clear" ontap="clear1" />
-                <image src="../img/wyincang.png" class="yincang" />
-                <image src="../img/wxianShi.png" class="yincang" />
+            <input type="text" password="{{passwordDain}}" value="{{password}}" placeholder="请输入密码" placeholder-style="color:#ffffff" bindinput="pass" class="userInfo-box-input" />
+            <view class="clearBox">
+                <image src="../img/wShanchu.png" class="clear" bindtap="clear1" />
+                <image src="../img/wyincang.png" class="yincang" bindtap="passYin" />              
+                <image src="../img/wxianShi.png" class="yincang" bindtap="passXian" />
             </view>
 
         </view>
@@ -23,50 +23,60 @@
     <view class="markBox">
         <view class="mark-left">
             <label class="checkbox">
-                <checkbox checked="{{save}}" color="#ffffff" class="check-b" onChange="save1" />
+                <checkbox checked="{{save}}" color="green" class="check-b" bindtap="save1" />
                 <text class="checkbox-text">记住密码</text>
             </label>
         </view>
-        <view class="mark-right" onTap="forget">忘记密码？</view>
+        <view class="mark-right" bindtap="forget">忘记密码？</view>
     </view>
-    <view class="login" onTap="login1">登录</view>
-    <view class="box-foot">
-
+    <view class="login {{loginWhite == 'white' ? 'loginWhite' : ''}}" bindtap="login1">登录</view>
+    <!-- 底部支付宝*闪盒 -->
+    <view class="zhiShanBox">
+        <image class="zhiShan" mode="scaleToFill" src="../img/weiShan.png" />
     </view>
 </view>
 <view class="box" disable-scroll="{{true}}" wx:if="{{type==2}}" style="position:fixed;left:0;top:0">
-    <view class="back" onTap="typeBack"> 《 返回 </view>
-    <view class="pw-title">忘记密码</view>
+    <view class="back" bindtap="typeBack"> 《 返回 </view>
+    <view class="pw-title">找回密码</view>
     <view class="userInfo" style="margin:0 auto;margin-bottom:50rpx;">
         <view class="userInfo-title">手机号</view>
         <view class="userInfo-box">
-            <input type="number" value="{{pwphone}}" placeholder="请输入手机号" onInput="pwphone" class="userInfo-box-input" />
-            <!-- <image  src="../img/clear.png" class="clear" ontap="clear" /> -->
+            <input type="number" value="{{pwphone}}" placeholder="请输入手机号" placeholder-style="color:#ffffff" bindinput="pwphone" class="userInfo-box-input" />
+            <image src="../img/wShanchu.png" class="clearZH" bindtap="clearPhone" />
         </view>
     </view>
     <view class="userInfo" style="margin:0 auto;margin-bottom:50rpx;">
         <view class="userInfo-title">验证码</view>
         <view class="userInfo-box" style="position:relative;left:0;top:0">
-            <input type="text" value="{{code}}" placeholder="请输入验证码" onInput="code" class="userInfo-box-input" />
-            <!-- <image  src="../img/clear.png" class="clear"  ontap="clear1"  /> -->
-            <view class="getCode" onTap="getCode">{{codeInfo}}</view>
+            <input type="text" value="{{code}}" placeholder="请输入验证码" placeholder-style="color:#ffffff" bindinput="code" class="userInfo-box-input" />
+            <image src="../img/wduigou.png" class="clearYZG" bindtap="clear1" />
+            <image src="../img/wShanchu.png" class="clearYZ" bindtap="clearYZ" />
+            <view class="getCode" bindtap="getCode">{{codeInfo}}</view>
         </view>
     </view>
     <view class="userInfo" style="margin:0 auto;margin-bottom:50rpx;">
         <view class="userInfo-title">新密码</view>
         <view class="userInfo-box">
-            <input type="text" password="{{true}}" value="{{password1}}" placeholder="请输入新密码" onInput="pass1" class="userInfo-box-input" />
-            <!-- <image  src="../img/clear.png" class="clear"  ontap="clear1"  /> -->
+            <input type="text" password="{{passwordZhao}}" value="{{password1}}" placeholder="请输入新密码" placeholder-style="color:#ffffff" bindinput="pass1" class="userInfo-box-input" />
+            <view class="clearBox">
+                <image src="../img/wShanchu.png" class="clear" bindtap="clearNew" />
+                <image src="../img/wyincang.png" class="yincang"  bindtap="mimaYin" />                 
+                <image src="../img/wxianShi.png" class="yincang" bindtap="mimaXian" />
+            </view>
         </view>
     </view>
     <view class="userInfo" style="margin:0 auto;margin-bottom:50rpx;">
         <view class="userInfo-title">确认密码</view>
         <view class="userInfo-box">
-            <input type="text" password="{{true}}" value="{{password2}}" placeholder="请再次输入新密码" onInput="pass2" class="userInfo-box-input" />
-            <!-- <image  src="../img/clear.png" class="clear"  ontap="clear1"  /> -->
+            <input type="text" password="{{passZhao}}" value="{{password2}}" placeholder="请再次输入新密码" placeholder-style="color:#ffffff" bindinput="pass2" class="userInfo-box-input" />
+            <view class="clearBox">
+                <image src="../img/wShanchu.png" class="clear" bindtap="clearNewAgain" />
+                <image src="../img/wyincang.png" class="yincang" bindtap="miYin" />
+                <image src="../img/wxianShi.png" class="yincang" bindtap="miXian"/>
+            </view>
         </view>
     </view>
-    <view class="login" onTap="login2">去登录</view>
+    <view class="login" bindtap="login2">去登录</view>
     <view class="box-foot" style="margin-top:60rpx;">
 
     </view>
