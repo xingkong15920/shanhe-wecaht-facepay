@@ -1,26 +1,14 @@
 <view class="box">
     <view class="xiangqing">
-        <image src="../img/wZuo.png" class="xqImg" />
+        <image src="../img/wZuo.png" class="xqImg" bindtap="leftArrow" />
         <view class="xqText">日结</view>
     </view>
-
-    <!-- 日期选择器 -->
-    <!-- <view class="section riqiSelect">
-        <view class="section__title">日期选择器</view>
-        <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
-            <view class="picker">
-                当前选择: {{date}}
-            </view>
-        </picker>
-    </view> -->
-
-
     <view class="date-box">
         <view class="date-box-left">
             <view class="date-box-left-top">
                 <view class="date-box-left-text">开始时间</view>
-                <view class="date-box-left-input" bindtap="bindDateChange">
-                    <picker mode="date" value="{{startTime}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+                <view class="date-box-left-input" >
+                    <picker mode="date" value="{{startTime}}" start="2015-09-01" end="2017-09-01" bindchange="dateChangeBegin" >
                         <input placeholder="" value="{{startTime}}" class="date-box-left-input-time" />
                         <image src="../img/jiantou-xia.png" class="date-box-left-input-icon" />
                     </picker>
@@ -29,8 +17,10 @@
             <view class="date-box-left-top">
                 <view class="date-box-left-text">结束时间</view>
                 <view class="date-box-left-input" bindtap="endTime1">
-                    <input placeholder="" value="{{endTime}}" class="date-box-left-input-time" />
-                    <image src="../img/jiantou-xia.png" class="date-box-left-input-icon" />
+                    <picker mode="date" value="{{endTime}}" start="2015-09-01" end="2017-09-01" bindchange="dateChangeEnd" >
+                        <input placeholder="" value="{{endTime}}" class="date-box-left-input-time" />
+                        <image src="../img/jiantou-xia.png" class="date-box-left-input-icon" />
+                    </picker>
                 </view>
             </view>
         </view>

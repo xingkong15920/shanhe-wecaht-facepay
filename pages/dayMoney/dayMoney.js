@@ -9,6 +9,11 @@ Page({
         list: [],
         date: '2016-09-01',
     },
+    leftArrow() {
+        wx.navigateTo({
+            url: '../main/main',
+        })
+    },
     onLoad() {
         var that = this
         console.log(that.getNowDate())
@@ -19,10 +24,16 @@ Page({
         that.getList()
     },
     // 日期选择器
-    bindDateChange: function (e) {
-        console.log('picker发送选择改变，携带值为', e.detail.value)
+    dateChangeBegin: function (e) {
+        console.log('picker发送选择改变，携带值为1111', e.detail.value)
         this.setData({
-            date: e.detail.value
+            startTime: e.detail.value
+        })
+    },
+    dateChangeEnd: function (e) {
+        console.log('picker发送选择改变，携带值为2222', e.detail.value)
+        this.setData({
+            endTime: e.detail.value
         })
     },
     searchBtn() {
@@ -114,6 +125,7 @@ Page({
                 "endTime": that.data.endTime,
             },
             success: (resp) => {
+                console.log(resp)
                 wx.hideLoading();
                 if (resp.data.code == '-1') {
                     wx.alert({

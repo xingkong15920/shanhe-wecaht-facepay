@@ -229,13 +229,13 @@
          <view class="ocWhiteBgc">
             <!-- 请输入手机号 -->
             <view class="ocPleasePhoneBox">
-               <input class="ocPleasePhone" placeholder="请输入手机号" onInput="keyNum1" value="{{ocPleasePhone1}}" type="number" />
+               <input class="ocPleasePhone" placeholder="请输入手机号" bindinput="keyNum1" value="{{ocPleasePhone1}}" type="number" />
                <image class="ocChaHaoT" mode="scaleToFill" src="../img/chaHao.png" bindtap="ocChaHaoT1" />
             </view>
             <!-- 验证码 -->
             <view class="ocAuthCodeBox">
                <!-- 请输入验证码 -->
-               <input class="ocPleaseIn" placeholder="请输入验证码" onInput="keyNum2" value="{{ocPleasePhone2}}" type="number" />
+               <input class="ocPleaseIn" placeholder="请输入验证码" bindinput="keyNum2" value="{{ocPleasePhone2}}" type="number" />
                <image class="ocChaHaoB" mode="scaleToFill" src="../img/chaHao.png" bindtap="ocChaHaoT2" />
                <!-- 获取验证码 -->
                <view class="ocGetCode" wx:if="{{ocGetCode}}" bindtap="ocGetV">获取验证码</view>

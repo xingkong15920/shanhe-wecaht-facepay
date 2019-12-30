@@ -236,7 +236,7 @@
 .plClose {
   width: 45rpx;
   height: 45rpx;
-  line-height: 50rpx;
+  line-height: 45rpx;
   text-align: center;
   border: 2px solid #5ED660;
   border-radius: 50%;
@@ -941,13 +941,13 @@
 
 .ocPleasePhone {
   width: 510rpx;
-  height: 70rpx;
-  line-height: 70rpx;
+  height: 60rpx;
+  line-height: 60rpx;
   background: rgba(255, 255, 255, 1);
   box-shadow: 0rpx -2rpx 6rpx 0rpx rgba(132, 132, 132, 0.5);
   border-radius: 46rpx;
   border: 2rpx solid rgba(245, 245, 245, 1);
-  font-size: 32rpx;
+  font-size: 28rpx;
   font-weight: 500;
   color: #333;
   padding-left: 36rpx;
@@ -961,12 +961,13 @@
   position: absolute;
   top: 20rpx;
   left: 535rpx;
+  z-index: 999
 }
 
 /* 验证码 */
 
 .ocAuthCodeBox {
-  width: 560rpx;
+  width: 550rpx;
   height: 80rpx;
   margin: 0 auto;
   display: flex;
@@ -984,7 +985,7 @@
   box-shadow: 0rpx -2rpx 6rpx 0rpx rgba(132, 132, 132, 0.5);
   border-radius: 46rpx;
   border: 2rpx solid rgba(245, 245, 245, 1);
-  font-size: 32rpx;
+  font-size: 28rpx;
   font-weight: 500;
   /* color:rgba(153,153,153,1); */
   color: #333;
@@ -999,7 +1000,9 @@
   position: absolute;
   top: 20rpx;
   left: 260rpx;
+  z-index: 999
 }
+
 
 /* 获取验证码 */
 
@@ -1010,7 +1013,7 @@
   background: #1EAD1F;
   box-shadow: 0rpx -2rpx 6rpx 0rpx #1EAD1F;
   border-radius: 46rpx;
-  font-size: 32rpx;
+  font-size: 28rpx;
   font-weight: 500;
   color: #fff;
   margin-left: 30rpx;
