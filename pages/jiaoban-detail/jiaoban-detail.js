@@ -26,118 +26,119 @@ Page({
         })
     },
     getList() {
-        // var that = this
-        // var userInfo = wx.getStorageSync('userInfo').data
-        // wx.showLoading({
-        //     success: (res) => {
+        var that = this
+        var userInfo = wx.getStorageSync('userInfo')
+        wx.showLoading({
+            success: (res) => {
 
-        //     },
-        // });
-        // wx.request({
-        //     url: that.data.server + 'shift/getSummary',
-        //     //url:'http://192.168.1.66:6017/p-server/bill/getNewHomeInfo',
-        //     method: 'get',
-        //     headers: {
-        //         "token": userInfo.loginKey + '#AliFACE'
-        //     },
-        //     data: {
+            },
+        });
+        wx.request({
+            url: that.data.server + 'shift/getSummary',
+            //url:'http://192.168.1.66:6017/p-server/bill/getNewHomeInfo',
+            method: 'get',
+            headers: {
+                "token": userInfo.loginKey + '#AliFACE'
+            },
+            data: {
 
-        //         "merchantNumber": userInfo.merchantNumber,
-        //         "storeNumber": userInfo.storeNumber,
-        //         "clerkNumber": userInfo.userNumber,
+                "merchantNumber": userInfo.merchantNumber,
+                "storeNumber": userInfo.storeNumber,
+                "clerkNumber": userInfo.userNumber,
 
-        //     },
-        //     success: (resp) => {
-        //         wx.hideLoading();
-        //         if (resp.data.code == '-1') {
-        //             wx.alert({
-        //                 title: '',
-        //                 content: resp.data.msg,
-        //                 buttonText: '确定',
-        //                 success: () => {
-        //                     wx.reLaunch({
-        //                         url: '../login/login'// 需要跳转的应用内非 tabBar 的目标页面路径 ,路径后可以带参数。参数规则如下：路径与参数之间使用
+            },
+            success: (resp) => {
+                wx.hideLoading();
+                if (resp.data.code == '-1') {
+                    wx.alert({
+                        title: '',
+                        content: resp.data.msg,
+                        buttonText: '确定',
+                        success: () => {
+                            wx.reLaunch({
+                                url: '../login/login'// 需要跳转的应用内非 tabBar 的目标页面路径 ,路径后可以带参数。参数规则如下：路径与参数之间使用
 
-        //                     });
-        //                 },
-        //             });
-        //         }
-        //         if (resp.data.code == 1000) {
-        //             that.setData({
-        //                 jbInfo: resp.data.data,
-        //                 chongzhiheji: parseFloat(resp.data.data.memWxRechargeMoney) + parseFloat(resp.data.data.memAliRechargeMoney) + parseFloat(resp.data.data.memCashRechargeMoney)
-        //             })
-        //         } else {
+                            });
+                        },
+                    });
+                }
+                if (resp.data.code == 1000) {
+                    that.setData({
+                        jbInfo: resp.data.data,
+                        chongzhiheji: parseFloat(resp.data.data.memWxRechargeMoney) + parseFloat(resp.data.data.memAliRechargeMoney) + parseFloat(resp.data.data.memCashRechargeMoney)
+                    })
+                } else {
 
-        //         }
+                }
 
-        //     },
-        //     fail: (err) => {
-        //         console.log('error', err);
-        //     },
-        // });
+            },
+            fail: (err) => {
+                console.log('error', err);
+            },
+        });
     },
     jiaoban() {
         console.log('这是交班记录')
         wx.navigateTo({
             url: '../jiaoban-finish/jiaoban-finish'
         });
-        // var that = this
-        // var userInfo = wx.getStorageSync('userInfo').data
-        // wx.showLoading({
-        //     success: (res) => {
+        var that = this
+        var userInfo = wx.getStorageSync('userInfo')
+        wx.showLoading({
+            success: (res) => {
 
-        //     },
-        // });
-        // wx.request({
-        //     url: that.data.server + 'shift/addNewSummary',
-        //     //url:'http://192.168.1.66:6017/p-server/bill/getNewHomeInfo',
-        //     method: 'GET',
-        //     headers: {
-        //         "token": userInfo.loginKey + '#AliFACE'
-        //     },
-        //     data: {
+            },
+        });
+        wx.request({
+            url: that.data.server + 'shift/addNewSummary',
+            //url:'http://192.168.1.66:6017/p-server/bill/getNewHomeInfo',
+            method: 'GET',
+            headers: {
+                "token": userInfo.loginKey + '#AliFACE'
+            },
+            data: {
 
-        //         "merchantNumber": userInfo.merchantNumber,
-        //         "storeNumber": userInfo.storeNumber,
-        //         "clerkNumber": userInfo.userNumber,
-        //         "startTime": that.data.jbInfo.startTime,
-        //         "endTime": that.data.jbInfo.endTime
-        //     },
-        //     success: (resp) => {
-        //         wx.hideLoading();
-        //         wx.showToast({
-        //             content: resp.data.msg
-        //         });
-        //         if (resp.data.code == '-1') {
-        //             wx.alert({
-        //                 title: '',
-        //                 content: resp.data.msg,
-        //                 buttonText: '确定',
-        //                 success: () => {
-        //                     wx.reLaunch({
-        //                         url: '../login/login'// 需要跳转的应用内非 tabBar 的目标页面路径 ,路径后可以带参数。参数规则如下：路径与参数之间使用
+                "merchantNumber": userInfo.merchantNumber,
+                "storeNumber": userInfo.storeNumber,
+                "clerkNumber": userInfo.userNumber,
+                "startTime": that.data.jbInfo.startTime,
+                "endTime": that.data.jbInfo.endTime
+            },
+            success: (resp) => {
+                wx.hideLoading();
+                wx.showToast({
+                    title: resp.data.msg,
+                    icon: 'none',
+                });
+                if (resp.data.code == '-1') {
+                    wx.alert({
+                        title: '',
+                        content: resp.data.msg,
+                        buttonText: '确定',
+                        success: () => {
+                            wx.reLaunch({
+                                url: '../login/login'// 需要跳转的应用内非 tabBar 的目标页面路径 ,路径后可以带参数。参数规则如下：路径与参数之间使用
 
-        //                     });
-        //                 },
-        //             });
-        //         }
-        //         if (resp.data.code == 1000) {
-        //             setTimeout(function () {
+                            });
+                        },
+                    });
+                }
+                if (resp.data.code == 1000) {
+                    setTimeout(function () {
 
-        //                 wx.navigateTo({
-        //                     url: '../jiaoban-finish/jiaoban-finish?time=' + that.data.jbInfo.endTime + '&name=' + userInfo.userName + '&money=' + resp.data.data.aliMoney + '&count=' + resp.data.data.allCount
-        //                 })
-        //             }, 1000)
-        //         } else {
+                        wx.navigateTo({
+                            url: '../jiaoban-finish/jiaoban-finish?time=' + that.data.jbInfo.endTime + '&name=' + userInfo.userName + '&money=' + resp.data.data.aliMoney + '&count=' + resp.data.data.allCount
+                        })
+                    }, 1000)
+                } else {
 
-        //         }
+                }
 
-        //     },
-        //     fail: (err) => {
-        //         console.log('error', err);
-        //     },
-        // });
+            },
+            fail: (err) => {
+                console.log('error', err);
+            },
+        });
     },
     record() {
         wx.navigateTo({
@@ -163,16 +164,19 @@ Page({
 
     },
     dayin() {
+        console.log('22222222222')
+        console.log(wx.getStorageSync('dayin'))
         var that = this
         var jbInfo = that.data.jbInfo
-        if (wx.getStorageSync('dayin').data == null) {
+        if (wx.getStorageSync('dayin') == null) {
             wx.showToast({
-                content: "请先选择打印设备"
+                title: '请先选择打印设备',
+                icon: 'none',
             });
         } else {
-            var userInfo = wx.getStorageSync('userInfo').data
+            var userInfo = wx.getStorageSync('userInfo')
             wx.ix.printer({
-                target: wx.getStorageSync('dayin').data.id,
+                target: wx.getStorageSync('dayin').id,
                 cmds: [
 
                     { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'ON', 'OFF', 'OFF', 'OFF'] },

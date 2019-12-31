@@ -6,56 +6,56 @@ Page({
         equipmentNumber: 'SMIT3B2019729000825',
         sdk: '12314123132',
         list: [{
-                'img': '../img/order.png',
-                'text': '订单',
-                'tap': 'order'
-            },
-            {
-                'img': '../img/rijie.png',
-                'text': '日结',
-                'tap': 'dayMoney'
-            },
-            // {
-            // 	'img': '../img/rijie.png',
-            // 	'text': '充值',
-            // 	'tap': 'recharge'
-            // },
-            {
-                'img': '../img/jiaoban.png',
-                'text': '交班',
-                'tap': 'jiaoban'
-            },
-            {
-                'img': '../img/dayin.png',
-                'text': '打印',
-                "icon": '../img/wu.png',
-                'tap': 'dayin'
-            },
-            {
-                'img': '../img/wangluo.png',
-                'text': '网络',
-                "icon": '../img/you.png'
-            },
-            {
-                'img': '../img/moshi.png',
-                'text': '模式',
-                'tap': 'moshi'
-            },
-            {
-                'img': '../img/shanghu.png',
-                'text': '商户',
-                'tap': 'shop'
-            },
-            {
-                'img': '../img/guanyu.png',
-                'text': '关于',
-                'tap': 'about'
-            },
-            {
-                'img': '../img/denglu.png',
-                'text': '退出登录',
-                'tap': 'login'
-            },
+            'img': '../img/order.png',
+            'text': '订单',
+            'tap': 'order'
+        },
+        {
+            'img': '../img/rijie.png',
+            'text': '日结',
+            'tap': 'dayMoney'
+        },
+        // {
+        // 	'img': '../img/rijie.png',
+        // 	'text': '充值',
+        // 	'tap': 'recharge'
+        // },
+        {
+            'img': '../img/jiaoban.png',
+            'text': '交班',
+            'tap': 'jiaoban'
+        },
+        {
+            'img': '../img/dayin.png',
+            'text': '打印',
+            "icon": '../img/wu.png',
+            'tap': 'dayin'
+        },
+        {
+            'img': '../img/wangluo.png',
+            'text': '网络',
+            "icon": '../img/you.png'
+        },
+        {
+            'img': '../img/moshi.png',
+            'text': '模式',
+            'tap': 'moshi'
+        },
+        {
+            'img': '../img/shanghu.png',
+            'text': '商户',
+            'tap': 'shop'
+        },
+        {
+            'img': '../img/guanyu.png',
+            'text': '关于',
+            'tap': 'about'
+        },
+        {
+            'img': '../img/denglu.png',
+            'text': '退出登录',
+            'tap': 'login'
+        },
         ],
         equipmentNumber: '',
         duankai: true
@@ -63,20 +63,20 @@ Page({
     onLoad() {
 
         var that = this
-        wx.onNetworkStatusChange(function(res) {
+        wx.onNetworkStatusChange(function (res) {
             console.log(JSON.stringify(res))
             that.aalert(JSON.stringify(res))
         })
-        wx.ix.getSysProp({
-            key: 'ro.serialno',
-            success: (r) => {
-                console.log(r)
-                this.setData({
-                    "equipmentNumber": r.value
-                })
+        // wx.ix.getSysProp({
+        //     key: 'ro.serialno',
+        //     success: (r) => {
+        //         console.log(r)
+        //         this.setData({
+        //             "equipmentNumber": r.value
+        //         })
 
-            }
-        })
+        //     }
+        // })
 
         // wx.ix.speech({
         // 	text: '欢迎使用闪盒支付',
@@ -92,7 +92,7 @@ Page({
         });
 
 
-        setInterval(function() {
+        setInterval(function () {
             that.heart()
         }, 15000)
     },
@@ -251,32 +251,32 @@ Page({
     onShow() {
         var that = this
         wx.ix.queryPrinter({
-                success: (res) => {
-                    // that.aalert(JSON.stringify(res))
-                    if (res.usb.length == 0) {
+            success: (res) => {
+                // that.aalert(JSON.stringify(res))
+                if (res.usb.length == 0) {
+                    var list = that.data.list
+                    list[3].icon = '../img/wu.png'
+                    this.setData({
+                        list: list
+                    })
+                } else {
+                    if (wx.getStorageSync('dayin').data == null) {
                         var list = that.data.list
                         list[3].icon = '../img/wu.png'
                         this.setData({
                             list: list
                         })
                     } else {
-                        if (wx.getStorageSync('dayin').data == null) {
-                            var list = that.data.list
-                            list[3].icon = '../img/wu.png'
-                            this.setData({
-                                list: list
-                            })
-                        } else {
-                            var list = that.data.list
-                            list[3].icon = '../img/you.png'
-                            this.setData({
-                                list: list
-                            })
-                        }
+                        var list = that.data.list
+                        list[3].icon = '../img/you.png'
+                        this.setData({
+                            list: list
+                        })
                     }
-
                 }
-            }),
+
+            }
+        }),
             wx.ix.onKeyEventChange((r) => {
 
 

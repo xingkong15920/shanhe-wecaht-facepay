@@ -11,11 +11,11 @@
 }
 
 .xqImg {
-    width: 27rpx;
-    height: 40rpx;
+    width: 38rpx;
+    height: 53rpx;
     position: absolute;
     left: 35rpx;
-    top: 30rpx;
+    top: 27rpx;
 }
 
 .xqText {
@@ -184,7 +184,7 @@ input {
 
 .list-item-date {
     display: inline-block;
-    width: 31%;
+    width: 32%;
     text-align: center;
     height: 94rpx;
     font-size: 24rpx;
@@ -197,7 +197,7 @@ input {
 
 .list-item-count {
     display: inline-block;
-    width: 31%;
+    width: 32%;
     text-align: center;
     height: 94rpx;
     font-size: 24rpx;
@@ -235,7 +235,7 @@ input {
     line-height: 44rpx;
     text-align: center;
     margin-left: 30rpx;
-    background: #27B328;
+    background: #27b328;
     border-radius: 6px;
     margin-top: 24rpx;
 }

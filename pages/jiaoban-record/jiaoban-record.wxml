@@ -7,20 +7,24 @@
         <view class="date-box-left">
             <view class="date-box-left-top">
                 <view class="date-box-left-text">开始时间</view>
-                <view class="date-box-left-input" onTap="startTime1">
-                    <input placeholder="" value="{{startTime}}" class="date-box-left-input-time" />
-                    <image src="../img/jiantou-xia.png" class="date-box-left-input-icon" />
+                <view class="date-box-left-input">
+                    <picker mode="date" value="{{startTime}}" start="2015-09-01" end="2017-09-01" bindchange="startTime1" >
+                        <input placeholder="" value="{{startTime}}" class="date-box-left-input-time" />
+                        <image src="../img/jiantou-xia.png" class="date-box-left-input-icon" />
+                    </picker>
                 </view>
             </view>
             <view class="date-box-left-top">
                 <view class="date-box-left-text">结束时间</view>
-                <view class="date-box-left-input" onTap="endTime1">
-                    <input placeholder="" value="{{endTime}}" class="date-box-left-input-time" />
-                    <image src="../img/jiantou-xia.png" class="date-box-left-input-icon" />
+                <view class="date-box-left-input">
+                    <picker mode="date" value="{{endTime}}" start="2015-09-01" end="2017-09-01" bindchange="endTime1" >
+                        <input placeholder="" value="{{endTime}}" class="date-box-left-input-time" />
+                        <image src="../img/jiantou-xia.png" class="date-box-left-input-icon" />
+                    </picker>
                 </view>
             </view>
         </view>
-        <view class="date-box-right" onTap="searchBtn">
+        <view class="date-box-right" bindtap="searchBtn">
             查询
         </view>
     </view>
@@ -33,7 +37,7 @@
     <scroll-view class="list" scroll-y="{{true}}" onScrollToUpper="upper" onScrollToLower="lower" onScroll="scroll">
         <view class="day-list">
             <view style="width:100%;text-align:center;line-height:40rpx;margin-top:20rpx" wx:if="{{list.length == 0}}">暂无记录</view>
-            <view class="day-list-item" wx:for="{{list}}" data-info="{{item}}" onTap="detail">
+            <view class="day-list-item" wx:for="{{list}}" data-info="{{item}}" bindtap="detail">
                 <view class="list-item-date">{{item.startTime}}</view>
                 <view class="list-item-count">{{item.endTime}}</view>
                 <view class="list-item-tuikuan">{{item.operatorName}}</view>

@@ -31,17 +31,39 @@ Page({
         })
         this.getList()
     },
-    startTime1() {
-        var that = this
-        wx.datePicker({
-            startDate: '2019-01-01',
-            endDate: that.getNowDate(),
-            success: (res) => {
-                that.setData({
-                    startTime: res.date
-                })
-            },
-        });
+    // startTime1() {
+    //     var that = this
+    //     wx.datePicker({
+    //         startDate: '2019-01-01',
+    //         endDate: that.getNowDate(),
+    //         success: (res) => {
+    //             that.setData({
+    //                 startTime: res.date
+    //             })
+    //         },
+    //     });
+    // },
+     // endTime1() {
+    //     var that = this
+    //     wx.datePicker({
+    //         startDate: '2019-01-01',
+    //         endDate: that.getNowDate(),
+    //         success: (res) => {
+    //             that.setData({
+    //                 endTime: res.date
+    //             })
+    //         },
+    //     });
+    // },
+    startTime1: function (e) {
+        this.setData({
+            startTime: e.detail.value
+        })
+    },
+    endTime1: function (e) {
+        this.setData({
+            endTime: e.detail.value
+        })
     },
     lower() {
         console.log('到底了')
@@ -57,18 +79,6 @@ Page({
         })
         this.getList()
 
-    },
-    endTime1() {
-        var that = this
-        wx.datePicker({
-            startDate: '2019-01-01',
-            endDate: that.getNowDate(),
-            success: (res) => {
-                that.setData({
-                    endTime: res.date
-                })
-            },
-        });
     },
     getNowDate1() {
         var date = new Date();
@@ -87,77 +97,77 @@ Page({
 
     },
     getList() {
-        // var that = this
-        // var userInfo = wx.getStorageSync('userInfo').data
-        // wx.showLoading({
-        //     success: (res) => {
+        var that = this
+        var userInfo = wx.getStorageSync('userInfo')
+        wx.showLoading({
+            success: (res) => {
 
-        //     },
-        // });
-        // wx.request({
-        //     url: that.data.server + 'shift/getShifts',
-        //     //url:'http://192.168.1.66:6017/p-server/bill/getNewHomeInfo',
-        //     method: 'get',
-        //     headers: {
-        //         "token": userInfo.loginKey + '#AliFACE'
-        //     },
-        //     data: {
+            },
+        });
+        wx.request({
+            url: that.data.server + 'shift/getShifts',
+            //url:'http://192.168.1.66:6017/p-server/bill/getNewHomeInfo',
+            method: 'get',
+            headers: {
+                "token": userInfo.loginKey + '#AliFACE'
+            },
+            data: {
 
-        //         "merchantNumber": userInfo.merchantNumber,
-        //         "storeNumber": userInfo.storeNumber,
-        //         "clerkNumber": userInfo.userNumber,
-        //         "pageCount": that.data.pageCount,
-        //         "pageNo": that.data.pageNo,
-        //         "startTime": that.data.startTime + ' 00:00:00',
-        //         "endTime": that.data.endTime + ' 23:59:59',
+                "merchantNumber": userInfo.merchantNumber,
+                "storeNumber": userInfo.storeNumber,
+                "clerkNumber": userInfo.userNumber,
+                "pageCount": that.data.pageCount,
+                "pageNo": that.data.pageNo,
+                "startTime": that.data.startTime + ' 00:00:00',
+                "endTime": that.data.endTime + ' 23:59:59',
 
-        //     },
-        //     success: (resp) => {
-        //         wx.hideLoading();
-        //         if (resp.data.code == '-1') {
-        //             wx.alert({
-        //                 title: '',
-        //                 content: resp.data.msg,
-        //                 buttonText: '确定',
-        //                 success: () => {
-        //                     wx.reLaunch({
-        //                         url: '../login/login'// 需要跳转的应用内非 tabBar 的目标页面路径 ,路径后可以带参数。参数规则如下：路径与参数之间使用
+            },
+            success: (resp) => {
+                wx.hideLoading();
+                if (resp.data.code == '-1') {
+                    wx.alert({
+                        title: '',
+                        content: resp.data.msg,
+                        buttonText: '确定',
+                        success: () => {
+                            wx.reLaunch({
+                                url: '../login/login'// 需要跳转的应用内非 tabBar 的目标页面路径 ,路径后可以带参数。参数规则如下：路径与参数之间使用
 
-        //                     });
-        //                 },
-        //             });
-        //         }
-        //         if (resp.data.code == 1000) {
-        //             var dList = resp.data.data.billResultInfos
-        //             for (var i = 0; i < dList.length; i++) {
-        //                 if (dList[i].operatorName.length > 3) {
-        //                     dList[i].operatorName = dList[i].operatorName.substring(0, 3) + '..'
-        //                 }
-        //             }
-        //             if (that.data.pageNo == 1) {
-        //                 that.setData({
-        //                     list: dList,
-        //                     count: resp.data.data.count
-        //                 })
-        //             } else {
-        //                 var list = that.data.list
-        //                 list = list.concat(dList)
-        //                 that.setData({
-        //                     list: list,
-        //                     count: resp.data.data.count
-        //                 })
-        //             }
-        //         } else {
-        //             wx.showToast({
-        //                 content: resp.data.msg
-        //             });
-        //         }
+                            });
+                        },
+                    });
+                }
+                if (resp.data.code == 1000) {
+                    var dList = resp.data.data.billResultInfos
+                    for (var i = 0; i < dList.length; i++) {
+                        if (dList[i].operatorName.length > 3) {
+                            dList[i].operatorName = dList[i].operatorName.substring(0, 3) + '..'
+                        }
+                    }
+                    if (that.data.pageNo == 1) {
+                        that.setData({
+                            list: dList,
+                            count: resp.data.data.count
+                        })
+                    } else {
+                        var list = that.data.list
+                        list = list.concat(dList)
+                        that.setData({
+                            list: list,
+                            count: resp.data.data.count
+                        })
+                    }
+                } else {
+                    wx.showToast({
+                        content: resp.data.msg
+                    });
+                }
 
-        //     },
-        //     fail: (err) => {
-        //         console.log('error', err);
-        //     },
-        // });
+            },
+            fail: (err) => {
+                console.log('error', err);
+            },
+        });
     },
     getNowDate() {
         var date = new Date();
