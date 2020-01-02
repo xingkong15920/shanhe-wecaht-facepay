@@ -19,12 +19,6 @@ Page({
 
         that.getList()
     },
-    leftArrow() {
-        console.log('这是')
-        wx.navigateTo({
-            url: '../jiaoban-detail/jiaoban-detail',
-        })
-    },
     searchBtn() {
         this.setData({
             pageNo: 1
@@ -123,6 +117,8 @@ Page({
 
             },
             success: (resp) => {
+                console.log('这是resp'+resp)
+                console.log(resp)
                 wx.hideLoading();
                 if (resp.data.code == '-1') {
                     wx.alert({

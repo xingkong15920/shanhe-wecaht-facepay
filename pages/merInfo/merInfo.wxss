@@ -5,17 +5,6 @@
     overflow: hidden;
 }
 
-.xiangqing {
-    margin-bottom: 200rpx;
-}
-
-.xqImg {
-    width: 35rpx;
-    height: 50rpx;
-    position: absolute;
-    left: 50rpx;
-    top: 50rpx;
-}
 
 .top {
     width: 304rpx;

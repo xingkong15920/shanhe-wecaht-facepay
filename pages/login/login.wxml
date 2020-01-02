@@ -29,7 +29,7 @@
         </view>
         <view class="mark-right" bindtap="forget">忘记密码？</view>
     </view>
-    <view class="login {{loginWhite == 'white' ? 'loginWhite' : ''}}" bindtap="login1">登录</view>
+    <view class="login" bindtap="login1">登录</view>
     <!-- 底部支付宝*闪盒 -->
     <view class="zhiShanBox">
         <image class="zhiShan" mode="scaleToFill" src="../img/weiShan.png" />

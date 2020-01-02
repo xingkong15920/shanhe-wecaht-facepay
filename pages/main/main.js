@@ -83,13 +83,14 @@ Page({
         // 	success: (r) => {
         // 	}
         // });
-        wx.ix.getVersion({
-            success: (r) => {
-                this.setData({
-                    sdk: r.versionName + '-' + r.versionCode
-                })
-            }
-        });
+
+        // wx.ix.getVersion({
+        //     success: (r) => {
+        //         this.setData({
+        //             sdk: r.versionName + '-' + r.versionCode
+        //         })
+        //     }
+        // });
 
 
         setInterval(function () {
@@ -179,7 +180,7 @@ Page({
     },
     heart() {
         var that = this
-        var userInfo = wx.getStorageSync('userInfo').data
+        var userInfo = wx.getStorageSync('userInfo')
         wx.request({
             url: that.data.server + 'heart/revice',
             //url:'http://192.168.1.66:6017/p-server/bill/getNewHomeInfo',
@@ -193,7 +194,7 @@ Page({
                 "merchantNumber": userInfo.merchantNumber,
                 "id": that.data.equipmentNumber,
                 //"id": 'SMIT3B2019729000825',
-                "appVersion": wx.getStorageSync('version').data,
+                "appVersion": wx.getStorageSync('version'),
                 "sdkVersion": that.data.sdk
             },
             success: (resp) => {
@@ -248,44 +249,44 @@ Page({
         })
 
     },
-    onShow() {
-        var that = this
-        wx.ix.queryPrinter({
-            success: (res) => {
-                // that.aalert(JSON.stringify(res))
-                if (res.usb.length == 0) {
-                    var list = that.data.list
-                    list[3].icon = '../img/wu.png'
-                    this.setData({
-                        list: list
-                    })
-                } else {
-                    if (wx.getStorageSync('dayin').data == null) {
-                        var list = that.data.list
-                        list[3].icon = '../img/wu.png'
-                        this.setData({
-                            list: list
-                        })
-                    } else {
-                        var list = that.data.list
-                        list[3].icon = '../img/you.png'
-                        this.setData({
-                            list: list
-                        })
-                    }
-                }
+    // onShow() {
+    //     var that = this
+    //     wx.ix.queryPrinter({
+    //         success: (res) => {
+    //             // that.aalert(JSON.stringify(res))
+    //             if (res.usb.length == 0) {
+    //                 var list = that.data.list
+    //                 list[3].icon = '../img/wu.png'
+    //                 this.setData({
+    //                     list: list
+    //                 })
+    //             } else {
+    //                 if (wx.getStorageSync('dayin') == null) {
+    //                     var list = that.data.list
+    //                     list[3].icon = '../img/wu.png'
+    //                     this.setData({
+    //                         list: list
+    //                     })
+    //                 } else {
+    //                     var list = that.data.list
+    //                     list[3].icon = '../img/you.png'
+    //                     this.setData({
+    //                         list: list
+    //                     })
+    //                 }
+    //             }
 
-            }
-        }),
-            wx.ix.onKeyEventChange((r) => {
+    //         }
+    //     }),
+    //         wx.ix.onKeyEventChange((r) => {
 
 
-                if (r.keyCode == 133) {
-                    wx.navigateBack({
-                        delta: 1
-                    });
-                }
-            })
+    //             if (r.keyCode == 133) {
+    //                 wx.navigateBack({
+    //                     delta: 1
+    //                 });
+    //             }
+    //         })
 
-    },
+    // },
 });

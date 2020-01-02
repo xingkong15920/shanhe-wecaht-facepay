@@ -20,7 +20,7 @@
 .chongzhijilu {
     position: absolute;
     right: 40rpx;
-    top: 45rpx;
+    top: 15rpx;
     width: 80%;
     text-align: right;
     height: 36rpx;
@@ -266,7 +266,7 @@
     text-align: left;
     display: block;
     height: 40rpx;
-    font-size: 28rpx;
+    font-size: 25rpx;
     font-family: PingFangSC;
     font-weight: 500;
     color: rgba(51, 51, 51, 1);
@@ -566,9 +566,8 @@
     background: #27B328;
     color: #fff;
     border-radius: 50%;
-    width: 40rpx;
-    height: 40rpx;
-    margin-top: 5rpx;
+    width: 70rpx;
+    height: 70rpx;
 }
 
 .date-day.unavailable {
@@ -602,7 +601,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 35px;
+    font-size: 25px;
 }
 
 .bgwhite {

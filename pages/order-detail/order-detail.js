@@ -4,11 +4,6 @@ Page({
         //server:'http://192.168.1.66:6017/p-server/',
         allPw: ''
     },
-    leftArrow(){
-        wx.navigateTo({
-            url: '../order/order',
-        })
-    },
     onLoad(data) {
         console.log(data)
         this.getList(data.orderNumber)
@@ -84,7 +79,8 @@ Page({
 
         if (wx.getStorageSync('dayin').data == null) {
             wx.showToast({
-                content: "请先选择打印设备"
+                title: "请先选择打印设备",
+                icon:'none'
             });
         } else {
             var userInfo = wx.getStorageSync('userInfo')
@@ -166,7 +162,8 @@ Page({
 
         if (wx.getStorageSync('dayin').data == null) {
             wx.showToast({
-                content: "请先选择打印设备"
+                title: "请先选择打印设备",
+                icon:'none'
             });
         } else {
             var userInfo = wx.getStorageSync('userInfo')
@@ -263,13 +260,15 @@ Page({
         var pw = wx.getStorageSync('tuikuan').data
         if (that.data.allPw == '') {
             wx.showToast({
-                content: '请输入退款密码'
+                title: '请输入退款密码',
+                icon:'none'
             })
             return
         }
         if (that.data.allPw != pw) {
             wx.showToast({
-                content: '请输入正确的退款密码'
+                title: '请输入正确的退款密码',
+                icon:"none"
             })
             return
         }
@@ -296,7 +295,8 @@ Page({
                 wx.hideLoading()
                 if (resp.data.code == 1000) {
                     wx.showToast({
-                        content: resp.data.msg
+                        title: resp.data.msg,
+                        icon:"none"
                     })
                     setTimeout(function () {
                         wx.navigateBack({
@@ -306,7 +306,8 @@ Page({
 
                 } else {
                     wx.showToast({
-                        content: resp.data.msg
+                        title: resp.data.msg,
+                        icon:"none"
                     })
                 }
 
@@ -336,19 +337,22 @@ Page({
         var pw = wx.getStorageSync('tuikuan').data
         if (that.data.refundAmount < that.data.bufenMoney) {
             wx.showToast({
-                content: '退款金额不可大于可退金额'
+                title: '退款金额不可大于可退金额',
+                icon:"none"
             })
             return
         }
         if (that.data.bufenInput == '') {
             wx.showToast({
-                content: '请输入退款密码'
+                title: '请输入退款密码',
+                icon:"none"
             })
             return
         }
         if (that.data.bufenInput != pw) {
             wx.showToast({
-                content: '请输入正确的退款密码'
+                title: '请输入正确的退款密码',
+                icon:"none"
             })
             return
         }
@@ -375,7 +379,8 @@ Page({
                 wx.hideLoading()
                 if (resp.data.code == 1000) {
                     wx.showToast({
-                        content: resp.data.msg
+                        title: resp.data.msg,
+                        icon:"none"
                     })
                     setTimeout(function () {
                         wx.navigateBack({
@@ -385,7 +390,8 @@ Page({
 
                 } else {
                     wx.showToast({
-                        content: resp.data.msg
+                        title: resp.data.msg,
+                        icon:"none"
                     })
                 }
 

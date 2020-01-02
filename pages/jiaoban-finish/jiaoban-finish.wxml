@@ -1,8 +1,4 @@
 <view class="box">
-    <view class="xiangqing">
-        <image src="../img/wZuo.png" class="xqImg" bindtap="leftArrow" />
-        <view class="xqText">交班</view>
-    </view>
     <view class="top">
         <image src="../img/wjiaoban.png" class="top-img" />
         <view class="top-text">交班完成</view>

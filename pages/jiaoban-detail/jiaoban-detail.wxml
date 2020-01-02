@@ -1,8 +1,4 @@
 <view class="box">
-    <view class="xiangqing">
-        <image src="../img/wZuo.png" class="xqImg" bindtap="leftArrow" />
-        <view class="xqText">交班</view>
-    </view>
     <view class="top">
         <view class="top-title">实收总额(元)</view>
         <view class="top-money">￥{{jbInfo.allMoney}}</view>

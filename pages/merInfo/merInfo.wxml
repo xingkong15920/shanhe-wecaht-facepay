@@ -1,7 +1,4 @@
 <view class="box">
-    <view class="xiangqing">
-        <image src="../img/wZuo.png" class="xqImg" bindtap="leftArrow" />
-    </view>
     <view class="top">商户信息</view>
     <view class="count">
         <view class="count-left">商户名称：</view>

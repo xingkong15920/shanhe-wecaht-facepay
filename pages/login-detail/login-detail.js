@@ -7,11 +7,6 @@ Page({
     data: {
 
     },
-    leftArrow() {
-        wx.navigateTo({
-            url: '../main/main',
-        })
-    },
     logOut: function() {
         wx.showModal({
             title: '提示',

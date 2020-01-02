@@ -1,7 +1,4 @@
 <view class="box">
-    <view class="xiangqing">
-        <image src="../img/wZuo.png" class="xqImg" bindtap="leftArrow" />
-    </view>
     <view class="box-box">
         <view class="box-item" style="display:inline-block;margin-right:130rpx;" bindtap="logOut">
             <image src="../img/tuichu.png" class="box-img" />

@@ -122,7 +122,8 @@ Page({
                         wx.hideLoading();
                         if (resp.data.code != 1000) {
                             wx.showToast({
-                                content: resp.data.msg
+                                title: resp.data.msg,
+                                icon: 'none'
                             })
                         } else {
                             wx.ix.speech({
@@ -588,7 +589,7 @@ Page({
             fail: (r) => {
                 wx.showToast({
                     title: JSON.stringify(r),
-                    icon:'none'
+                    icon: 'none'
                 });
                 this.addResult('faceVerify forPay fail', r);
             }
@@ -1242,7 +1243,10 @@ Page({
             totalAmount: '0.01',
             orderDetail: [{ name: '名称1', content: '详情134', fontColor: 'gray' }, { name: '名称2', content: '详情456', fontColor: 'red' }],
             success: (r) => {
-                wx.showToast({ content: r.barCode });
+                wx.showToast({
+                    title: r.barCode,
+                    icon:'none'
+                });
             }
         });
     },

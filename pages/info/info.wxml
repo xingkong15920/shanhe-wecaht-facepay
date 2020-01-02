@@ -1,7 +1,4 @@
 <view class="box">
-    <view class="xiangqing">
-        <image src="../img/wZuo.png" class="xqImg" bindtap="leftArrow" />
-    </view>
     <view class="top">关于我们</view>
     <view class="count">
         <view class="count-center">设备号：{{equipmentNumber}}</view>

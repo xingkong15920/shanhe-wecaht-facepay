@@ -130,7 +130,8 @@ Page({
         console.log(Math.ceil(this.data.count / this.data.pageCount))
         if (this.data.pageNo >= Math.ceil(this.data.count / this.data.pageCount)) {
             wx.showToast({
-                content: "没有更多订单了"
+                title: "没有更多订单了",
+                icon: 'none'
             })
             return
         }
@@ -187,8 +188,9 @@ Page({
 
             },
             success: (resp) => {
+                console.log(resp)
+                console.log(resp.data.code)
                 if (resp.data.code == '-1') {
-                    console.log(resp.data.code)
                     // 1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
                     // wx.alert({
                     //     title: '',
@@ -207,6 +209,7 @@ Page({
                 }, 500)
 
                 if (resp.data.code == 1000) {
+                    console.log(resp.data.pageNo)
                     if (that.data.pageNo == 1) {
                         that.setData({
                             "money": resp.data.data.allMoney,
@@ -233,7 +236,8 @@ Page({
                         "list": []
                     })
                     wx.showToast({
-                        content: resp.data.msg,
+                        title: resp.data.msg,
+                        icon:'none'
                     });
 
                 }

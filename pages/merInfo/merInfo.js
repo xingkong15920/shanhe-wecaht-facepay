@@ -2,16 +2,11 @@ Page({
     data: {},
     onLoad() {
         var that = this
-        var userInfo = wx.getStorageSync('userInfo').data
+        var userInfo = wx.getStorageSync('userInfo')
         that.setData({
-            // merchantName: that.stringC(userInfo.merchantName),
-            // shopName: that.stringC(userInfo.storeName),
-            // userName: that.stringC(userInfo.userName)
-        })
-    },
-    leftArrow() {
-        wx.navigateTo({
-            url: '../main/main',
+            merchantName: that.stringC(userInfo.merchantName),
+            shopName: that.stringC(userInfo.storeName),
+            userName: that.stringC(userInfo.userName)
         })
     },
     stringC(data) {

@@ -25,88 +25,89 @@ Page({
         loginWhite: '', //登录的白背景
     },
     // 你好的密码变成*
-    passYin: function() {
+    passYin: function () {
         console.log('aaaaaaa')
         this.setData({
             passwordDain: true
         })
     },
     // 你好的密码变成数字
-    passXian: function() {
+    passXian: function () {
         console.log('bbbbbb')
         this.setData({
             passwordDain: ''
         })
     },
     // 找回密码的密码变成*
-    mimaYin: function() {
+    mimaYin: function () {
         console.log('aaaaaaa')
         this.setData({
             passwordZhao: true
         })
     },
     // 找回密码的密码变成数字
-    mimaXian: function() {
+    mimaXian: function () {
         console.log('bbbbbb')
         this.setData({
             passwordZhao: ''
         })
     },
     // 找回密码的确认密码变成*
-    miYin: function() {
+    miYin: function () {
         console.log('aaaaaaa')
         this.setData({
             passZhao: true
         })
     },
     // 找回密码的确认密码变成数字
-    miXian: function() {
+    miXian: function () {
         console.log('bbbbbb')
         this.setData({
             passZhao: ''
         })
     },
-    clear: function() {
+    clear: function () {
         console.log('aaaaaaa')
         this.setData({
             phone: ''
         })
     },
-    clear1: function() {
+    clear1: function () {
         this.setData({
             password: ''
         })
     },
-    clearYZ: function() {
+    clearYZ: function () {
         console.log('这是yz')
         this.setData({
             code: ''
         })
     },
-    clearNew: function() {
+    clearNew: function () {
         this.setData({
             password1: ''
         })
     },
-    clearNewAgain: function() {
+    clearNewAgain: function () {
         this.setData({
             password2: ''
         })
     },
-    clearPhone: function() {
+    clearPhone: function () {
         this.setData({
             pwphone: ''
         })
     },
-    save1: function(res) {
-        console.log('这是res')
-        console.log(res)
+    save1: function (res) {
+        // console.log('这是res')
+        // console.log(res)
+        // console.log(res.detail.value)
         this.setData({
-            save: res.detail.value
+            save: !this.data.save
         })
     },
     // 获取验证码
-    getCode: function() {
+    getCode: function () {
         var that = this
         if (that.data.pwphone == '') {
             wx.showToast({
@@ -131,7 +132,7 @@ Page({
             url: 'https://api.51shanhe.com/p-server/user/getCode',
             method: 'GET',
             header: {
-                'Content-Type': 'application/json' 
+                'Content-Type': 'application/json'
             },
             data: {
                 "institutionNumber": that.data.institutionNumber,
@@ -158,18 +159,18 @@ Page({
             },
         });
     },
-    daojishi: function() {
+    daojishi: function () {
         var timer;
         var that = this
         if (that.data.codeInfo == '获取验证码') {
             that.setData({
-                codeInfo: 5
+                codeInfo: 59
             })
         }
         if (that.data.type == 1) {
             clearInterval(timer)
         }
-        timer = setInterval(function() {
+        timer = setInterval(function () {
             if (that.data.codeInfo == 0) {
                 clearInterval(timer)
                 that.setData({
@@ -185,22 +186,22 @@ Page({
         }, 1000)
 
     },
-    onLoad: function() {
+    onLoad: function () {
         let that = this
-        if (wx.getStorageSync('save').data == null) {
+        if (wx.getStorageSync('save') == null) {
             this.setData({
                 save: false,
             })
         } else {
             this.setData({
-                save: wx.getStorageSync('save').data.save,
-                phone: wx.getStorageSync('save').data.phone,
-                password: wx.getStorageSync('save').data.pw,
+                save: wx.getStorageSync('save').save,
+                phone: wx.getStorageSync('save').phone,
+                password: wx.getStorageSync('save').pw,
             })
         }
         wx.request({
             url: 'https://pv.sohu.com/cityjson?ie=utf-8',
-            success: function(e) {
+            success: function (e) {
                 console.log(e.data);
                 var aaa = e.data.split(' ');
                 console.log(aaa)
@@ -217,7 +218,7 @@ Page({
                 })
 
             },
-            fail: function() {
+            fail: function () {
                 console.log("失败了");
             }
 
@@ -265,41 +266,41 @@ Page({
             }
         })
     },
-    phone: function(e) {
+    phone: function (e) {
         console.log(e)
         this.setData({
             "phone": e.detail.value
         })
     },
-    pwphone: function(e) {
+    pwphone: function (e) {
         this.setData({
             "pwphone": e.detail.value
         })
     },
-    code: function(e) {
+    code: function (e) {
         console.log(e)
         this.setData({
             "code": e.detail.value
         })
     },
-    pass1: function(e) {
+    pass1: function (e) {
         this.setData({
             "password1": e.detail.value
         })
     },
-    pass2: function(e) {
+    pass2: function (e) {
         this.setData({
             "password2": e.detail.value
         })
     },
-    pass: function(e) {
+    pass: function (e) {
         console.log(e)
         this.setData({
             "password": e.detail.value
         })
     },
     // 去登录
-    login2: function() {
+    login2: function () {
         var that = this
         if (that.data.pwphone == '') {
             wx.showToast({
@@ -358,10 +359,7 @@ Page({
             },
             success: (resp) => {
                 // that.aalert(resp.data.code)
-                // wx.setStorageSync({
-                // 	key: 'payInfo', // 缓存数据的key
-                // 	data: resp.data.data, // 要缓存的数据
-                // });
+                // wx.setStorageSync('payInfo',resp.data.data);
                 wx.hideLoading()
                 if (resp.data.code != 1000) {
                     wx.showToast({
@@ -395,23 +393,23 @@ Page({
             },
         });
     },
-    forget: function() {
+    forget: function () {
         this.setData({
             type: 2
         })
     },
-    typeBack: function() {
+    typeBack: function () {
         this.setData({
             type: 1
         })
     },
     // 登录
-    login1: function() {
+    login1: function () {
         console.log('123')
         // 登录背景变白，字变绿
-        this.setData({
-            loginWhite: 'white'
-        })
+        // this.setData({
+        //     loginWhite: 'white'
+        // })
         var that = this
         var tjData
         if (that.data.phone == '') {
@@ -451,7 +449,7 @@ Page({
                 "ip": that.data.IP,
                 // "sdkEdition": that.data.sdk,
                 "sdkEdition": '12314123132',
-                "appEdition": wx.getStorageSync('version').data,
+                "appEdition": wx.getStorageSync('version'),
                 "runMode": that.data.runMode
 
             },
@@ -467,20 +465,24 @@ Page({
                     wx.hideLoading();
                     return
                 }
-                setTimeout(function() {
+                setTimeout(function () {
                     wx.hideLoading();
                 }, 500)
+                console.log('这是save')
+                console.log(that.data)
                 if (that.data.save == true) {
                     this.setData({
                         save: true,
                         phone: that.data.phone,
                         pw: that.data.password
                     })
+                    console.log('这是pw')
+                    console.log(that.data.pw)
                     var saveObj = new Object()
                     saveObj.save = true
                     saveObj.phone = that.data.phone
                     saveObj.pw = that.data.password
-                    wx.setStorageSync('save', 'saveObj')
+                    wx.setStorageSync('save', saveObj)
                 } else {
                     wx.removeStorageSync('save')
                 }
@@ -491,7 +493,7 @@ Page({
                     icon: 'none',
                     duration: "1000",
                     success: (res) => {
-                        setTimeout(function() {
+                        setTimeout(function () {
                             wx.reLaunch({
                                 url: '../index/index'
                                 // url:'../main/main'

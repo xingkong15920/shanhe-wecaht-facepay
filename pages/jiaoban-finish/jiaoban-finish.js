@@ -16,11 +16,6 @@ Page({
             count: data.count
         })
     },
-    leftArrow: function() {
-        wx.navigateTo({
-            url: '../main/main',
-        })
-    },
     back: function() {
         console.log('6666666')
         // wx.navigateBack({

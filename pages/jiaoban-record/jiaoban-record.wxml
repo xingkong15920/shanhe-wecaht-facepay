@@ -1,8 +1,4 @@
 <view class="box">
-    <view class="xiangqing">
-        <image src="../img/wZuo.png" class="xqImg" bindtap="leftArrow" />
-        <view class="xqText">交班记录</view>
-    </view>
     <view class="date-box">
         <view class="date-box-left">
             <view class="date-box-left-top">
@@ -34,10 +30,10 @@
         <view class="list-title-tuikuan">交班人</view>
         <view class="list-title-jiaoyi">操作</view>
     </view>
-    <scroll-view class="list" scroll-y="{{true}}" onScrollToUpper="upper" onScrollToLower="lower" onScroll="scroll">
+    <scroll-view class="list" scroll-y="{{true}}" bindscrollToUpper="upper" bindscrollToLower="lower" onScroll="scroll">
         <view class="day-list">
             <view style="width:100%;text-align:center;line-height:40rpx;margin-top:20rpx" wx:if="{{list.length == 0}}">暂无记录</view>
-            <view class="day-list-item" wx:for="{{list}}" data-info="{{item}}" bindtap="detail">
+            <view class="day-list-item" wx:for="{{list}}" wx:key="startTime" data-info="{{item}}" bindtap="detail">
                 <view class="list-item-date">{{item.startTime}}</view>
                 <view class="list-item-count">{{item.endTime}}</view>
                 <view class="list-item-tuikuan">{{item.operatorName}}</view>

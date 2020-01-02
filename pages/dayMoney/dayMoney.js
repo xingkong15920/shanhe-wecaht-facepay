@@ -9,11 +9,6 @@ Page({
         list: [],
         date: '2016-09-01',
     },
-    leftArrow() {
-        wx.navigateTo({
-            url: '../main/main',
-        })
-    },
     onLoad() {
         var that = this
         console.log(that.getNowDate())
@@ -47,7 +42,8 @@ Page({
         console.log(Math.ceil(this.data.count / this.data.pageCount))
         if (this.data.pageNo > Math.ceil(this.data.count / this.data.pageCount)) {
             wx.showToast({
-                content: "没有更多数据"
+                title: "没有更多数据",
+                icon: 'none',
             })
             return
         }

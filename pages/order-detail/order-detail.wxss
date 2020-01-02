@@ -3,25 +3,6 @@
     background-color: #fff;
 }
 
-.xiangqing {
-    height: 100rpx;
-    background: linear-gradient(138deg, rgba(76, 206, 78, 1) 0%, rgba(30, 173, 31, 1) 100%);
-    text-align: center;
-}
-.xqImg {
-    width: 27rpx;
-    height: 40rpx;
-    position: absolute;
-    left: 35rpx;
-    top: 30rpx;
-    z-index: 9999
-}
-.xqText {
-    font-size: 36rpx;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 1);
-    line-height: 100rpx;
-}
 
 input {
     padding: 0;

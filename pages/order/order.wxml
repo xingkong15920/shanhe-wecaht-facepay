@@ -1,8 +1,6 @@
 <view class="box">
 
     <view class="order-top" disable-scroll="{{true}}">
-        <image src="../img/wZuo.png" class="xqImg" bindtap="leftArrow" />
-        <view class="dingDan">订单</view>
         <view class="chongzhijilu" bindtap="recharge">充值记录</view>
         <view class="order-box">
             <view class="box-left">
@@ -31,11 +29,10 @@
         </view>
         <image src="../img/wShaiXuan.png" class="search-right " bindtap="search" />
     </view>
-    <scroll-view scroll-y="{{true}}" class="listBox" onScrollToUpper="upper" onScrollToLower="lower" onScroll="scroll">
+    <scroll-view scroll-y="{{true}}" class="listBox" bindscrolltoupper="upper" bindScrollToLower="lower" onScroll="scroll">
         <view style="width:100%;text-align:center;line-height:40rpx;margin-top:20rpx" wx:if="{{list.length == 0}}">暂无订单</view>
         <view class="list-box">
-            <!-- <view class="list-box-item" wx:for="{{list}}"  bindtap="orderDetail" data-order="{{item.paymentOrder}}"> -->
-            <view class="list-box-item" bindtap="orderDetail" data-order="{{item.paymentOrder}}">
+            <view class="list-box-item" wx:for="{{list}}"  bindtap="orderDetail" data-order="{{item.paymentOrder}}">
                 <image src="../img/ali-pay.png" wx:if="{{item.orderPayType == '支付宝支付'}}" class="list-box-item-img" />
                 <image src="../img/weixin-pay.png" wx:if="{{item.orderPayType == '微信支付'}}" class="list-box-item-img" />
                 <view class="list-box-item-left">
@@ -46,7 +43,7 @@
                     <!--<view class="list-box-item-right-top">+￥ 200.00</view> -->
                     <view class="list-box-item-right-top1" wx:if="{{item.orderState == '全额退款'}}">-￥{{item.totalMoney-item.refundBalance}}</view>
                     <view class="list-box-item-right-top1" wx:if="{{item.orderState == '部分退款'}}">+￥{{item.refundBalance}}</view>
-                    <view class="list-box-item-right-top1" wx:else="{{item.orderState == '支付成功'}}">+￥{{item.totalMoney}}</view>
+                    <view class="list-box-item-right-top1" wx:if="{{item.orderState == '支付成功'}}">+￥{{item.totalMoney}}</view>
                     <view class="list-box-item-right-bottom">
                         <view class="{{item.orderState == '全额退款' ? 'item-point' : 'item-point1' }}"></view>
                         <view class="item-text">{{item.orderState}}</view>
@@ -117,9 +114,9 @@
             <view class="date-day {{item.class}} {{item.isA >= firstNum && item.isA<= twoNum ? 'active':''}} {{item.class}} {{item.isA<= firstNum && item.isA >= twoNum ? 'active':''}}" style="width:40px;height:40px;" data-year="{{dateItem.year}}" data-month="{{dateItem.month}}"
                 data-day="{{item.day}}" bindtap="onPressDate" wx:for="{{dateItem.days}}" wx:key="{{index}}" data-is="0" style="display:inline-block">
                 <view class='item-days {{item.isA}}' data-is="0">
-                    <text style='font-size:30rpx;' data-is="0">{{item.day>0?(item.daytext?item.daytext:item.day):''}}</text>
-                    <text style='font-size:30rpx;' wx:if="{{item.inday}}"></text>
-                    <text style='font-size:30rpx;' wx:if="{{item.outday}}"></text>
+                    <text data-is="0">{{item.day>0?(item.daytext?item.daytext:item.day):''}}</text>
+                    <text wx:if="{{item.inday}}"></text>
+                    <text wx:if="{{item.outday}}"></text>
                 </view>
             </view>
         </view>

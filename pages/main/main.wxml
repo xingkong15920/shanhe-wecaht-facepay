@@ -1,7 +1,7 @@
 <view class="box" disable-scroll="{{true}}">
 <image  src="../img/set.png" class="set" bindtap="set"/>
   <view class="itemBox">
-    <view class="item" wx:for="{{list}}" bindtap="{{item.tap}}" >
+    <view class="item" wx:for="{{list}}" wx:key="tap" bindtap="{{item.tap}}" >
 		<image class="item-image" mode="scaleToFill" src="{{item.img}}"/>
 		<image class="item-icon" wx:if="{{!!item.icon}}"  src="{{item.icon}}"/>
 		<text class="item-text">{{item.text}}</text>

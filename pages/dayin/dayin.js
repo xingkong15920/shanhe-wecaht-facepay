@@ -9,11 +9,6 @@ Page({
         count: 2,
         isLanya: false,
     },
-    leftArrow() {
-        wx.navigateTo({
-            url: '../main/main',
-        })
-    },
     props: {
         disabled: false, // 是否禁用
         checked: false, // 是否选中
@@ -47,35 +42,36 @@ Page({
     },
     onLoad() {
         // wx.alert(wx.canIUse('ix.codeScan'))
-        if (wx.getStorageSync('dyCount').data == null) {
+        if (wx.getStorageSync('dyCount') == null) {
             this.setData({
                 count: 1
             })
         } else {
             this.setData({
-                count: wx.getStorageSync('dyCount').data
+                count: wx.getStorageSync('dyCount')
             })
         }
-        if (wx.getStorageSync('isLanya').data == null) {
+        if (wx.getStorageSync('isLanya') == null) {
             this.setData({
                 isLanya: false
             })
         } else {
             this.setData({
-                isLanya: wx.getStorageSync('isLanya').data
+                isLanya: wx.getStorageSync('isLanya')
             })
         }
-        if (wx.getStorageSync('dayin').data == null) {
+        if (wx.getStorageSync('dayin') == null) {
             // wx.showToast({
-            //   content:"请先选择打印设备"
+            //   title:"请先选择打印设备",
+            //   icon:'none'
             // });
             this.setData({
                 eqName: ''
             })
         } else {
-            // this.aalert(wx.getStorageSync('dayin').data.name)
+            // this.aalert(wx.getStorageSync('dayin').name)
             this.setData({
-                eqName: wx.getStorageSync('dayin').data.name
+                eqName: wx.getStorageSync('dayin').name
             })
         }
 
@@ -126,26 +122,26 @@ Page({
                 // 	that.getLanya()
                 // }, 15000)
             } else {
-                wx.ix.queryPrinter({
-                    success: (res) => {
-                        // that.aalert(JSON.stringify(res))
-                        if (res.usb.length == 0) {
-                            wx.showToast({
-                                content: '未查询到设备，请检查连接'
-                            });
-                            this.setData({
+                // wx.ix.queryPrinter({
+                //     success: (res) => {
+                //         // that.aalert(JSON.stringify(res))
+                //         if (res.usb.length == 0) {
+                //             wx.showToast({
+                //                 content: '未查询到设备，请检查连接'
+                //             });
+                //             this.setData({
 
-                                chooseDayin: false
-                            })
-                            return
-                        }
-                        that.setData({
-                            usbList: res.usb,
-                            chooseDayin: true
-                        })
+                //                 chooseDayin: false
+                //             })
+                //             return
+                //         }
+                //         that.setData({
+                //             usbList: res.usb,
+                //             chooseDayin: true
+                //         })
 
-                    }
-                })
+                //     }
+                // })
             }
 
         }
@@ -154,7 +150,7 @@ Page({
     },
     getLanya() {
         wx.showLoading({
-            content: '正在查找设备',
+            title: '正在查找设备',
             success: (res) => {
 
             },
@@ -261,12 +257,13 @@ Page({
     ceshi() {
         var that = this
 
-        if (wx.getStorageSync('dayin').data == null) {
+        if (wx.getStorageSync('dayin') == null) {
             wx.showToast({
-                content: "请先选择打印设备"
+                title: "请先选择打印设备",
+                icon:'none'
             });
         } else {
-            that.aalert(wx.getStorageSync('dayin').data.id)
+            that.aalert(wx.getStorageSync('dayin').id)
             wx.getConnectedBluetoothDevices({
                 success: res => {
                     if (res.devices.length === 0) {
@@ -283,7 +280,7 @@ Page({
 
             return
             wx.ix.printer({
-                target: wx.getStorageSync('dayin').data.id,
+                target: wx.getStorageSync('dayin').id,
                 cmds: [
                     { 'cmd': 'addPrintAndLineFeed', 'args': [] },
                     { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'ON', 'OFF', 'OFF', 'OFF'] },

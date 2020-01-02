@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+    "component": true,
+    "navigationBarTitleText": "交班完成",
+    "usingComponents": {}
 }
