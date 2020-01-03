@@ -14,243 +14,244 @@
 
 <!-- 初始页面 -->
 <view class="box" disable-scroll="{{true}}" bindtap="hide123" wx:if="{{box1}}">
-   <image src="../img/saoma.png" wx:if="{{syType=='pc'}}" class="saoma" />
-   <!--<view class="space" style="position:fixed;left:0;top:0;z-index:999;width:100%"><poster id="xpass_poster" class="ad" posid="{{posid}}" audible="{{audible}}" style="width:100%;height:100vh" onSuccess="onDisplaySuccess" onFail="onDisplayFail" onChange="onPosterChange"/>
+    <image src="../img/saoma.png" wx:if="{{syType=='pc'}}" class="saoma" />
+    <!--<view class="space" style="position:fixed;left:0;top:0;z-index:999;width:100%"><poster id="xpass_poster" class="ad" posid="{{posid}}" audible="{{audible}}" style="width:100%;height:100vh" onSuccess="onDisplaySuccess" onFail="onDisplayFail" onChange="onPosterChange"/>
     <!-- 遮罩层 -->
-   <!--<view class="index-bottom"></view></view>-->
-   <image class="index-top" src="{{advImg}}" style="z-index:9999" bindtap="hideA" />
-   <!--<view class="infoBox"><view class="info" a:if="{{info == false}}" bindtap="infoFalse">...</view><view class="info1" a:if="{{info == true}}">{{name}}</view><view class="info2" a:if="{{info == true}}">{{phone}}</view><view class="info3" a:if="{{info == true}}" bindtap="infoFalse">...</view></view> -->
-   <view class="userBox" style="left:{{left}}rpx;top: {{top}}rpx" onTouchStart="start" onTouchMove="move" wx:if="{{userInfoType == true}}">
-      <image src="../img/dian.png" class="{{left>50?'userDian':'userDian1'}}" bindtap="infoFalse" />
-      <view class="userInfo" wx:if="{{info == true}}">
-         <image src="../img/userImg.png" class="userInfo-img" />
-         <view class="userInfo-box">
-            <view class="userInfo-top">{{name}}</view>
-            <view class="userInfo-bottom">{{phone}}</view>
-         </view>
-         <view class="loginout" bindtap="loginout">退出登录</view>
-      </view>
-   </view>
-   <view class="index-bottom-box" style="width:100%" wx:if="{{tuikuan==false}}">
-      <view class="bottom-text1" wx:if="{{syType=='duli'}}" bindtap="goHide">等待收银员发起收款</view>
-      <view class="bottom-text2" wx:if="{{syType=='duli'}}">支持刷脸和扫码支付</view>
-      <image src="../img/faceOn.png" wx:if="{{syType=='pc'}}" class="faceOn" bindtap="pcHuan" />
-   </view>
-   <view class="index-bottom-box" style="width:100%" wx:if="{{syType=='nochajian'}}">
-      <view class="bottom-text1 " style="margin-top:{{rfMoney != 0 ?'50':'110'}}rpx">等待收银员发起收款</view>
-      <view class="bottom-text1" style="margin-top:50rpx" wx:if="{{rfMoney != 0}}">金额{{rfMoney}}元</view>
-      <!-- <view class="bottom-text2">支持刷脸和扫码支付</view> -->
-   </view>
-   <view class="index-bottom-box" wx:if="{{tuikuan==true}}">
-      <view class="bottom-text1">{{tuikuanInfo}}</view>
-   </view>
-   <!--<view class="index-bottom-box"><view class="bottom-text1" bindtap="huiyuan">会员支付</view><button open-type="getAuthorize" onGetAuthorize="onGetAuthorize" onError="onAuthError" scope='userInfo'>
+    <!--<view class="index-bottom"></view></view>-->
+    <!-- <image class="index-top" src="{{advImg}}" style="z-index:9999" bindtap="hideA" /> -->
+    <!--<view class="infoBox"><view class="info" a:if="{{info == false}}" bindtap="infoFalse">...</view><view class="info1" a:if="{{info == true}}">{{name}}</view><view class="info2" a:if="{{info == true}}">{{phone}}</view><view class="info3" a:if="{{info == true}}" bindtap="infoFalse">...</view></view> -->
+    <view class="userBox" style="left:{{left}}rpx;top: {{top}}rpx" onTouchStart="start" onTouchMove="move" wx:if="{{userInfoType == true}}">
+        <image src="../img/dian.png" class="{{left>50?'userDian':'userDian1'}}" bindtap="infoFalse" />
+        <view class="userInfo" wx:if="{{info == true}}">
+            <image src="../img/userImg.png" class="userInfo-img" />
+            <view class="userInfo-box">
+                <view class="userInfo-top">{{name}}</view>
+                <view class="userInfo-bottom">{{phone}}</view>
+            </view>
+            <view class="loginout" bindtap="loginout">退出登录</view>
+        </view>
+    </view>
+    <view class="index-bottom-box" style="width:100%" wx:if="{{tuikuan==false}}">
+        <view class="bottom-text1" wx:if="{{syType=='duli'}}" bindtap="goHide">等待收银员发起收款</view>
+        <view class="bottom-text2" wx:if="{{syType=='duli'}}">支持刷脸和扫码支付</view>
+        <image src="../img/faceOn.png" wx:if="{{syType=='pc'}}" class="faceOn" bindtap="pcHuan" />
+    </view>
+    <view class="index-bottom-box" style="width:100%" wx:if="{{syType=='nochajian'}}">
+        <view class="bottom-text1 " style="margin-top:{{rfMoney != 0 ?'50':'110'}}rpx">等待收银员发起收款</view>
+        <view class="bottom-text1" style="margin-top:50rpx" wx:if="{{rfMoney != 0}}">金额{{rfMoney}}元</view>
+        <!-- <view class="bottom-text2">支持刷脸和扫码支付</view> -->
+    </view>
+    <view class="index-bottom-box" wx:if="{{tuikuan==true}}">
+        <view class="bottom-text1">{{tuikuanInfo}}</view>
+    </view>
+    <!--<view class="index-bottom-box"><view class="bottom-text1" bindtap="huiyuan">会员支付</view><button open-type="getAuthorize" onGetAuthorize="onGetAuthorize" onError="onAuthError" scope='userInfo'>
 				会员基础信息授权</button></view>  -->
 </view>
 
 <!-- 确认支付-版本1  -->
 <view class="bigBox" wx:if="{{box2}}">
-   <!-- 白背景 -->
-   <view class="whiteBgc">
-      <!-- 叉号 -->
-      <view class="plCloseBox">
-         <view class="plClose" bindtap="plClose">X</view>
-      </view>
-      <view class="pleaseConfirm">请确认支付金额(元)</view>
-      <view class="oneHundred">{{money}}</view>
-      <!-- 确认支付-版本1  -->
-      <block>
-         <!--<block wx:if="{{payT==0}}"> -->
-         <!-- 刷脸支付 -->
-         <view class="brushFacePay" bindtap="facePay">
-            <image class="aLiPayImg" mode="scaleToFill" src="../img/weiXinDui.png" />
-            <view class="brushFacePayText">刷脸支付</view>
-         </view>
-         <!-- 会员支付 -->
-         <view class="membersPay" bindtap="huiyuan">
-            <image class="membersPayImg" mode="scaleToFill" src="../img/huiyuan.png" />
-            <view class="membersPayText">会员支付</view>
-         </view>
-         <!-- 开卡有礼 -->
-         <view class="openCard">
-            <image class="openCardImg" mode="scaleToFill" src="../img/bianzu.png" />
-            <view class="openCardText">开卡有礼</view>
-         </view>
-         <!-- 底部三块 -->
-         <view class="bottomThree">
-            <view class="col-4">
-               <image class="bottomThreeImg1" mode="scaleToFill" src="../img/wqian.png" />
-               <view class="bottomThreeText">会员积分</view>
+    <!-- 白背景 -->
+    <view class="whiteBgc">
+        <!-- 叉号 -->
+        <view class="plCloseBox">
+            <view class="plClose" bindtap="plClose">X</view>
+        </view>
+        <view class="pleaseConfirm">请确认支付金额(元)</view>
+        <view class="oneHundred">{{money}}</view>
+        <!-- 确认支付-版本1  -->
+        <block>
+            <!--<block wx:if="{{payT==0}}"> -->
+            <!-- 刷脸支付 -->
+            <view class="brushFacePay" bindtap="facePay">
+                <image class="aLiPayImg" mode="scaleToFill" src="../img/weiXinDui.png" />
+                <view class="brushFacePayText">刷脸支付</view>
             </view>
-            <view class="col-4">
-               <image class="bottomThreeImg2" mode="scaleToFill" src="../img/whong.png" />
-               <view class="bottomThreeText">专享折扣</view>
+            <!-- 会员支付 -->
+            <view class="membersPay" bindtap="huiyuan">
+                <image class="membersPayImg" mode="scaleToFill" src="../img/huiyuan.png" />
+                <view class="membersPayText">会员支付</view>
             </view>
-            <view class="col-4">
-               <image class="bottomThreeImg3" mode="scaleToFill" src="../img/wyang.png" />
-               <view class="bottomThreeText">储值有礼</view>
+            <!-- 开卡有礼 -->
+            <view class="openCard">
+                <image class="openCardImg" mode="scaleToFill" src="../img/bianzu.png" />
+                <view class="openCardText">开卡有礼</view>
             </view>
-         </view>
-      </block>
-   </view>
-   <!-- 底部支付宝*闪盒 -->
-   <view class="zhiShanBox">
-      <image class="zhiShan" mode="scaleToFill" src="../img/weiShan.png" />
-   </view>
+            <!-- 底部三块 -->
+            <view class="bottomThree">
+                <view class="col-4">
+                    <image class="bottomThreeImg1" mode="scaleToFill" src="../img/wqian.png" />
+                    <view class="bottomThreeText">会员积分</view>
+                </view>
+                <view class="col-4">
+                    <image class="bottomThreeImg2" mode="scaleToFill" src="../img/whong.png" />
+                    <view class="bottomThreeText">专享折扣</view>
+                </view>
+                <view class="col-4">
+                    <image class="bottomThreeImg3" mode="scaleToFill" src="../img/wyang.png" />
+                    <view class="bottomThreeText">储值有礼</view>
+                </view>
+            </view>
+        </block>
+    </view>
+    <!-- 底部支付宝*闪盒 -->
+    <view class="zhiShanBox">
+        <image class="zhiShan" mode="scaleToFill" src="../img/weiShan.png" />
+    </view>
 </view>
 
 <!-- 订单支付页面 -->
 <view class="bigBox" wx:if="{{box3}}">
-   <!-- 白背景上边 -->
-   <view class="memberDiscountTop">
-      <!--<image class="mdshan" mode="scaleToFill" src="../img/shan.png"/> -->
-      <image class="mdKing" mode="scaleToFill" src="../img/king.png" />
-      <image class="mdHeadPho" mode="scaleToFill" src="{{headImg}}" />
-      <view class="mdName">{{nickName}}</view>
-      <view class="mdBalance">余额：{{allBalance}}元</view>
-   </view>
-   <!-- 白背景 -->
-   <view class="memberDiscountWhiteBgc">
-      <!-- 会员享受9.5折优惠 -->
-      <view class="mdDiscont" wx:if="{{mdDiscont}}">会员享受{{disCountRate}}折优惠，每消费{{consumMoney}}元积{{consumGiveIntegral}}分</view>
-      <view class="orderAmount">订单金额(元)</view>
-      <view class="mdMoney">{{money}}</view>
-      <!-- 订单支付默认显示3张优惠券，版本1 -->
-      <block wx:if="{{payT==1}}">
-         <view class="threeDiscountBox">
-            <view class="memberDiscount" wx:if="{{mdText}}">
-               <view class="memberDiscountText">会员优惠</view>
-               <view class="memberDiscountNum">-{{mDiscount}}元</view>
-            </view>
-            <view class="discountCoupon" wx:if="{{dcNum == 0 ? false : true}}">
-               <view class="discountCouponText">优惠券</view>
-               <view class="discountCouponNum">-{{dcNum}}元</view>
-            </view>
-            <view class="availableCoupons" wx:if="{{voucherList.length>0}}">
-               <image class="availableCouponsLeft" mode="scaleToFill" src="../img/jiedianyouhuiquan.png" />
-               <view class="availableCouponsText">可用优惠劵</view>
-               <image class="availableCouponsRight" mode="scaleToFill" src="../img/iconfontjiantouzuo.png" bindtap="bottomArrow" />
-            </view>
-            <!-- 三张优惠券 -->
-            <scroll-view scroll-y="{{true}}" style="height:{{cpButton== true ? '140rpx' : '420rpx'}}">
-               <view class="discount" style="height:auto">
-                  <view class="discountOne {{voucherNo==item.voucherNo  ? 'discountOne1' : ''}} " wx:for="{{voucherList}}" bindtap="useV" data-type="{{item.voucherUse}}" data-zhe="{{item.discount}}" data-man="{{item.minimumCharge}}" data-jian="{{item.discountAmount}}" data-bianhao="{{item.voucherNo}}">
-                     <!-- ￥10，满99元使用 -->
-                     <block wx:if="{{item.voucherUse == '1'}}">
-                        <view class="discountOneLeft">
-                           <view class="discountOneTop">
-                              <view class="yang">￥</view>
-                              <view class="yangNum">{{item.discountAmount}}</view>
-                           </view>
-                           <view class="discountOneBottom">满{{item.minimumCharge}}元使用</view>
+    <!-- 白背景上边 -->
+    <view class="memberDiscountTop">
+        <!--<image class="mdshan" mode="scaleToFill" src="../img/shan.png"/> -->
+        <image class="mdKing" mode="scaleToFill" src="../img/king.png" />
+        <image class="mdHeadPho" mode="scaleToFill" src="{{headImg}}" />
+        <view class="mdName">{{nickName}}</view>
+        <view class="mdBalance">余额：{{allBalance}}元</view>
+    </view>
+    <!-- 白背景 -->
+    <view class="memberDiscountWhiteBgc">
+        <!-- 会员享受9.5折优惠 -->
+        <view class="mdDiscont" wx:if="{{mdDiscont}}">会员享受{{disCountRate}}折优惠，每消费{{consumMoney}}元积{{consumGiveIntegral}}分</view>
+        <view class="orderAmount">订单金额(元)</view>
+        <view class="mdMoney">{{money}}</view>
+        <!-- 订单支付默认显示3张优惠券，版本1 -->
+        <block wx:if="{{payT==1}}">
+            <view class="threeDiscountBox">
+                <view class="memberDiscount" wx:if="{{mdText}}">
+                    <view class="memberDiscountText">会员优惠</view>
+                    <view class="memberDiscountNum">-{{mDiscount}}元</view>
+                </view>
+                <view class="discountCoupon" wx:if="{{dcNum == 0 ? false : true}}">
+                    <view class="discountCouponText">优惠券</view>
+                    <view class="discountCouponNum">-{{dcNum}}元</view>
+                </view>
+                <view class="availableCoupons" wx:if="{{voucherList.length>0}}">
+                    <image class="availableCouponsLeft" mode="scaleToFill" src="../img/jiedianyouhuiquan.png" />
+                    <view class="availableCouponsText">可用优惠劵</view>
+                    <image class="availableCouponsRight" mode="scaleToFill" src="../img/iconfontjiantouzuo.png" bindtap="bottomArrow" />
+                </view>
+                <!-- 三张优惠券 -->
+                <scroll-view scroll-y="{{true}}" style="height:{{cpButton== true ? '140rpx' : '420rpx'}}">
+                    <view class="discount" style="height:auto">
+                        <view class="discountOne {{voucherNo==item.voucherNo  ? 'discountOne1' : ''}} " wx:for="{{voucherList}}" bindtap="useV" data-type="{{item.voucherUse}}" data-zhe="{{item.discount}}" data-man="{{item.minimumCharge}}" data-jian="{{item.discountAmount}}"
+                            data-bianhao="{{item.voucherNo}}">
+                            <!-- ￥10，满99元使用 -->
+                            <block wx:if="{{item.voucherUse == '1'}}">
+                                <view class="discountOneLeft">
+                                    <view class="discountOneTop">
+                                        <view class="yang">￥</view>
+                                        <view class="yangNum">{{item.discountAmount}}</view>
+                                    </view>
+                                    <view class="discountOneBottom">满{{item.minimumCharge}}元使用</view>
+                                </view>
+                                <view class="discountOneRight">优惠券</view>
+                            </block>
+                            <!-- 0.9折 -->
+                            <block wx:if="{{item.voucherUse == '0'}}">
+                                <view class="discountNumLeft">
+                                    <view class="discountNumTop">
+                                        <view class="yangNum">{{item.discount}}</view>
+                                        <view class="yang">折</view>
+                                    </view>
+                                </view>
+                                <view class="discountOneRight">折扣券</view>
+                            </block>
                         </view>
-                        <view class="discountOneRight">优惠券</view>
-                     </block>
-                     <!-- 0.9折 -->
-                     <block wx:if="{{item.voucherUse == '0'}}">
-                        <view class="discountNumLeft">
-                           <view class="discountNumTop">
-                              <view class="yangNum">{{item.discount}}</view>
-                              <view class="yang">折</view>
-                           </view>
-                        </view>
-                        <view class="discountOneRight">折扣券</view>
-                     </block>
-                  </view>
-                  <!-- ￥10，满99元使用 -->
-                  <!--<view class="discountOne"><view class="discountOneLeft"><view class="discountOneTop"><view class="yang">￥</view><view class="yangNum">10</view></view><view class="discountOneBottom">满99元使用</view></view><view class="discountOneRight">优惠券</view></view> -->
-                  <!-- 0.9折 -->
-                  <!--<view class="discountOne"><view class="discountNumLeft"><view class="discountNumTop"><view class="yangNum">{{discount}}</view><view class="yang">折</view></view></view><view class="discountOneRight">折扣券</view></view> -->
-                  <!-- 0.9折 -->
-                  <!--<view class="discountOne"><view class="discountNumLeft"><view class="discountNumTop"><view class="yangNum">{{discount}}</view><view class="yang">折</view></view></view><view class="discountOneRight">折扣券</view></view> -->
-               </view>
-            </scroll-view>
-            <!-- 余额支付 -->
-            <view class="balancePayment" bindtap="bPayment" wx:if="{{bpButton && voucherNo==''}}">余额支付(￥{{balancePayment}})</view>
-            <view class="balancePayment" bindtap="bPayment" wx:if="{{bpButton && voucherNo!=''}}">余额支付(￥{{zheMoney}})</view>
-            <!-- 取消支付 -->
-            <view class="canclePayment" wx:if="{{cpButton}}" bindtap="canclePayment">取消支付</view>
-         </view>
-      </block>
-   </view>
+                        <!-- ￥10，满99元使用 -->
+                        <!--<view class="discountOne"><view class="discountOneLeft"><view class="discountOneTop"><view class="yang">￥</view><view class="yangNum">10</view></view><view class="discountOneBottom">满99元使用</view></view><view class="discountOneRight">优惠券</view></view> -->
+                        <!-- 0.9折 -->
+                        <!--<view class="discountOne"><view class="discountNumLeft"><view class="discountNumTop"><view class="yangNum">{{discount}}</view><view class="yang">折</view></view></view><view class="discountOneRight">折扣券</view></view> -->
+                        <!-- 0.9折 -->
+                        <!--<view class="discountOne"><view class="discountNumLeft"><view class="discountNumTop"><view class="yangNum">{{discount}}</view><view class="yang">折</view></view></view><view class="discountOneRight">折扣券</view></view> -->
+                    </view>
+                </scroll-view>
+                <!-- 余额支付 -->
+                <view class="balancePayment" bindtap="bPayment" wx:if="{{bpButton && voucherNo==''}}">余额支付(￥{{balancePayment}})</view>
+                <view class="balancePayment" bindtap="bPayment" wx:if="{{bpButton && voucherNo!=''}}">余额支付(￥{{zheMoney}})</view>
+                <!-- 取消支付 -->
+                <view class="canclePayment" wx:if="{{cpButton}}" bindtap="canclePayment">取消支付</view>
+            </view>
+        </block>
+    </view>
 </view>
 
 <!-- 支付成功页面 -->
 <view class="bigBox" wx:if="{{payS}}">
-   <!-- 白背景 -->
-   <view class="paySucceedWhiteBgc">
-      <!-- 支付成功 -->
-      <view class="paySucceedTop">
-         <image class="paySucceedImg" mode="scaleToFill" src="../img/wwancheng.png" />
-         <view class="paySucceedTopText">支付成功</view>
-         <view class="paySucceedTopNum">
-            <view class="paySucceedTopYang">￥</view>
-            <view class="paySucceedTopNumber">{{actualConsumMoney}}</view>
-         </view>
-      </view>
-      <!-- 优惠合计 -->
-      <view class="preferentialAdd">
-         <view class="preferentialAddText">优惠合计</view>
-         <view class="preferentialAddNum">{{preferentialNum}}元</view>
-      </view>
-      <!-- 消费积分 -->
-      <view class="preferentialAdd">
-         <view class="preferentialAddText">积分奖励</view>
-         <view class="preferentialAddNum">{{giveIntegral}}</view>
-      </view>
-      <!-- 完成 -->
-      <view class="accomplish" bindtap="accomplishNBtn">完成</view>
-      <!-- 广告文字 -->
-      <view class="advertising">
-         <view class="advertisingLeft"></view>
-         <view class="advertisingText">广告</view>
-         <view class="advertisingLeft"></view>
-      </view>
-      <!-- 广告图片 -->
-      <view class="advertisingBox">
-         <image class="advertisingImg" mode="scaleToFill" src="../img/wguangGao.png" />
-      </view>
-   </view>
+    <!-- 白背景 -->
+    <view class="paySucceedWhiteBgc">
+        <!-- 支付成功 -->
+        <view class="paySucceedTop">
+            <image class="paySucceedImg" mode="scaleToFill" src="../img/wwancheng.png" />
+            <view class="paySucceedTopText">支付成功</view>
+            <view class="paySucceedTopNum">
+                <view class="paySucceedTopYang">￥</view>
+                <view class="paySucceedTopNumber">{{actualConsumMoney}}</view>
+            </view>
+        </view>
+        <!-- 优惠合计 -->
+        <view class="preferentialAdd">
+            <view class="preferentialAddText">优惠合计</view>
+            <view class="preferentialAddNum">{{preferentialNum}}元</view>
+        </view>
+        <!-- 消费积分 -->
+        <view class="preferentialAdd">
+            <view class="preferentialAddText">积分奖励</view>
+            <view class="preferentialAddNum">{{giveIntegral}}</view>
+        </view>
+        <!-- 完成 -->
+        <view class="accomplish" bindtap="accomplishNBtn">完成</view>
+        <!-- 广告文字 -->
+        <view class="advertising">
+            <view class="advertisingLeft"></view>
+            <view class="advertisingText">广告</view>
+            <view class="advertisingLeft"></view>
+        </view>
+        <!-- 广告图片 -->
+        <view class="advertisingBox">
+            <image class="advertisingImg" mode="scaleToFill" src="../img/wguangGao.png" />
+        </view>
+    </view>
 </view>
 
 <!-- 开卡有礼:版本1 -->
 <view class="openCardBox" wx:if="{{openCardBox}}">
-   <!-- 开通会员 -->
-   <view class="openMember">
-      <image class="openMemberImg" mode="scaleToFill" src="../img/wKaiTong.png" />
-   </view>
-   <!-- 会员专享福利 -->
-   <view class="memberExclusive">会员专享福利</view>
-   <!-- 中间，底部居中的盒子 -->
-   <view class="ocMainBox">
-      <!-- 白背景外面 -->
-      <view class="ocWhiteBgcOuter">
-         <!-- 白背景 -->
-         <view class="ocWhiteBgc">
-            <!-- 请输入手机号 -->
-            <view class="ocPleasePhoneBox">
-               <input class="ocPleasePhone" placeholder="请输入手机号" bindinput="keyNum1" value="{{ocPleasePhone1}}" type="number" />
-               <image class="ocChaHaoT" mode="scaleToFill" src="../img/chaHao.png" bindtap="ocChaHaoT1" />
+    <!-- 开通会员 -->
+    <view class="openMember">
+        <image class="openMemberImg" mode="scaleToFill" src="../img/wKaiTong.png" />
+    </view>
+    <!-- 会员专享福利 -->
+    <view class="memberExclusive">会员专享福利</view>
+    <!-- 中间，底部居中的盒子 -->
+    <view class="ocMainBox">
+        <!-- 白背景外面 -->
+        <view class="ocWhiteBgcOuter">
+            <!-- 白背景 -->
+            <view class="ocWhiteBgc">
+                <!-- 请输入手机号 -->
+                <view class="ocPleasePhoneBox">
+                    <input class="ocPleasePhone" placeholder="请输入手机号" bindinput="keyNum1" value="{{ocPleasePhone1}}" type="number" />
+                    <image class="ocChaHaoT" mode="scaleToFill" src="../img/chaHao.png" bindtap="ocChaHaoT1" />
+                </view>
+                <!-- 验证码 -->
+                <view class="ocAuthCodeBox">
+                    <!-- 请输入验证码 -->
+                    <input class="ocPleaseIn" placeholder="请输入验证码" bindinput="keyNum2" value="{{ocPleasePhone2}}" type="number" />
+                    <image class="ocChaHaoB" mode="scaleToFill" src="../img/chaHao.png" bindtap="ocChaHaoT2" />
+                    <!-- 获取验证码 -->
+                    <view class="ocGetCode" wx:if="{{ocGetCode}}" bindtap="ocGetV">获取验证码</view>
+                    <!-- 重新发送(59s) -->
+                    <view class="ocGetSecond" wx:if="{{!ocGetCode}}">重新发送({{codeInfo}}s)</view>
+                </view>
             </view>
-            <!-- 验证码 -->
-            <view class="ocAuthCodeBox">
-               <!-- 请输入验证码 -->
-               <input class="ocPleaseIn" placeholder="请输入验证码" bindinput="keyNum2" value="{{ocPleasePhone2}}" type="number" />
-               <image class="ocChaHaoB" mode="scaleToFill" src="../img/chaHao.png" bindtap="ocChaHaoT2" />
-               <!-- 获取验证码 -->
-               <view class="ocGetCode" wx:if="{{ocGetCode}}" bindtap="ocGetV">获取验证码</view>
-               <!-- 重新发送(59s) -->
-               <view class="ocGetSecond" wx:if="{{!ocGetCode}}">重新发送({{codeInfo}}s)</view>
-            </view>
-         </view>
-      </view>
-      <!-- 立即开卡 -->
-      <view class="ocOpenCardBox" bindtap="ocImmediately">
-         <view class="ocOpenCard">立即开卡</view>
-         <!-- <button open-type="getAuthorize" onGetAuthorize="onGetAuthorize" onError="onAuthError" scope='userInfo'>
+        </view>
+        <!-- 立即开卡 -->
+        <view class="ocOpenCardBox" bindtap="ocImmediately">
+            <view class="ocOpenCard">立即开卡</view>
+            <!-- <button open-type="getAuthorize" onGetAuthorize="onGetAuthorize" onError="onAuthError" scope='userInfo'>
 				会员基础信息授权</button> -->
-      </view>
-      <!-- <view class="querenBox" wx:if="{{querenType == true}}">
+        </view>
+        <!-- <view class="querenBox" wx:if="{{querenType == true}}">
          <view class="queren-title">
             是否开启刷脸并开通会员卡
          </view>
@@ -262,31 +263,77 @@
                确认</button>
          </view>
       </view> -->
-      <!-- 会员卡详情 -->
-      <view class="ocDetailBox">
-         <view class="ocDetailLeft">
-            <image class="openMemberImg" mode="scaleToFill" src="../img/xiangLeft.png" />
-         </view>
-         <view class="ocDetailText">会员卡详情</view>
-         <view class="ocDetailLeft">
-            <image class="openMemberImg" mode="scaleToFill" src="../img/xiangRight.png" />
-         </view>
-      </view>
-      <!-- 特权说明 -->
-      <view class="ocPrivilege">
-         <view class="ocCircle"></view>
-         <view class="ocPrivilegeText">特权说明：会员专享优惠折扣，消费送积分，消费</view>
-      </view>
-      <view class="ocPrivilegeTextOne">1元送1积分</view>
-      <!-- 有效日期 -->
-      <view class="ocPrivilege">
-         <view class="ocCircle"></view>
-         <view class="ocPrivilegeText">有效日期：永久有效</view>
-      </view>
-      <!-- 使用须知 -->
-      <view class="ocPrivilege">
-         <view class="ocCircle"></view>
-         <view class="ocPrivilegeText">使用须知：付款时无需输入手机号刷脸即可识别</view>
-      </view>
-   </view>
+        <!-- 会员卡详情 -->
+        <view class="ocDetailBox">
+            <view class="ocDetailLeft">
+                <image class="openMemberImg" mode="scaleToFill" src="../img/xiangLeft.png" />
+            </view>
+            <view class="ocDetailText">会员卡详情</view>
+            <view class="ocDetailLeft">
+                <image class="openMemberImg" mode="scaleToFill" src="../img/xiangRight.png" />
+            </view>
+        </view>
+        <!-- 特权说明 -->
+        <view class="ocPrivilege">
+            <view class="ocCircle"></view>
+            <view class="ocPrivilegeText">特权说明：会员专享优惠折扣，消费送积分，消费</view>
+        </view>
+        <view class="ocPrivilegeTextOne">1元送1积分</view>
+        <!-- 有效日期 -->
+        <view class="ocPrivilege">
+            <view class="ocCircle"></view>
+            <view class="ocPrivilegeText">有效日期：永久有效</view>
+        </view>
+        <!-- 使用须知 -->
+        <view class="ocPrivilege">
+            <view class="ocCircle"></view>
+            <view class="ocPrivilegeText">使用须知：付款时无需输入手机号刷脸即可识别</view>
+        </view>
+    </view>
+</view>
+
+<!-- 刷脸机页面（二维码） -->
+<view class="wechatBox" wx:if="{{boxErWei}}">
+    <view class="saomaTop">
+        <image class="saomaImg" mode="scaleToFill" src="../img/wwTop.png" />
+    </view>
+    <view class="saomaBox">
+        <view class="saomaText">扫码支付</view>
+    </view>
+    <view class="pleasePay">请支付</view>
+    <view class="payMoney">￥0.01</view>
+    <view class="fiveImgBox">
+        <view class="zaici">在此扫码付款</view>
+        <view class="zcerweima"></view>
+    </view>
+    <!-- 刷脸支付 -->
+    <view class="brushFacePay2" bindtap="faPay">
+        <image class="aLiPayImg2" mode="scaleToFill" src="../img/wwdui.png" />
+        <view class="brushFacePayText2">刷脸支付</view>
+    </view>
+    <image class="tuijian" mode="scaleToFill" src="../img/wwtuijian.png" />
+    <!-- 会员支付 -->
+    <view class="membersPay2" bindtap="huiPay">
+        <image class="membersPayImg2" mode="scaleToFill" src="../img/wwwang.png" />
+        <view class="membersPayText2">会员支付</view>
+    </view>
+</view>
+<!-- 会员/刷脸备份 -->
+<view class="huiyuanBox" wx:if="{{boxhysl}}">
+    <view class="hyBottom">
+        <view class="xiaoFei">消费金额(元)</view>
+        <view>
+            <image class="wwchahaoImg" mode="scaleToFill" src="../img/wwchahao.png" bindtap="hyClose" />
+        </view>
+        <view class="hyMoney">￥200.00</view>
+        <view class="hyTouXiang"></view>
+        <view class="huNiCheng">微信昵称</view>
+        <view class="hyPhone">17778261160</view>
+        <view class="hySurePay">确认支付（余额: ￥2000.00）</view>
+    </view>
+</view>
+<!-- 广告video -->
+<view class="guangGaoBox" >
+    <video class="myVideo" id="myVideo" src="{{advList111}}" bindended="endBoFang" autoplay="true" muted="true" show-play-btn="false"
+         enable-danmu danmu-btn controls></video>
 </view>

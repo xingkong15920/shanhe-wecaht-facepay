@@ -96,7 +96,7 @@
 
 .listBox {
 	width: 100%;
-	height: 860rpx;
+	height: 1009rpx;
 	background-color: #fff
 }
 

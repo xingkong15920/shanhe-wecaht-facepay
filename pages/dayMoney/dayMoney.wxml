@@ -30,7 +30,7 @@
         <view class="list-title-tuikuan">退款金额(元)</view>
         <view class="list-title-jiaoyi">交易金额(元)</view>
     </view>
-    <scroll-view class="list" scroll-y="{{true}}" bindscrolltoupper="upper" bindscrolltolower="lower" onScroll="scroll">
+    <scroll-view class="list" scroll-y="{{true}}" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll">
         <view class="day-list">
             <view class="day-list-item" wx:for="{{list}}">
                 <view class="list-item-date">{{item.statementDate}}</view>

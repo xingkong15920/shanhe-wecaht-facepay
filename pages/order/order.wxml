@@ -29,10 +29,10 @@
         </view>
         <image src="../img/wShaiXuan.png" class="search-right " bindtap="search" />
     </view>
-    <scroll-view scroll-y="{{true}}" class="listBox" bindscrolltoupper="upper" bindScrollToLower="lower" onScroll="scroll">
+    <scroll-view scroll-y="{{true}}" class="listBox" bindscrolltoupper="upper" bindScrollToLower="lower" bindscroll="scroll">
         <view style="width:100%;text-align:center;line-height:40rpx;margin-top:20rpx" wx:if="{{list.length == 0}}">暂无订单</view>
         <view class="list-box">
-            <view class="list-box-item" wx:for="{{list}}"  bindtap="orderDetail" data-order="{{item.paymentOrder}}">
+            <view class="list-box-item" wx:for="{{list}}" bindtap="orderDetail" data-order="{{item.paymentOrder}}">
                 <image src="../img/ali-pay.png" wx:if="{{item.orderPayType == '支付宝支付'}}" class="list-box-item-img" />
                 <image src="../img/weixin-pay.png" wx:if="{{item.orderPayType == '微信支付'}}" class="list-box-item-img" />
                 <view class="list-box-item-left">
@@ -111,7 +111,7 @@
     </view>
     <view wx:for="{{dateList}}" wx:key="{{index}}" wx:for-item="dateItem" style='height:100vh' bindtap="noClick" data-is="1">
         <view class="layout-flex row" id='row1' style="flex-wrap: wrap;margin-top:30rpx;;background:#fff" data-is="0">
-            <view class="date-day {{item.class}} {{item.isA >= firstNum && item.isA<= twoNum ? 'active':''}} {{item.class}} {{item.isA<= firstNum && item.isA >= twoNum ? 'active':''}}" style="width:40px;height:40px;" data-year="{{dateItem.year}}" data-month="{{dateItem.month}}"
+            <view class="date-day {{item.class}} {{item.isA >= firstNum && item.isA<= twoNum ? 'active':''}} {{item.class}} {{item.isA<= firstNum && item.isA >= twoNum ? 'active':''}}" style="width:80px;height:80px;" data-year="{{dateItem.year}}" data-month="{{dateItem.month}}"
                 data-day="{{item.day}}" bindtap="onPressDate" wx:for="{{dateItem.days}}" wx:key="{{index}}" data-is="0" style="display:inline-block">
                 <view class='item-days {{item.isA}}' data-is="0">
                     <text data-is="0">{{item.day>0?(item.daytext?item.daytext:item.day):''}}</text>

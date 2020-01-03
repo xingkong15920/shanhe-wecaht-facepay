@@ -64,7 +64,8 @@ Page({
         console.log(Math.ceil(this.data.count / this.data.pageCount))
         if (this.data.pageNo > Math.ceil(this.data.count / this.data.pageCount)) {
             wx.showToast({
-                content: "没有更多数据"
+                title: "没有更多数据",
+                icon:'none'
             })
             return
         }
@@ -155,7 +156,8 @@ Page({
                     }
                 } else {
                     wx.showToast({
-                        content: resp.data.msg
+                        title: resp.data.msg,
+                        icon:'none'
                     });
                 }
 

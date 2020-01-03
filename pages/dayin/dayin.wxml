@@ -17,7 +17,7 @@
         <view class="count-left1" wx:if="{{eqName != ''}}">{{eqName}}</view>
         <image src="../img/jiantou-xia.png" class="chooseM" />
     </view>
-    <scroll-view class="list" scroll-y="{{true}}" bindscrollToUpper="upper" bindscrollToLower="lower" onScroll="scroll" a:if="{{chooseDayin == true}}">
+    <scroll-view class="list" scroll-y="{{true}}" bindscrollToUpper="upper" bindscrollToLower="lower" bindscroll="scroll" a:if="{{chooseDayin == true}}">
         <view class="list-box">
             <view style="width:100%;text-align:center;line-height:40rpx;margin-top:20rpx" wx:if="{{list.length == 0}}">暂无设备</view>
             <view class="list-item" wx:for="{{usbList}}" wx:key="name">

@@ -30,7 +30,7 @@
         <view class="list-title-tuikuan">交班人</view>
         <view class="list-title-jiaoyi">操作</view>
     </view>
-    <scroll-view class="list" scroll-y="{{true}}" bindscrollToUpper="upper" bindscrollToLower="lower" onScroll="scroll">
+    <scroll-view class="list" scroll-y="{{true}}" bindscrollToUpper="upper" bindscrollToLower="lower" bindscroll="scroll">
         <view class="day-list">
             <view style="width:100%;text-align:center;line-height:40rpx;margin-top:20rpx" wx:if="{{list.length == 0}}">暂无记录</view>
             <view class="day-list-item" wx:for="{{list}}" wx:key="startTime" data-info="{{item}}" bindtap="detail">

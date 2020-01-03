@@ -556,6 +556,9 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 70rpx;
+    height: 70rpx;
+    line-height: 70rpx;
 }
 
 .date-day.bgitem {
@@ -566,8 +569,6 @@
     background: #27B328;
     color: #fff;
     border-radius: 50%;
-    width: 70rpx;
-    height: 70rpx;
 }
 
 .date-day.unavailable {
@@ -601,7 +602,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .bgwhite {

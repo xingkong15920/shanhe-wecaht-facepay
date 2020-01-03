@@ -11,7 +11,7 @@
         <view class="re-title-money">充值金额(元)</view>
         <view class="re-title-set">操作</view>
     </view>
-    <scroll-view scroll-y="{{true}}" class="listBox" bindscrollToUpper="upper" bindscrollToLower="lower" onScroll="scroll">
+    <scroll-view scroll-y="{{true}}" class="listBox" bindscrollToUpper="upper" bindscrollToLower="lower" bindscroll="scroll">
         <view class="list-box" >
             <view class="list-item" wx:for="{{list}}" wx:if="{{voucherno == item.cell ? false : true}}">
                 <view class="list-item-left">

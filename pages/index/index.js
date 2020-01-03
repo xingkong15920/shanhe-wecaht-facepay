@@ -1,12 +1,14 @@
-
 Page({
+    onReady: function (res) {
+        this.videoContext = wx.createVideoContext('myVideo')
+    },
     data: {
         pay: true,
         institutionNumber: 1004,
         equipmentNumber: '',
         posid: 'idle_pos',
         audible: true,
-        advImgList: ['../img/index-top.png'],
+        advImgList: [],
         advImg: '',
         imgNo: 0,
         name: '',
@@ -21,40 +23,72 @@ Page({
         syPc: true,
         userInfoType: false,
         nnn: 1,
-        box1: false,       //初始页面
-        box2: true,        //确认支付
-        box3: false,       //订单支付3个
-        payT: 1,           //切换订单支付123
-        payS: false,       //支付成功
-        openCardBox: false,     //开卡有礼页面
-        money: 0,        //订单金额
+        box1: false, //初始页面
+        box2: false, //确认支付
+        box3: false, //订单支付3个
+        payT: 1, //切换订单支付123
+        payS: false, //支付成功
+        openCardBox: false, //开卡有礼页面
+        boxErWei: false, //刷脸机页面（二维码）
+        boxhysl: false, // 会员/刷脸备份页面
+        boxGuangGao: false, //广告video
+        money: 0, //订单金额
         headImg: '../img/shan.png',
         nickName: '',
-        allBalance: 0,        //余额
-        balancePayment: 0,      //余额支付(自定义)
-        mDiscount: '0',         //会员优惠（自定义）
-        errorPayment: '',          //错误的余额支付
-        disCountRate: '',          //折扣
-        bpButton: true,           //余额支付按钮
-        cpButton: true,           //取消支付按钮
-        discountHeight: '114rpx',  //可用优惠券右边向下的箭头
-        mdText: true,               //会员优惠按钮
-        preferentialNum: 0,        //优惠合计
-        giveIntegral: 0,                //积分奖励
-        mdDiscont: true,           //会员享受折优惠，每消费元积分
-        voucherList: '',             //优惠券数组
-        discount: '1',             //折扣 
-        dcNum: 0,               //可用优惠券上边的优惠券
-        voucherNo: '',        //使用优惠券的金额
-        isUseVip: false,     //是否可以使用会员支付
-        ocGetCode: true,       //获取验证码or重新发送(59s)
-        ocPleasePhone1: '',     //请输入手机号
-        ocPleasePhone2: '',     //请输入验证码
-        codeInfo: '59',          //倒计时60s
-        mebInfo: [],               //点击会员支付，传参给发送验证码，
-        rfMoney: 0,              //插件金额
-        querenType: false,          //确认是否
-        goHide: 0
+        allBalance: 0, //余额
+        balancePayment: 0, //余额支付(自定义)
+        mDiscount: '0', //会员优惠（自定义）
+        errorPayment: '', //错误的余额支付
+        disCountRate: '', //折扣
+        bpButton: true, //余额支付按钮
+        cpButton: true, //取消支付按钮
+        discountHeight: '114rpx', //可用优惠券右边向下的箭头
+        mdText: true, //会员优惠按钮
+        preferentialNum: 0, //优惠合计
+        giveIntegral: 0, //积分奖励
+        mdDiscont: true, //会员享受折优惠，每消费元积分
+        voucherList: '', //优惠券数组
+        discount: '1', //折扣 
+        dcNum: 0, //可用优惠券上边的优惠券
+        voucherNo: '', //使用优惠券的金额
+        isUseVip: false, //是否可以使用会员支付
+        ocGetCode: true, //获取验证码or重新发送(59s)
+        ocPleasePhone1: '', //请输入手机号
+        ocPleasePhone2: '', //请输入验证码
+        codeInfo: '59', //倒计时60s
+        mebInfo: [], //点击会员支付，传参给发送验证码，
+        rfMoney: 0, //插件金额
+        querenType: false, //确认是否
+        goHide: 0,
+        isEnd: '',         //视频是否播放到最后
+        numb:0,          //视频计数
+    },
+    
+    // 刷脸机页面（二维码）
+    // 刷脸支付
+    faPay() {
+        var that = this
+        that.setData({
+            boxErWei: false,
+            boxhysl: true,
+        })
+    },
+    // 会员支付
+    huiPay() {
+        var that = this
+        that.setData({
+            boxErWei: false,
+            boxhysl: true,
+        })
+    },
+    // 会员/刷脸备份页面
+    // 叉号
+    hyClose() {
+        var that = this
+        that.setData({
+            boxhysl: false,
+            boxErWei: true,
+        })
     },
     goHide() {
         var num = this.data.goHide
@@ -93,8 +127,7 @@ Page({
             querenType: false
         })
         wx.getOpenUserInfo({
-            fail: (res) => {
-            },
+            fail: (res) => { },
             success: (res) => {
 
                 // let userInfo = JSON.parse(res.response).response // 以下方的报文格式解析两层 response
@@ -128,8 +161,7 @@ Page({
                         } else {
                             wx.ix.speech({
                                 text: '开卡成功',
-                                success: (r) => {
-                                }
+                                success: (r) => { }
                             });
                             that.setData({
                                 box2: true,
@@ -395,9 +427,9 @@ Page({
                     });
                     that.setData({
                         box2: false,
-                        openCardBox: true,            //开卡有礼页面
+                        openCardBox: true, //开卡有礼页面
                     })
-                } else if (userInfo.code == 1000) {       //是会员
+                } else if (userInfo.code == 1000) { //是会员
                     var userIData = resp.data.data
                     that.setData({
                         userIData: userIData
@@ -416,14 +448,14 @@ Page({
                             box2: false,
                             box3: true,
                             payT: 1,
-                            headImg: userIData.headImg,                 //头像
-                            nickName: userIData.nickName,               //名字
-                            allBalance: userIData.allBalance,           //余额
-                            disCountRate: userIData.disCountRate,       //折扣
-                            balancePayment: balancePayment,             //余额支付
-                            mDiscount: mDiscount,                       //会员优惠（自定义）
-                            consumMoney: userIData.consumMoney,       //(等级设置)消费金额
-                            consumGiveIntegral: userIData.consumGiveIntegral,         //(等级设置)获得积分         
+                            headImg: userIData.headImg, //头像
+                            nickName: userIData.nickName, //名字
+                            allBalance: userIData.allBalance, //余额
+                            disCountRate: userIData.disCountRate, //折扣
+                            balancePayment: balancePayment, //余额支付
+                            mDiscount: mDiscount, //会员优惠（自定义）
+                            consumMoney: userIData.consumMoney, //(等级设置)消费金额
+                            consumGiveIntegral: userIData.consumGiveIntegral, //(等级设置)获得积分         
                         })
                     } else {
                         // 没有折扣
@@ -431,13 +463,13 @@ Page({
                             box2: false,
                             box3: true,
                             payT: 1,
-                            headImg: userIData.headImg,     //头像
-                            nickName: userIData.nickName,               //名字
-                            allBalance: userIData.allBalance,           //余额
-                            balancePayment: that.data.money,            //余额支付
-                            mDiscount: 0,                               //会员优惠（自定义）
-                            mdText: false,                              //会员优惠按钮
-                            mdDiscont: false,                           //会员享受折优惠，每消费元积分
+                            headImg: userIData.headImg, //头像
+                            nickName: userIData.nickName, //名字
+                            allBalance: userIData.allBalance, //余额
+                            balancePayment: that.data.money, //余额支付
+                            mDiscount: 0, //会员优惠（自定义）
+                            mdText: false, //会员优惠按钮
+                            mdDiscont: false, //会员享受折优惠，每消费元积分
                         })
                     }
                     // 优惠券
@@ -524,9 +556,9 @@ Page({
                             });
                             that.setData({
                                 box2: false,
-                                openCardBox: true,            //开卡有礼页面
+                                openCardBox: true, //开卡有礼页面
                             })
-                        } else if (userInfo.code == 1000) {       //是会员
+                        } else if (userInfo.code == 1000) { //是会员
                             var userIData = resp.data.data
                             that.setData({
                                 userIData: userIData
@@ -545,18 +577,18 @@ Page({
                                     box2: false,
                                     box3: true,
                                     payT: 1,
-                                    headImg: userIData.headImg,     //头像
-                                    nickName: userIData.nickName,               //名字
-                                    allBalance: userIData.allBalance,           //余额
-                                    disCountRate: userIData.disCountRate,       //折扣
-                                    balancePayment: balancePayment,             //余额支付
-                                    mDiscount: mDiscount,                       //会员优惠（自定义）
-                                    consumeMoney: userIData.consumeMoney,       //(等级设置)消费金额
-                                    getIntegral: userIData.getIntegral,         //(等级设置)获得积分         
+                                    headImg: userIData.headImg, //头像
+                                    nickName: userIData.nickName, //名字
+                                    allBalance: userIData.allBalance, //余额
+                                    disCountRate: userIData.disCountRate, //折扣
+                                    balancePayment: balancePayment, //余额支付
+                                    mDiscount: mDiscount, //会员优惠（自定义）
+                                    consumeMoney: userIData.consumeMoney, //(等级设置)消费金额
+                                    getIntegral: userIData.getIntegral, //(等级设置)获得积分         
                                     mdDiscont: true,
                                     mdText: true,
-                                    consumMoney: userIData.consumMoney,       //(等级设置)消费金额
-                                    consumGiveIntegral: userIData.consumGiveIntegral,         //(等级设置)获得积分      
+                                    consumMoney: userIData.consumMoney, //(等级设置)消费金额
+                                    consumGiveIntegral: userIData.consumGiveIntegral, //(等级设置)获得积分      
                                 })
                             } else {
                                 // 没有折扣
@@ -564,13 +596,13 @@ Page({
                                     box2: false,
                                     box3: true,
                                     payT: 1,
-                                    headImg: userIData.headImg,     //头像
-                                    nickName: userIData.nickName,               //名字
-                                    allBalance: userIData.allBalance,           //余额
-                                    balancePayment: that.data.money,            //余额支付
-                                    mDiscount: 0,                               //会员优惠（自定义）
-                                    mdText: false,                              //会员优惠按钮
-                                    mdDiscont: false,                           //会员享受折优惠，每消费元积分
+                                    headImg: userIData.headImg, //头像
+                                    nickName: userIData.nickName, //名字
+                                    allBalance: userIData.allBalance, //余额
+                                    balancePayment: that.data.money, //余额支付
+                                    mDiscount: 0, //会员优惠（自定义）
+                                    mdText: false, //会员优惠按钮
+                                    mdDiscont: false, //会员享受折优惠，每消费元积分
                                 })
                             }
                             // 优惠券
@@ -626,7 +658,7 @@ Page({
                 console.log(resp.data.data.voucherCount)
                 // console.log(tdUI.voucherCount)
                 // that.aalert(resp.data.msg)
-                if (resp.data.code == 1000) {      //有优惠券  
+                if (resp.data.code == 1000) { //有优惠券  
                     if (resp.data.data.voucherCount > 0) {
                         console.log('=49')
                         that.setData({
@@ -634,7 +666,7 @@ Page({
                             voucherList: resp.data.data.voucherList
                         })
                     }
-                } else {     //没有优惠券  
+                } else { //没有优惠券  
 
                 }
             },
@@ -695,16 +727,15 @@ Page({
 
                         if (resp.data.code == 1000) {
                             that.setData({
-                                preferentialNum: 0 - (resp.data.data.consumMoney - resp.data.data.actualConsumMoney),        //优惠合计
-                                giveIntegral: resp.data.data.giveIntegral,                //积分奖励
-                                actualConsumMoney: resp.data.data.actualConsumMoney,      //支付成功
+                                preferentialNum: 0 - (resp.data.data.consumMoney - resp.data.data.actualConsumMoney), //优惠合计
+                                giveIntegral: resp.data.data.giveIntegral, //积分奖励
+                                actualConsumMoney: resp.data.data.actualConsumMoney, //支付成功
                                 box3: false,
                                 payS: true,
                             })
                             wx.ix.speech({
                                 text: '会员支付成功' + that.data.actualConsumMoney + '元',
-                                success: (r) => {
-                                }
+                                success: (r) => { }
                             });
                             that.huiyuandayin(resp.data.data.consumOrderNumber, resp.data.data.orderTime, that.data.actualConsumMoney, '会员支付')
                         } else {
@@ -743,7 +774,7 @@ Page({
             voucherNo: e.currentTarget.dataset.bianhao
         })
         // 根据不同券计算余额支付
-        if (e.currentTarget.dataset.type == 0) {    // 折扣券
+        if (e.currentTarget.dataset.type == 0) { // 折扣券
             that.setData({
                 // 可用优惠券上边的优惠券
                 dcNum: (Math.ceil((that.data.balancePayment - that.data.balancePayment * e.currentTarget.dataset.zhe) * 100) / 100).toFixed(2),
@@ -752,8 +783,8 @@ Page({
             that.setData({
                 zheMoney: that.data.balancePayment - that.data.dcNum
             })
-        } else if (e.currentTarget.dataset.type == 1) {      //满减券
-            if (that.data.balancePayment < e.currentTarget.dataset.man) {     //不可以减
+        } else if (e.currentTarget.dataset.type == 1) { //满减券
+            if (that.data.balancePayment < e.currentTarget.dataset.man) { //不可以减
                 wx.showToast({
                     icon: 'exception',
                     title: '不满足满减优惠',
@@ -764,7 +795,7 @@ Page({
                     // 优惠券边框为灰色
                     voucherNo: ''
                 })
-            } else {         //可以减
+            } else { //可以减
                 that.setData({
                     // 可用优惠券上边的优惠券
                     dcNum: e.currentTarget.dataset.jian,
@@ -1075,31 +1106,40 @@ Page({
                 "institutionNumber": that.data.institutionNumber,
                 "merchantNumber": wx.getStorageSync('userInfo').merchantNumber,
                 count: '10',
-                "advertType": '5',
-                "launchChannel": '2'
+                "advertType": '4',
+                "launchChannel": '1'
             },
             success: (resp) => {
-                console.log(resp.data.code)
                 if (resp.data.code == 1000) {
-                    console.log('123')
+                    console.log('=1000')
+                    console.log(resp.data.data)
+                    var numb = 0
                     var list = new Array()
                     var dataList = resp.data.data
+                    that.setData({
+                        lengthVideo: dataList.length
+                    })
                     for (let i = 0; i < dataList.length; i++) {
-                        if (dataList[i].advertKind == 0) {
-                            list.push(dataList[i].address)
-                        }
-
+                        list.push(dataList[i].address)
                     }
-                    if (list.length == 0) {
-                        that.setData({
-                            advImg: that.data.advImgList[0]
-                        })
-                    } else {
-                        that.setData({
-                            advImgList: list,
-                            advImg: list[0]
-                        })
-                    }
+                    that.setData({
+                        advList: list,
+                    })
+                    console.log(that.data.lengthVideo)
+                    console.log(that.data.advList)
+                    that.setData({
+                        advList111: that.data.advList[0]
+                    })
+                    // if (list.length == 0) {
+                    //     that.setData({
+                    //         advImg: that.data.advImgList[0]
+                    //     })
+                    // } else {
+                    //     that.setData({
+                    //         advImgList: list,
+                    //         advImg: list[0]
+                    //     })
+                    // }
 
 
                 } else {
@@ -1107,7 +1147,6 @@ Page({
                         advImg: that.data.advImgList[0]
                     })
                 }
-
             },
             fail: (err) => {
                 console.log('error', err);
@@ -1159,10 +1198,12 @@ Page({
         // 	},
         // 	});
         // 设置静音
-        this.setData({ audible: false });
-        setInterval(function () {
-            that.tabImg()
-        }, 8000)
+        this.setData({
+            audible: false
+        });
+        // setInterval(function () {
+        //     that.tabImg()
+        // }, 8000)
         // setInterval(function(){
         // 	wx.ix.writeHID({
         // 		protocol: 'barcode',
@@ -1178,7 +1219,22 @@ Page({
         // // 取消静音
         // this.setData({ audible: true });
     },
-
+    // 视频播放到最后
+    endBoFang(e) {
+        var that = this
+        if (that.data.numb > that.data.lengthVideo) {
+            that.setData({
+                numb: 0
+            })
+        }
+        that.setData({
+            numb: that.data.numb + 1
+        })
+        that.setData({
+            advList111: that.data.advList[that.data.numb]
+        })
+        
+    },
     // 展示成功回调 
     onDisplaySuccess() {
         console.log('poster display success');
@@ -1241,11 +1297,19 @@ Page({
             appName: 'cashier',
             bizNo: '12345678',
             totalAmount: '0.01',
-            orderDetail: [{ name: '名称1', content: '详情134', fontColor: 'gray' }, { name: '名称2', content: '详情456', fontColor: 'red' }],
+            orderDetail: [{
+                name: '名称1',
+                content: '详情134',
+                fontColor: 'gray'
+            }, {
+                name: '名称2',
+                content: '详情456',
+                fontColor: 'red'
+            }],
             success: (r) => {
                 wx.showToast({
                     title: r.barCode,
-                    icon:'none'
+                    icon: 'none'
                 });
             }
         });
@@ -1274,7 +1338,7 @@ Page({
     },
     tabImg() {
         var that = this
-        if (that.data.imgNo == that.data.advImgList.length) {
+        if (that.data.imgNo == that.data.index - top.length) {
             that.setData({
                 imgNo: 0,
                 advImg: that.data.advImgList[0]
@@ -1327,7 +1391,7 @@ Page({
                 if (result.confirm == true) {
                     wx.removeStorageSync('userInfo');
                     wx.reLaunch({
-                        url: '../login/login'// 需要跳转的应用内非 tabBar 的目标页面路径 ,路径后可以带参数。参数规则如下：路径与参数之间使用
+                        url: '../login/login' // 需要跳转的应用内非 tabBar 的目标页面路径 ,路径后可以带参数。参数规则如下：路径与参数之间使用
 
                     });
                 }
@@ -1371,15 +1435,15 @@ Page({
                         var codeType = ''
                         if (code1.length >= 16 && code1.length <= 24) {
                             var string = code1.substring(0, 2);
-                            if (string == "25" || string == "26" || string == "27" || string == "28"
-                                || string == "29" || string == "30") {
+                            if (string == "25" || string == "26" || string == "27" || string == "28" ||
+                                string == "29" || string == "30") {
                                 // 支付宝
                                 // return NetConstant.PaymentType.ALI_PAY;
                                 payType = '支付宝条码支付'
                                 codeType = 'Alipay_Pay'
                             }
-                            if (string == "10" || string == "11" || string == "12" || string == "13"
-                                || string == "14" || string == "15") {
+                            if (string == "10" || string == "11" || string == "12" || string == "13" ||
+                                string == "14" || string == "15") {
                                 // 微信
                                 // return NetConstant.PaymentType.WX_PAY;
                                 payType = '微信条码支付'
@@ -1432,15 +1496,13 @@ Page({
                                                 var voiStr = '微信付款成功  ' + money + '元'
                                                 wx.ix.speech({
                                                     text: voiStr,
-                                                    success: (r) => {
-                                                    }
+                                                    success: (r) => { }
                                                 });
                                             } else {
                                                 var voiStr = '支付宝付款成功  ' + money + '元'
                                                 wx.ix.speech({
                                                     text: voiStr,
-                                                    success: (r) => {
-                                                    }
+                                                    success: (r) => { }
                                                 });
                                             }
 
@@ -1564,15 +1626,15 @@ Page({
                         var codeType = ''
                         if (code1.length >= 16 && code1.length <= 24) {
                             var string = code1.substring(0, 2);
-                            if (string == "25" || string == "26" || string == "27" || string == "28"
-                                || string == "29" || string == "30") {
+                            if (string == "25" || string == "26" || string == "27" || string == "28" ||
+                                string == "29" || string == "30") {
                                 // 支付宝
                                 // return NetConstant.PaymentType.ALI_PAY;
                                 payType = '支付宝条码支付'
                                 codeType = 'Alipay_Pay'
                             }
-                            if (string == "10" || string == "11" || string == "12" || string == "13"
-                                || string == "14" || string == "15") {
+                            if (string == "10" || string == "11" || string == "12" || string == "13" ||
+                                string == "14" || string == "15") {
                                 // 微信
                                 // return NetConstant.PaymentType.WX_PAY;
                                 payType = '微信条码支付'
@@ -1756,15 +1818,15 @@ Page({
                     var codeType = ''
                     if (code1.length >= 16 && code1.length <= 24) {
                         var string = code1.substring(0, 2);
-                        if (string == "25" || string == "26" || string == "27" || string == "28"
-                            || string == "29" || string == "30") {
+                        if (string == "25" || string == "26" || string == "27" || string == "28" ||
+                            string == "29" || string == "30") {
                             // 支付宝
                             // return NetConstant.PaymentType.ALI_PAY;
                             payType = '支付宝条码支付'
                             codeType = 'Alipay_Pay'
                         }
-                        if (string == "10" || string == "11" || string == "12" || string == "13"
-                            || string == "14" || string == "15") {
+                        if (string == "10" || string == "11" || string == "12" || string == "13" ||
+                            string == "14" || string == "15") {
                             // 微信
                             // return NetConstant.PaymentType.WX_PAY;
                             payType = '微信条码支付'
@@ -1817,15 +1879,13 @@ Page({
                                             var voiStr = '微信付款成功  ' + money + '元'
                                             wx.ix.speech({
                                                 text: voiStr,
-                                                success: (r) => {
-                                                }
+                                                success: (r) => { }
                                             });
                                         } else {
                                             var voiStr = '支付宝付款成功  ' + money + '元'
                                             wx.ix.speech({
                                                 text: voiStr,
-                                                success: (r) => {
-                                                }
+                                                success: (r) => { }
                                             });
                                         }
 
@@ -2209,46 +2269,166 @@ Page({
                 target: wx.getStorageSync('dayin').id,
                 cmds: [
 
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'ON', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['CENTER'] },
-                    { 'cmd': 'addText', 'args': ['闪盒收银-会员支付'] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['CENTER'] },
-                    { 'cmd': 'addText', 'args': ['----------------------'] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['订单号:' + orderNumber] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['订单时间:' + time] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['交易方式:' + payType] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['交易金额:' + money] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['操作员:' + userInfo.userName] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['CENTER'] },
-                    { 'cmd': 'addText', 'args': ['----------------------'] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'ON', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['CENTER']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['闪盒收银-会员支付']
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['CENTER']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['----------------------']
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['订单号:' + orderNumber]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['订单时间:' + time]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['交易方式:' + payType]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['交易金额:' + money]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['操作员:' + userInfo.userName]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['CENTER']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['----------------------']
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
                 ],
                 success: (r) => {
                     console.log("success");
@@ -2272,46 +2452,166 @@ Page({
                 target: wx.getStorageSync('dayin').id,
                 cmds: [
 
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'ON', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['CENTER'] },
-                    { 'cmd': 'addText', 'args': ['闪盒收银'] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['CENTER'] },
-                    { 'cmd': 'addText', 'args': ['----------------------'] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['订单号:' + orderNumber] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['订单时间:' + time] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['交易方式:' + payType] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['交易金额:' + money] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['操作员:' + userInfo.userName] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['CENTER'] },
-                    { 'cmd': 'addText', 'args': ['----------------------'] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'ON', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['CENTER']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['闪盒收银']
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['CENTER']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['----------------------']
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['订单号:' + orderNumber]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['订单时间:' + time]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['交易方式:' + payType]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['交易金额:' + money]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['操作员:' + userInfo.userName]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['CENTER']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['----------------------']
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
                 ],
                 success: (r) => {
                     console.log("success");
@@ -2335,55 +2635,187 @@ Page({
                 target: wx.getStorageSync('dayin').id,
                 cmds: [
 
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'ON', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['CENTER'] },
-                    { 'cmd': 'addText', 'args': ['退款单'] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['CENTER'] },
-                    { 'cmd': 'addText', 'args': ['----------------------'] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['订单号:' + orderNumber] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['订单时间:' + time] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'ON', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['CENTER']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['退款单']
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['CENTER']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['----------------------']
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['订单号:' + orderNumber]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['订单时间:' + time]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
                     // { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
                     // { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
                     // { 'cmd': 'addText', 'args': ['交易方式:' + payType] },
                     // { 'cmd': 'addPrintAndLineFeed', 'args': [] },
                     // { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['交易金额:' + money] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['收银员:' + userInfo.userName] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['收银门店:' + userInfo.storeName] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['CENTER'] },
-                    { 'cmd': 'addText', 'args': ['----------------------'] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addSelectPrintModes', 'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF'] },
-                    { 'cmd': 'addSelectJustification', 'args': ['LEFT'] },
-                    { 'cmd': 'addText', 'args': ['签名:'] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
-                    { 'cmd': 'addPrintAndLineFeed', 'args': [] },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['交易金额:' + money]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['收银员:' + userInfo.userName]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['收银门店:' + userInfo.storeName]
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['CENTER']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['----------------------']
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addSelectPrintModes',
+                        'args': ['FONTA', 'OFF', 'OFF', 'OFF', 'OFF']
+                    },
+                    {
+                        'cmd': 'addSelectJustification',
+                        'args': ['LEFT']
+                    },
+                    {
+                        'cmd': 'addText',
+                        'args': ['签名:']
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
+                    {
+                        'cmd': 'addPrintAndLineFeed',
+                        'args': []
+                    },
                 ],
                 success: (r) => {
                     console.log("success");
