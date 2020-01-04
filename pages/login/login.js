@@ -12,93 +12,122 @@ Page({
         runMode: '0',
         save: false,
         type: 1,
-        pwphone: '',                //手机号（找回密码页面）
+        pwphone: '', //手机号（找回密码页面）
         code: '',
         password1: '',
         password2: '',
-        pwusernumber: '',           //验证码
+        pwusernumber: '', //验证码
         codeInfo: '获取验证码',
         focus: true,
         passwordDain: true, //你好的密码是本身还是**
         passwordZhao: true, //找回密码的新密码是本身还是**
         passZhao: true, //找回密码的确认密码是本身还是**
         loginWhite: '', //登录的白背景
+        keyCodeLst: [{
+                keyCode: "144"
+            }, //青蛙原生小键盘按键 - 1
+            {
+                keyCode: "145"
+            }, //青蛙原生小键盘按键 - 2
+            {
+                keyCode: "146"
+            }, //青蛙原生小键盘按键 - 3
+            {
+                keyCode: "147"
+            }, //青蛙原生小键盘按键 - 4
+            {
+                keyCode: "148"
+            }, //青蛙原生小键盘按键 - 5
+            {
+                keyCode: "149"
+            }, //青蛙原生小键盘按键 - 6
+            {
+                keyCode: "157"
+            }, //青蛙原生小键盘按键 - +号
+            {
+                keyCode: "66"
+            } //青蛙原生小键盘按键 刷脸
+        ],
     },
+
+
     // 你好的密码变成*
-    passYin: function () {
+    passYin: function() {
         console.log('aaaaaaa')
         this.setData({
+            yinBtn: false,
             passwordDain: true
         })
     },
     // 你好的密码变成数字
-    passXian: function () {
+    passXian: function() {
         console.log('bbbbbb')
         this.setData({
+            yinBtn: true,
             passwordDain: ''
         })
     },
     // 找回密码的密码变成*
-    mimaYin: function () {
+    mimaYin: function() {
         console.log('aaaaaaa')
         this.setData({
             passwordZhao: true
         })
     },
     // 找回密码的密码变成数字
-    mimaXian: function () {
+    mimaXian: function() {
         console.log('bbbbbb')
         this.setData({
             passwordZhao: ''
         })
     },
     // 找回密码的确认密码变成*
-    miYin: function () {
+    miYin: function() {
         console.log('aaaaaaa')
         this.setData({
             passZhao: true
         })
     },
     // 找回密码的确认密码变成数字
-    miXian: function () {
+    miXian: function() {
         console.log('bbbbbb')
         this.setData({
             passZhao: ''
         })
     },
-    clear: function () {
+    clear: function() {
         console.log('aaaaaaa')
         this.setData({
             phone: ''
         })
     },
-    clear1: function () {
+    clear1: function() {
         this.setData({
             password: ''
         })
     },
-    clearYZ: function () {
+    clearYZ: function() {
         console.log('这是yz')
         this.setData({
             code: ''
         })
     },
-    clearNew: function () {
+    clearNew: function() {
         this.setData({
             password1: ''
         })
     },
-    clearNewAgain: function () {
+    clearNewAgain: function() {
         this.setData({
             password2: ''
         })
     },
-    clearPhone: function () {
+    clearPhone: function() {
         this.setData({
             pwphone: ''
         })
     },
-    save1: function (res) {
+    save1: function(res) {
         // console.log('这是res')
         // console.log(res)
         // console.log(res.detail.value)
@@ -107,7 +136,7 @@ Page({
         })
     },
     // 获取验证码
-    getCode: function () {
+    getCode: function() {
         var that = this
         if (that.data.pwphone == '') {
             wx.showToast({
@@ -159,7 +188,7 @@ Page({
             },
         });
     },
-    daojishi: function () {
+    daojishi: function() {
         var timer;
         var that = this
         if (that.data.codeInfo == '获取验证码') {
@@ -170,7 +199,7 @@ Page({
         if (that.data.type == 1) {
             clearInterval(timer)
         }
-        timer = setInterval(function () {
+        timer = setInterval(function() {
             if (that.data.codeInfo == 0) {
                 clearInterval(timer)
                 that.setData({
@@ -186,7 +215,7 @@ Page({
         }, 1000)
 
     },
-    onLoad: function () {
+    onLoad: function() {
         let that = this
         if (wx.getStorageSync('save') == null) {
             this.setData({
@@ -200,46 +229,67 @@ Page({
             })
         }
         wx.request({
-            url: 'https://pv.sohu.com/cityjson?ie=utf-8',
-            success: function (e) {
-                console.log(e.data);
-                var aaa = e.data.split(' ');
-                console.log(aaa)
-                var bbb = aaa[4]
-                console.log(bbb)
-                var ccc = bbb.replace('"', '')
-                console.log(ccc)
-                var ddd = ccc.replace('"', '')
-                console.log(ddd)
-                var eee = ddd.replace(',', '')
-                console.log(eee)
-                that.setData({
-                    IP: eee
-                })
+                url: 'https://pv.sohu.com/cityjson?ie=utf-8',
+                success: function(e) {
+                    console.log(e.data);
+                    var aaa = e.data.split(' ');
+                    console.log(aaa)
+                    var bbb = aaa[4]
+                    console.log(bbb)
+                    var ccc = bbb.replace('"', '')
+                    console.log(ccc)
+                    var ddd = ccc.replace('"', '')
+                    console.log(ddd)
+                    var eee = ddd.replace(',', '')
+                    console.log(eee)
+                    that.setData({
+                        IP: eee
+                    })
 
-            },
-            fail: function () {
-                console.log("失败了");
-            }
+                },
+                fail: function() {
+                    console.log("失败了");
+                }
 
-        })
-        // wx.ix.getVersion({
-        //     success: (r) => {
-        //         this.setData({
-        //             sdk: r.versionName + '-' + r.versionCode
-        //         })
-        //     }
-        // });
-        // wx.ix.getSysProp({
-        //     key: 'ro.serialno',
-        //     success: (r) => {
-        //         console.log(r)
-        //         this.setData({
-        //             "equipmentNumber": r.value
-        //         })
-
-        //     }
-        // })
+            })
+            wxfaceapp.registKeyBoard({
+                keyCodeList: that.data.keyCodeLst,
+                success(res) {
+                    wx.showModal({
+                        content: JSON.stringify(res),
+                        icon: 'none'
+                    })
+                    console.log("success [registKeyBoard]")
+                    //注册成功后，设置键盘按键响应回调
+                    wxfaceapp.onKeyBoardEvent(function(res) {
+                        console.log("onKeyBoardEvent name = " + res.keyName)
+                        wx.showModal({
+                            content: JSON.stringify(res.keyName),
+                            icon: 'none'
+                        })
+                    })
+                }
+            }),
+            //启动刷脸支付
+            wxfaceapp.facePay({
+                requireFaceCode: false, //是否需要获取付款码返回给小程序
+                success(res) {
+                    console.log("success [launchFaceApp]")
+                    console.log(res.replyCode)
+                    console.log(res.reply)
+                    //faceCode，在传入requireFaceCode=true时起效
+                    console.log(res.faceCode)
+                    //刷脸成功Event 建议配合facePay的调用结果进行注册
+                    wxfaceapp.onFacePayPassEvent(function(res) {
+                        console.log("onFacePayPassEvent retCode = " + res.replyCode)
+                    })
+                },
+                fail(res) {
+                    console.log("fail [launchFaceApp]")
+                    console.log(res.replyCode)
+                    console.log(res.reply)
+                }
+            })
     },
     aalert(data) {
         // wx.alert({
@@ -266,41 +316,43 @@ Page({
             }
         })
     },
-    phone: function (e) {
+    // 监听键盘输入账号（你好页面）
+    phone: function(e) {
         console.log(e)
         this.setData({
             "phone": e.detail.value
         })
     },
-    pwphone: function (e) {
+    pwphone: function(e) {
         this.setData({
             "pwphone": e.detail.value
         })
     },
-    code: function (e) {
+    code: function(e) {
         console.log(e)
         this.setData({
             "code": e.detail.value
         })
     },
-    pass1: function (e) {
+    pass1: function(e) {
         this.setData({
             "password1": e.detail.value
         })
     },
-    pass2: function (e) {
+    pass2: function(e) {
         this.setData({
             "password2": e.detail.value
         })
     },
-    pass: function (e) {
+    // 监听键盘输入密码（你好页面）
+    pass: function(e) {
         console.log(e)
         this.setData({
             "password": e.detail.value
         })
     },
     // 去登录
-    login2: function () {
+    login2: function() {
         var that = this
         if (that.data.pwphone == '') {
             wx.showToast({
@@ -393,18 +445,27 @@ Page({
             },
         });
     },
-    forget: function () {
+    forget: function() {
         this.setData({
             type: 2
         })
     },
-    typeBack: function () {
+    typeBack: function() {
         this.setData({
             type: 1
         })
     },
+    // 退出
+    tuiChu: function() {
+        console.log('退出')
+        wxfaceapp.exitMp({
+            success(res) {
+                console.log("exit mini app!")
+            }
+        })
+    },
     // 登录
-    login1: function () {
+    login1: function() {
         console.log('123')
         // 登录背景变白，字变绿
         // this.setData({
@@ -465,7 +526,7 @@ Page({
                     wx.hideLoading();
                     return
                 }
-                setTimeout(function () {
+                setTimeout(function() {
                     wx.hideLoading();
                 }, 500)
                 console.log('这是save')
@@ -488,22 +549,27 @@ Page({
                 }
                 wx.setStorageSync('userInfo', resp.data.data)
                 wx.setStorageSync('tuikuan', that.data.password.substring(that.data.password.length - 6))
+                // wx.showToast({
+                //     title:JSON.stringify(resp.data),
+                //     icon:'none'
+                // })
                 wx.showToast({
                     title: '登录成功',
                     icon: 'none',
                     duration: "1000",
                     success: (res) => {
-                        setTimeout(function () {
-                            wx.reLaunch({
-                                url: '../index/index'
-                                // url:'../main/main'
-                            });
-                        }, 200)
+                        // setTimeout(function () {
+                        //     wx.reLaunch({
+                        //         // url: '../index/index'
+                        //         url:'../main/main'
+                        //     });
+                        // }, 200)
                     },
                 });
                 // 跳转到设置页面
                 wx.navigateTo({
                     url: '../main/main'
+                    // url: '../index/index'
                 });
             },
             fail: (err) => {

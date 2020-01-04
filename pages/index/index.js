@@ -31,6 +31,7 @@ Page({
         openCardBox: false, //开卡有礼页面
         boxErWei: false, //刷脸机页面（二维码）
         boxhysl: false, // 会员/刷脸备份页面
+        guangGao:true,   //广告页面
         boxGuangGao: false, //广告video
         money: 0, //订单金额
         headImg: '../img/shan.png',
@@ -60,10 +61,27 @@ Page({
         rfMoney: 0, //插件金额
         querenType: false, //确认是否
         goHide: 0,
-        isEnd: '',         //视频是否播放到最后
-        numb:0,          //视频计数
+        isEnd: '', //视频是否播放到最后
+        numb: 0, //视频计数
+        jingYin: true,//视频静音 
+        shengBtn:true, //声音按钮
     },
-    
+    //video页面
+    kaiSheng() {
+        console.log('kaiSheng')
+        this.setData({
+            shengBtn: false,
+            jingYin: false,
+        })
+    },
+    guanSheng() {
+        console.log('guanSheng')
+        this.setData({
+            shengBtn: true,
+            jingYin: true,
+        })
+    },
+
     // 刷脸机页面（二维码）
     // 刷脸支付
     faPay() {
@@ -1130,21 +1148,19 @@ Page({
                     that.setData({
                         advList111: that.data.advList[0]
                     })
-                    // if (list.length == 0) {
-                    //     that.setData({
-                    //         advImg: that.data.advImgList[0]
-                    //     })
-                    // } else {
-                    //     that.setData({
-                    //         advImgList: list,
-                    //         advImg: list[0]
-                    //     })
-                    // }
-
-
+                    if (dataList.length == 0) {
+                        that.setData({
+                            shiPin: false
+                        })
+                    } else {
+                        that.setData({
+                            shiPin: true
+                        })
+                    }
+                    // wwNoPicture.jpg
                 } else {
                     that.setData({
-                        advImg: that.data.advImgList[0]
+                        shiPin: false
                     })
                 }
             },
@@ -1222,18 +1238,17 @@ Page({
     // 视频播放到最后
     endBoFang(e) {
         var that = this
+        that.setData({
+            numb: that.data.numb + 1
+        })
         if (that.data.numb > that.data.lengthVideo) {
             that.setData({
                 numb: 0
             })
         }
         that.setData({
-            numb: that.data.numb + 1
-        })
-        that.setData({
             advList111: that.data.advList[that.data.numb]
         })
-        
     },
     // 展示成功回调 
     onDisplaySuccess() {

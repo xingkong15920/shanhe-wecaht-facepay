@@ -333,7 +333,18 @@
     </view>
 </view>
 <!-- 广告video -->
-<view class="guangGaoBox" >
-    <video class="myVideo" id="myVideo" src="{{advList111}}" bindended="endBoFang" autoplay="true" muted="true" show-play-btn="false"
-         enable-danmu danmu-btn controls></video>
+<view class="guangGaoBox" wx:if="{{guangGao}}">
+    <!-- 视频 -->
+    <view class="videoBox" wx:if="{{shiPin}}">
+        <video class="myVideo" id="myVideo" src="{{advList111}}" bindended="endBoFang" autoplay="true" muted="{{jingYin}}" show-play-btn="false" loop="true" controls="false"></video>
+        <view class="jingYin">
+            <image class="kaiSheng" wx:if="{{shengBtn}}" mode="scaleToFill" src="../img/kaiSheng.png" bindtap="kaiSheng" />
+            <image class="guanSheng" wx:if="{{!shengBtn}}" mode="scaleToFill" src="../img/guanSheng.png" bindtap="guanSheng" />
+        </view>
+    </view>
+    <!-- 没视频的图片 -->
+    <view class="noPicBox" wx:if="{{!shiPin}}">
+        <image class="noPic" mode="scaleToFill" src="../img/wwNoPicture.jpg" />
+    </view>
+    <view class="zhezhao">这是遮罩层</view>
 </view>

@@ -1387,12 +1387,61 @@
     font-weight: bold;
     color: rgba(255, 255, 255, 1);
 }
+
 /* 广告video */
+
 .guangGaoBox {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    position: relative;
+    
+}
+.videoBox {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 .myVideo {
+    width: 100%;
+    height: 100%;
+}
+
+.zhezhao {
+    width: 100%;
+    height: 100%;
+    background-color: #ccc;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.jingYin {
+    width: 90rpx;
+    position: absolute;
+    left: 647rpx;
+    top: 139rpx;
+    z-index: 999;
+}
+
+.kaiSheng {
+    width: 90rpx;
+    height: 90rpx;
+    z-index: 999;
+}
+
+.guanSheng {
+    width: 90rpx;
+    height: 90rpx;
+    z-index: 999;
+}
+
+.noPicBox {
+    width: 100%;
+    height: 100%;
+}
+
+.noPic {
     width: 100%;
     height: 100%;
 }

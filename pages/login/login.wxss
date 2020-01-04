@@ -97,7 +97,7 @@ input {
 }
 
 .clearBox {
-    width: 130rpx;
+    width: 85rpx;
     height: 24rpx;
     position: absolute;
     right: 0;

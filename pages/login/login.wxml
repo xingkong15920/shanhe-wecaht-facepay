@@ -14,8 +14,8 @@
             <input type="text" password="{{passwordDain}}" value="{{password}}" placeholder="请输入密码" placeholder-style="color:#ffffff" bindinput="pass" class="userInfo-box-input" />
             <view class="clearBox">
                 <image src="../img/wShanchu.png" class="clear" bindtap="clear1" />
-                <image src="../img/wyincang.png" class="yincang" bindtap="passYin" />              
-                <image src="../img/wxianShi.png" class="yincang" bindtap="passXian" />
+                <image src="../img/wyincang.png" class="yincang" bindtap="passYin" wx:if="{{yinBtn}}"/>              
+                <image src="../img/wxianShi.png" class="yincang" bindtap="passXian" wx:if="{{!yinBtn}}" />
             </view>
 
         </view>
@@ -30,6 +30,7 @@
         <view class="mark-right" bindtap="forget">忘记密码？</view>
     </view>
     <view class="login" bindtap="login1">登录</view>
+    <view class="login" bindtap="tuiChu" style="margin-top:20rpx">退出</view>
     <!-- 底部支付宝*闪盒 -->
     <view class="zhiShanBox">
         <image class="zhiShan" mode="scaleToFill" src="../img/weiShan.png" />
