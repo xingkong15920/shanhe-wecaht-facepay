@@ -231,7 +231,8 @@ input {
 .zhiShan {
   width: 330rpx;
   height: 68rpx;
-  margin-top: 32rpx;
+  /* margin-top: 32rpx; */
+  margin-top: -50rpx;
 }
 .box {
     width: 100%;

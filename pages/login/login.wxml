@@ -31,6 +31,7 @@
     </view>
     <view class="login" bindtap="login1">登录</view>
     <view class="login" bindtap="tuiChu" style="margin-top:20rpx">退出</view>
+    <view class="login" bindtap="shuaLian" style="margin-top:20rpx">刷脸</view>
     <!-- 底部支付宝*闪盒 -->
     <view class="zhiShanBox">
         <image class="zhiShan" mode="scaleToFill" src="../img/weiShan.png" />

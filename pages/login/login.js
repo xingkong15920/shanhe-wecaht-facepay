@@ -46,7 +46,19 @@ Page({
             }, //青蛙原生小键盘按键 - +号
             {
                 keyCode: "66"
-            } //青蛙原生小键盘按键 刷脸
+            }, //青蛙原生小键盘按键 刷脸
+            {
+                keyCode: "112"
+            }, //青蛙原生小键盘按键 F1
+            {
+                keyCode: "113"
+            }, //青蛙原生小键盘按键 F2
+            {
+                keyCode: "114"
+            }, //青蛙原生小键盘按键 F3
+            {
+                keyCode: "61"
+            } //青蛙原生小键盘按键 设置
         ],
     },
 
@@ -215,6 +227,90 @@ Page({
         }, 1000)
 
     },
+
+    // 刷脸
+    shuaLian: function() {
+        //启动刷脸支付
+        wxfaceapp.facePay({
+            requireFaceCode: true, //是否需要获取付款码返回给小程序
+            success(res) {
+                // console.log("success [launchFaceApp]")
+                // console.log(res.replyCode)
+                // console.log(res.reply)
+                //faceCode，在传入requireFaceCode=true时起效
+                // console.log(res.faceCode) 
+                // wx.showModal({
+                //     title: 'success',
+                //     content: "success [launchFaceApp]"
+                // })
+                // wx.showModal({
+                //     title: 'res.replyCode',
+                //     content: JSON.stringify(res.replyCode)
+                // })
+                // wx.showModal({
+                //     title: 'res.reply',
+                //     content: JSON.stringify(res.reply)
+                // })
+                // wx.showModal({
+                //     title: 'res.faceCode',
+                //     content: JSON.stringify(res.faceCode)
+                // })
+                //刷脸成功Event 建议配合facePay的调用结果进行注册
+                wxfaceapp.onFacePayPassEvent(function(res) {
+                    // console.log("onFacePayPassEvent retCode = " + res.replyCode)
+                    wx.showModal({
+                        title: '刷脸成功Event',
+                        content: '刷脸成功Event'
+                    })
+                    wx.showModal({
+                        title: '刷脸成功Event',
+                        content: JSON.stringify(res)
+                    })
+                })
+                //刷脸失败Event 建议配合facePay的调用结果进行注册
+                wxfaceapp.onFacePayFailedEvent(function(res) {
+                    // console.log("onFacePayFailedEvent retCode = " + res.replyCode)
+                    wx.showModal({
+                        title: '刷脸失败Event',
+                        content: JSON.stringify(res.replyCode)
+                    })
+                })
+                //查单成功Event
+                wxfaceapp.onQueryPaymentSucEvent(function(res) {
+                    // console.log("onQueryPaymentSucEvent retCode = " + res.replyCode)
+                    wx.showModal({
+                        title: '查单成功Event',
+                        content: JSON.stringify(res.replyCode)
+                    })
+                })
+                //查单失败Event
+                wxfaceapp.onQueryPaymentFailedEvent(function(res) {
+                    // console.log("onQueryPaymentFailedEvent retCode = " + res.replyCode)
+                    wx.showModal({
+                        title: '查单失败Event',
+                        content: JSON.stringify(res.replyCode)
+                    })
+                })
+            },
+            fail(res) {
+                // console.log("fail [launchFaceApp]")
+                // console.log(res.replyCode)
+                // console.log(res.reply)
+                wx.showModal({
+                    title: 'fail',
+                    content: "fail [launchFaceApp]"
+                })
+                wx.showModal({
+                    title: 'res.replyCode',
+                    content: JSON.stringify(res.replyCode)
+                })
+                wx.showModal({
+                    title: 'res.reply',
+                    content: JSON.stringify(res.reply)
+                })
+            }
+        })
+    },
     onLoad: function() {
         let that = this
         if (wx.getStorageSync('save') == null) {
@@ -229,67 +325,174 @@ Page({
             })
         }
         wx.request({
-                url: 'https://pv.sohu.com/cityjson?ie=utf-8',
-                success: function(e) {
-                    console.log(e.data);
-                    var aaa = e.data.split(' ');
-                    console.log(aaa)
-                    var bbb = aaa[4]
-                    console.log(bbb)
-                    var ccc = bbb.replace('"', '')
-                    console.log(ccc)
-                    var ddd = ccc.replace('"', '')
-                    console.log(ddd)
-                    var eee = ddd.replace(',', '')
-                    console.log(eee)
-                    that.setData({
-                        IP: eee
-                    })
+            url: 'https://pv.sohu.com/cityjson?ie=utf-8',
+            success: function(e) {
+                console.log(e.data);
+                var aaa = e.data.split(' ');
+                console.log(aaa)
+                var bbb = aaa[4]
+                console.log(bbb)
+                var ccc = bbb.replace('"', '')
+                console.log(ccc)
+                var ddd = ccc.replace('"', '')
+                console.log(ddd)
+                var eee = ddd.replace(',', '')
+                console.log(eee)
+                that.setData({
+                    IP: eee
+                })
 
-                },
-                fail: function() {
-                    console.log("失败了");
-                }
+            },
+            fail: function() {
+                console.log("失败了");
+            }
 
-            })
-            wxfaceapp.registKeyBoard({
-                keyCodeList: that.data.keyCodeLst,
-                success(res) {
+        })
+        //获取系统信息
+        wxfaceapp.checkWxFacePayOsInfo({
+            success(res) {
+                // console.log("success [checkWxFacePayOsInfo]")
+                // console.log(res.osVersion)
+                // console.log(res.osStatus)
+                wx.showModal({
+                    title: 'res.osVersion',
+                    content: res.osVersion
+                })
+                wx.showModal({
+                    title: 'res.osStatus',
+                    content: res.osStatus
+                })
+                wx.showModal({
+                    title: 'success',
+                    content: "获取系统信息成功"
+                })
+            },
+            fail(res) {
+                // console.log("fail [checkWxFacePayOsInfo]")
+                // console.log(res.osErrorMsg)
+                wx.showModal({
+                    title: 'fail',
+                    content: "获取系统信息失败"
+                })
+                wx.showModal({
+                    title: 'res.osErrorMsg',
+                    content: JSON.stringify(res.osErrorMsg)
+                })
+            }
+        })
+        //注册键盘监听
+        // wxfaceapp.registKeyBoard({
+        //     keyCodeList: this.data.keyCodeLst,
+        //     success(res) {
+        //         console.log("success [registKeyBoard]")
+        //         console.log(res.replyCode)
+        //         console.log(res.reply)
+        //         wx.showModal({
+        //             title: 'res.replyCode',
+        //             content: JSON.stringify(res.replyCode),
+        //         })
+        //         wx.showModal({
+        //             title: 'res.reply',
+        //             content: JSON.stringify(res.reply),
+        //         })
+        //         wx.showModal({
+        //             title: 'success',
+        //             content: "注册键盘监听成功",
+        //         })
+        //         //注册成功后，设置键盘按键响应回调
+        //         wxfaceapp.onKeyBoardEvent(function(res) {
+        //             // console.log("onKeyBoardEvent name = " + res.keyName)
+        //             wx.showModal({
+        //                 title: '键盘按键响应回调',
+        //                 content: JSON.stringify(res.keyName)
+        //             })
+        //         })
+        //     },
+        //     fail(res) {
+        //         console.log("fail [registKeyBoard]")
+        //         console.log(res.replyCode)
+        //         console.log(res.reply)
+        //         wx.showModal({
+        //             title: 'res.replyCode',
+        //             content: JSON.stringify(res.replyCode),
+        //         })
+        //         wx.showModal({
+        //             title: 'res.reply',
+        //             content: JSON.stringify(res.reply),
+        //         })
+
+        //         wx.showModal({
+        //             title: 'fail',
+        //             content: "注册键盘监听失败",
+        //         })
+        //     }
+        // })
+        //监听扫码器
+        wxfaceapp.listenCodePayment({
+            success(res) {
+                wx.showModal({
+                    title: '监听扫码器成功',
+                    content: '监听扫码器成功',
+                })
+                //注册扫码支付事件
+                wxfaceapp.onCodePayEvent(function(res) {
                     wx.showModal({
-                        content: JSON.stringify(res),
-                        icon: 'none'
+                        title: 'res.replyCode',
+                        content: JSON.stringify(res.replyCode),
                     })
-                    console.log("success [registKeyBoard]")
-                    //注册成功后，设置键盘按键响应回调
-                    wxfaceapp.onKeyBoardEvent(function(res) {
-                        console.log("onKeyBoardEvent name = " + res.keyName)
-                        wx.showModal({
-                            content: JSON.stringify(res.keyName),
-                            icon: 'none'
-                        })
+                    wx.showModal({
+                        title: '注册扫码支付事件成功',
+                        content: '注册扫码支付事件成功',
                     })
-                }
-            }),
-            //启动刷脸支付
-            wxfaceapp.facePay({
-                requireFaceCode: false, //是否需要获取付款码返回给小程序
-                success(res) {
-                    console.log("success [launchFaceApp]")
-                    console.log(res.replyCode)
-                    console.log(res.reply)
-                    //faceCode，在传入requireFaceCode=true时起效
-                    console.log(res.faceCode)
-                    //刷脸成功Event 建议配合facePay的调用结果进行注册
-                    wxfaceapp.onFacePayPassEvent(function(res) {
-                        console.log("onFacePayPassEvent retCode = " + res.replyCode)
-                    })
-                },
-                fail(res) {
-                    console.log("fail [launchFaceApp]")
-                    console.log(res.replyCode)
-                    console.log(res.reply)
-                }
-            })
+                })
+            }
+        })
+        //数据写串口
+        // wxfaceapp.writeToSerialPort({
+        //     msgToFlush: "12345678910",
+        //     success(res) {
+        //         // console.log("success [writeToSerialPort]")
+        //         // console.log(res.replyCode)
+        //         // console.log(res.reply)
+        //         // console.log(res.flushedMsg)
+        //         wx.showModal({
+        //             title: 'res.flushedMsg',
+        //             content: JSON.stringify(res.flushedMsg),
+        //         })
+        //         wx.showModal({
+        //             title: 'res.reply',
+        //             content: JSON.stringify(res.reply),
+        //         })
+        //         wx.showModal({
+        //             title: 'res.replyCode',
+        //             content: JSON.stringify(res.replyCode),
+        //         })
+        //         wx.showModal({
+        //             title: '数据写串口成功',
+        //             content: '数据写串口成功',
+        //         })
+        //     },
+        //     fail(res) {
+        //         // console.log("fail [writeToSerialPort]")
+        //         // console.log(res.replyCode)
+        //         // console.log(res.reply)
+        //         wx.showModal({
+        //             title: 'res.reply',
+        //             content: JSON.stringify(res.reply),
+        //         })
+        //         wx.showModal({
+        //             title: 'res.replyCode',
+        //             content: JSON.stringify(res.replyCode),
+        //         })
+        //         wx.showModal({
+        //             title: '数据写串口失败',
+        //             content: '数据写串口失败',
+        //         })
+        //     }
+        // })
+
+
+
     },
     aalert(data) {
         // wx.alert({
@@ -455,12 +658,15 @@ Page({
             type: 1
         })
     },
-    // 退出
+    // 退出小程序
     tuiChu: function() {
         console.log('退出')
         wxfaceapp.exitMp({
             success(res) {
-                console.log("exit mini app!")
+                wx.showModal({
+                    title: '退出小程序',
+                    content: '退出小程序'
+                });
             }
         })
     },
