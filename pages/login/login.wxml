@@ -62,8 +62,8 @@
             <input type="text" password="{{passwordZhao}}" value="{{password1}}" placeholder="请输入新密码" placeholder-style="color:#ffffff" bindinput="pass1" class="userInfo-box-input" />
             <view class="clearBox">
                 <image src="../img/wShanchu.png" class="clear" bindtap="clearNew" />
-                <image src="../img/wyincang.png" class="yincang"  bindtap="mimaYin" />                 
-                <image src="../img/wxianShi.png" class="yincang" bindtap="mimaXian" />
+                <image src="../img/wyincang.png" class="yincang"  bindtap="mimaYin" wx:if="{{yinCangBtn}}"/>                 
+                <image src="../img/wxianShi.png" class="yincang" bindtap="mimaXian" wx:if="{{!yinCangBtn}}"/>
             </view>
         </view>
     </view>
@@ -73,8 +73,8 @@
             <input type="text" password="{{passZhao}}" value="{{password2}}" placeholder="请再次输入新密码" placeholder-style="color:#ffffff" bindinput="pass2" class="userInfo-box-input" />
             <view class="clearBox">
                 <image src="../img/wShanchu.png" class="clear" bindtap="clearNewAgain" />
-                <image src="../img/wyincang.png" class="yincang" bindtap="miYin" />
-                <image src="../img/wxianShi.png" class="yincang" bindtap="miXian"/>
+                <image src="../img/wyincang.png" class="yincang" bindtap="miYin" wx:if="{{yinCangBtn2}}"/>
+                <image src="../img/wxianShi.png" class="yincang" bindtap="miXian" wx:if="{{!yinCangBtn2}}"/>
             </view>
         </view>
     </view>

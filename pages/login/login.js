@@ -83,6 +83,7 @@ Page({
     mimaYin: function() {
         console.log('aaaaaaa')
         this.setData({
+            yinCangBtn: false,
             passwordZhao: true
         })
     },
@@ -90,6 +91,7 @@ Page({
     mimaXian: function() {
         console.log('bbbbbb')
         this.setData({
+            yinCangBtn: true,
             passwordZhao: ''
         })
     },
@@ -97,6 +99,7 @@ Page({
     miYin: function() {
         console.log('aaaaaaa')
         this.setData({
+            yinCangBtn2: false,
             passZhao: true
         })
     },
@@ -104,6 +107,7 @@ Page({
     miXian: function() {
         console.log('bbbbbb')
         this.setData({
+            yinCangBtn2: true,
             passZhao: ''
         })
     },
@@ -232,40 +236,89 @@ Page({
     shuaLian: function() {
         //启动刷脸支付
         wxfaceapp.facePay({
-            requireFaceCode: true, //是否需要获取付款码返回给小程序
+            requireFaceCode: false11, //是否需要获取付款码返回给小程序
             success(res) {
-                // console.log("success [launchFaceApp]")
-                // console.log(res.replyCode)
-                // console.log(res.reply)
+                console.log("success [launchFaceApp]")
+                console.log(res.replyCode)
+                console.log(res.reply)
                 //faceCode，在传入requireFaceCode=true时起效
                 // console.log(res.faceCode) 
-                // wx.showModal({
-                //     title: 'success',
-                //     content: "success [launchFaceApp]"
-                // })
-                // wx.showModal({
-                //     title: 'res.replyCode',
-                //     content: JSON.stringify(res.replyCode)
-                // })
-                // wx.showModal({
-                //     title: 'res.reply',
-                //     content: JSON.stringify(res.reply)
-                // })
-                // wx.showModal({
-                //     title: 'res.faceCode',
-                //     content: JSON.stringify(res.faceCode)
-                // })
+                wx.showModal({
+                    title: 'res.replyCode',
+                    content: JSON.stringify(res.replyCode)
+                })
+                wx.showModal({
+                    title: 'res.reply',
+                    content: JSON.stringify(res.reply)
+                })
+                wx.showModal({
+                    title: 'res.faceCode',
+                    content: JSON.stringify(res.faceCode)    //不返这一项
+                })
+                wx.showModal({
+                    title: 'res',
+                    content: JSON.stringify(res)
+                })
+                wx.showModal({
+                    title: 'success',
+                    content: "启动刷脸支付"
+                })
                 //刷脸成功Event 建议配合facePay的调用结果进行注册
                 wxfaceapp.onFacePayPassEvent(function(res) {
                     // console.log("onFacePayPassEvent retCode = " + res.replyCode)
                     wx.showModal({
                         title: '刷脸成功Event',
-                        content: '刷脸成功Event'
+                        content: JSON.stringify(res)
                     })
                     wx.showModal({
                         title: '刷脸成功Event',
-                        content: JSON.stringify(res)
+                        content: '刷脸成功Event'
                     })
+                    
+
+                    //数据写串口
+                    // wxfaceapp.writeToSerialPort({
+                    //     msgToFlush: res.faceCode,
+                    //     success(res) {
+                    //         // console.log("success [writeToSerialPort]")
+                    //         // console.log(res.replyCode)
+                    //         // console.log(res.reply)
+                    //         // console.log(res.flushedMsg)
+                    //         wx.showModal({
+                    //             title: 'res.flushedMsg',
+                    //             content: JSON.stringify(res.flushedMsg),
+                    //         })
+                    //         wx.showModal({
+                    //             title: 'res.reply',
+                    //             content: JSON.stringify(res.reply),
+                    //         })
+                    //         wx.showModal({
+                    //             title: 'res.replyCode',
+                    //             content: JSON.stringify(res.replyCode),
+                    //         })
+                    //         wx.showModal({
+                    //             title: '数据写串口成功',
+                    //             content: '数据写串口成功',
+                    //         })
+                    //     },
+                    //     fail(res) {
+                    //         // console.log("fail [writeToSerialPort]")
+                    //         // console.log(res.replyCode)
+                    //         // console.log(res.reply)
+                    //         wx.showModal({
+                    //             title: 'res.reply',
+                    //             content: JSON.stringify(res.reply),
+                    //         })
+                    //         wx.showModal({
+                    //             title: 'res.replyCode',
+                    //             content: JSON.stringify(res.replyCode),
+                    //         })
+                    //         wx.showModal({
+                    //             title: '数据写串口失败',
+                    //             content: '数据写串口失败',
+                    //         })
+                    //     }
+                    // })
                 })
                 //刷脸失败Event 建议配合facePay的调用结果进行注册
                 wxfaceapp.onFacePayFailedEvent(function(res) {
@@ -297,16 +350,16 @@ Page({
                 // console.log(res.replyCode)
                 // console.log(res.reply)
                 wx.showModal({
-                    title: 'fail',
-                    content: "fail [launchFaceApp]"
-                })
-                wx.showModal({
                     title: 'res.replyCode',
                     content: JSON.stringify(res.replyCode)
                 })
                 wx.showModal({
                     title: 'res.reply',
                     content: JSON.stringify(res.reply)
+                })
+                wx.showModal({
+                    title: 'fail',
+                    content: "没有启动刷脸支付"
                 })
             }
         })
